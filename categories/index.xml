@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on NTaurus的乌托邦</title>
+    <link>https://NTaurus.github.io/categories/</link>
+    <description>Recent content in Categories on NTaurus的乌托邦</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Dec 2019 13:27:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://NTaurus.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>文章</title>
+      <link>https://NTaurus.github.io/categories/%E6%96%87%E7%AB%A0/</link>
+      <pubDate>Tue, 17 Dec 2019 13:27:17 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/categories/%E6%96%87%E7%AB%A0/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
