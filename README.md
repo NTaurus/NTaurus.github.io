@@ -1,1 +1,1 @@
-NTaurus.gituhb.io
+NTaurus.github.io
