@@ -6,10 +6,83 @@
     <description>Recent content in 文章 on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Dec 2019 13:27:17 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 20 Dec 2019 22:08:09 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/categories/%E6%96%87%E7%AB%A0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>博客搭建好啦！</title>
+      <link>https://NTaurus.github.io/2019/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%A5%BD%E5%95%A6/</link>
+      <pubDate>Fri, 20 Dec 2019 22:08:09 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2019/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%A5%BD%E5%95%A6/</guid>
+      <description>&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
+
+&lt;h2 id=&#34;感受&#34;&gt;感受&lt;/h2&gt;
+
+&lt;p&gt;搭建的过程还是遇到挺多麻烦的，&lt;br /&gt;
+毕竟很多东西都没有接触过。&lt;br /&gt;
+从上周六开始着手准备搭建到搭建完成，&lt;br /&gt;
+前前后后差不多一个星期，&lt;br /&gt;
+因为还没结课，&lt;br /&gt;
+白天的时间比较零散，&lt;br /&gt;
+断断续续地研究搭建博客。&lt;br /&gt;
+开始博客部署在github上，&lt;br /&gt;
+访问实在是慢，&lt;br /&gt;
+研究coding研究了好久，&lt;br /&gt;
+coding这平台真是可（e）爱（xin），&lt;br /&gt;
+上传文件夹显示 0 Byte。&lt;br /&gt;
+无奈手动上传不了，&lt;br /&gt;
+只能再学一下git的使用，&lt;br /&gt;
+虽然跟着命令敲，&lt;br /&gt;
+但不理解它什么意思，&lt;br /&gt;
+真难受，&lt;br /&gt;
+一个个ERROF瞬间懵，&lt;br /&gt;
+心中无限疑惑，&lt;br /&gt;
+催我上bing。&lt;br /&gt;
+买一个域名还是挺有必要的，&lt;br /&gt;
+github博客同步到coding，&lt;br /&gt;
+用自己的域名双线解析，&lt;br /&gt;
+可以加快访问博客的速度。&lt;br /&gt;
+听说国内的域名要备案，&lt;br /&gt;
+今天在DNSPod上解析域名，&lt;br /&gt;
+确实要求要备案，&lt;br /&gt;
+备案麻烦，&lt;br /&gt;
+审核完得好多天。&lt;br /&gt;
+今天加了播放音乐的小插件，&lt;br /&gt;
+觉得博客有了灵魂，哈&lt;br /&gt;
+博客总体就这样了，&lt;br /&gt;
+等想起来或者偷学到什么技术的时候再弄。&lt;/p&gt;
+
+&lt;h2 id=&#34;需要注意的&#34;&gt;需要注意的&lt;/h2&gt;
+
+&lt;p&gt;hugo主题直接clone的话，&lt;br /&gt;
+速度是十分慢的，&lt;br /&gt;
+可以改电脑上的hosts文件。&lt;br /&gt;
+文件路径：
+&lt;code&gt;C:\Windows\System32\drivers\etc\hosts&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code&gt;git commit -m &amp;quot;XX&amp;quot;&lt;/code&gt;&lt;br /&gt;
+双引号里面可以随便的写，但不能缺，&lt;br /&gt;
+开始以为注释，原来也是属于命令的一部分。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;SSL安全证书得每三个月重新申请，&lt;br /&gt;
+重新申请的时候，&lt;br /&gt;
+先停用github的海外解析再申请。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;如果在git的CMD里验证coding或者github身份的时候，&lt;br /&gt;
+不小心输入错误的密码或账号，&lt;br /&gt;
+可以到电脑&lt;strong&gt;control&lt;/strong&gt;-&amp;gt;&lt;strong&gt;用户账户&lt;/strong&gt;-&amp;gt;&lt;strong&gt;windows凭证&lt;/strong&gt;,
+底下有个&lt;strong&gt;普通凭证&lt;/strong&gt;,&lt;br /&gt;
+把账号删掉再重新关联仓库就可以了（或者直接修改账号信息）。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>第二天</title>

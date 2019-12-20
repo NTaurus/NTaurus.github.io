@@ -8,181 +8,281 @@
 <meta name="generator" content="Hugo 0.59.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="NTaurus">
 <meta name="keywords" content="tech">
-<meta name="description" content="做个小小的记录
+<meta name="description" content="总结
+
+感受
+
+搭建的过程还是遇到挺多麻烦的，
+毕竟很多东西都没有接触过。
+从上周六开始着手准备搭建到搭建完成，
+前前后后差不多一个星期，
+因为还没结课，
+白天的时间比较零散，
+断断续续地研究搭建博客。
+开始博客部署在github上，
+访问实在是慢，
+研究coding研究了好久，
+coding这平台真是可（e）爱（xin），
+上传文件夹显示 0 Byte。
+无奈手动上传不了，
+只能再学一下git的使用，
+虽然跟着命令敲，
+但不理解它什么意思，
+真难受，
+一个个ERROF瞬间懵，
+心中无限疑惑，
+催我上bing。
+买一个域名还是挺有必要的，
+github博客同步到coding，
+用自己的域名双线解析，
+可以加快访问博客的速度。
+听说国内的域名要备案，
+今天在DNSPod上解析域名，
+确实要求要备案，
+备案麻烦，
+审核完得好多天。
+今天加了播放音乐的小插件，
+觉得博客有了灵魂，哈
+博客总体就这样了，
+等想起来或者偷学到什么技术的时候再弄。
+
+需要注意的
+
+hugo主题直接clone的话，
+速度是十分慢的，
+可以改电脑上的hosts文件。
+文件路径：
+C:\Windows\System32\drivers\etc\hosts
 
 
-好久之前就想开一个博客，
-也曾在一些博客网站上注册过，
-各式各样的广告让我眼花缭乱，
-还有一堆限制（一脸嫌弃）。
-后来看到有搭建个人博客的教程，
-便有了自己动手搭建一个属于自己的博客的想法，
-但要准备PAT乙级考试跟四级（不，你没有准备四级。。下次再来的哭脸.png）
-所以就拖到了现在。
 
-开始挺棘手的，
-完全没有经验，
-在不理解啥含义的情况下，
-在CMD里跟着教程瞎敲命令（真是蠢得可以），
-期间还卡了好多次，
-还得感谢SAquarius呆神的不吝赐教，
-在SAquarius的博客学了不少东西，再次感谢！
-
-开博客是想在往后的刷题跟学习中做一些笔记。
-要准备明年三月的：甲级考试、天梯赛跟蓝桥杯（甲级还是有点方，硬着头皮肝它）
-所以近期可能是复习数据结构的知识还有刷题巩固。
-
-除此之外，
-也可能会记录自己的最近的生活状态，
-就当这里是树洞吧。
-
-都怪你老让我吃菜
-不改host网速慢得让我目瞪口呆
-多少次clone的失败是git不肯给我的爱
-多少次pull的失败是gayhub在笑我活该
-重来重来
-冷冷的代码在我脑里胡乱的嗨
-送它离开千里之外
-我的blog终于怀上了胎
-为养这个仔
-硬着头皮跨过markdown的这障碍
-搬砖搬到了现在
-唉">
+git commit -m &quot;XX&quot;
+双引号里面可以随便的写，但不能缺，
+开始以为注释，原来也是属于命令的一部分。
 
 
-<meta property="og:description" content="做个小小的记录
+
+SSL安全证书得每三个月重新申请，
+重新申请的时候，
+先停用github的海外解析再申请。
 
 
-好久之前就想开一个博客，
-也曾在一些博客网站上注册过，
-各式各样的广告让我眼花缭乱，
-还有一堆限制（一脸嫌弃）。
-后来看到有搭建个人博客的教程，
-便有了自己动手搭建一个属于自己的博客的想法，
-但要准备PAT乙级考试跟四级（不，你没有准备四级。。下次再来的哭脸.png）
-所以就拖到了现在。
 
-开始挺棘手的，
-完全没有经验，
-在不理解啥含义的情况下，
-在CMD里跟着教程瞎敲命令（真是蠢得可以），
-期间还卡了好多次，
-还得感谢SAquarius呆神的不吝赐教，
-在SAquarius的博客学了不少东西，再次感谢！
+如果在git的CMD里验证coding或者github身份的时候，
+不小心输入错误的密码或账号，
+可以到电脑control-&gt;用户账户-&gt;windows凭证,
+底下有个普通凭证,
+把账号删掉再重新关联仓库就可以了（或者直接修改账号信息）。">
 
-开博客是想在往后的刷题跟学习中做一些笔记。
-要准备明年三月的：甲级考试、天梯赛跟蓝桥杯（甲级还是有点方，硬着头皮肝它）
-所以近期可能是复习数据结构的知识还有刷题巩固。
 
-除此之外，
-也可能会记录自己的最近的生活状态，
-就当这里是树洞吧。
+<meta property="og:description" content="总结
 
-都怪你老让我吃菜
-不改host网速慢得让我目瞪口呆
-多少次clone的失败是git不肯给我的爱
-多少次pull的失败是gayhub在笑我活该
-重来重来
-冷冷的代码在我脑里胡乱的嗨
-送它离开千里之外
-我的blog终于怀上了胎
-为养这个仔
-硬着头皮跨过markdown的这障碍
-搬砖搬到了现在
-唉">
+感受
+
+搭建的过程还是遇到挺多麻烦的，
+毕竟很多东西都没有接触过。
+从上周六开始着手准备搭建到搭建完成，
+前前后后差不多一个星期，
+因为还没结课，
+白天的时间比较零散，
+断断续续地研究搭建博客。
+开始博客部署在github上，
+访问实在是慢，
+研究coding研究了好久，
+coding这平台真是可（e）爱（xin），
+上传文件夹显示 0 Byte。
+无奈手动上传不了，
+只能再学一下git的使用，
+虽然跟着命令敲，
+但不理解它什么意思，
+真难受，
+一个个ERROF瞬间懵，
+心中无限疑惑，
+催我上bing。
+买一个域名还是挺有必要的，
+github博客同步到coding，
+用自己的域名双线解析，
+可以加快访问博客的速度。
+听说国内的域名要备案，
+今天在DNSPod上解析域名，
+确实要求要备案，
+备案麻烦，
+审核完得好多天。
+今天加了播放音乐的小插件，
+觉得博客有了灵魂，哈
+博客总体就这样了，
+等想起来或者偷学到什么技术的时候再弄。
+
+需要注意的
+
+hugo主题直接clone的话，
+速度是十分慢的，
+可以改电脑上的hosts文件。
+文件路径：
+C:\Windows\System32\drivers\etc\hosts
+
+
+
+git commit -m &quot;XX&quot;
+双引号里面可以随便的写，但不能缺，
+开始以为注释，原来也是属于命令的一部分。
+
+
+
+SSL安全证书得每三个月重新申请，
+重新申请的时候，
+先停用github的海外解析再申请。
+
+
+
+如果在git的CMD里验证coding或者github身份的时候，
+不小心输入错误的密码或账号，
+可以到电脑control-&gt;用户账户-&gt;windows凭证,
+底下有个普通凭证,
+把账号删掉再重新关联仓库就可以了（或者直接修改账号信息）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的博客开通啦">
-<meta name="twitter:title" content="我的博客开通啦">
-<meta property="og:url" content="https://NTaurus.github.io/2019/12/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%BC%80%E9%80%9A%E5%95%A6/">
-<meta property="twitter:url" content="https://NTaurus.github.io/2019/12/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%BC%80%E9%80%9A%E5%95%A6/">
+<meta property="og:title" content="博客搭建好啦！">
+<meta name="twitter:title" content="博客搭建好啦！">
+<meta property="og:url" content="https://NTaurus.github.io/2019/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%A5%BD%E5%95%A6/">
+<meta property="twitter:url" content="https://NTaurus.github.io/2019/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%A5%BD%E5%95%A6/">
 <meta property="og:site_name" content="NTaurus的乌托邦">
-<meta property="og:description" content="做个小小的记录
+<meta property="og:description" content="总结
+
+感受
+
+搭建的过程还是遇到挺多麻烦的，
+毕竟很多东西都没有接触过。
+从上周六开始着手准备搭建到搭建完成，
+前前后后差不多一个星期，
+因为还没结课，
+白天的时间比较零散，
+断断续续地研究搭建博客。
+开始博客部署在github上，
+访问实在是慢，
+研究coding研究了好久，
+coding这平台真是可（e）爱（xin），
+上传文件夹显示 0 Byte。
+无奈手动上传不了，
+只能再学一下git的使用，
+虽然跟着命令敲，
+但不理解它什么意思，
+真难受，
+一个个ERROF瞬间懵，
+心中无限疑惑，
+催我上bing。
+买一个域名还是挺有必要的，
+github博客同步到coding，
+用自己的域名双线解析，
+可以加快访问博客的速度。
+听说国内的域名要备案，
+今天在DNSPod上解析域名，
+确实要求要备案，
+备案麻烦，
+审核完得好多天。
+今天加了播放音乐的小插件，
+觉得博客有了灵魂，哈
+博客总体就这样了，
+等想起来或者偷学到什么技术的时候再弄。
+
+需要注意的
+
+hugo主题直接clone的话，
+速度是十分慢的，
+可以改电脑上的hosts文件。
+文件路径：
+C:\Windows\System32\drivers\etc\hosts
 
 
-好久之前就想开一个博客，
-也曾在一些博客网站上注册过，
-各式各样的广告让我眼花缭乱，
-还有一堆限制（一脸嫌弃）。
-后来看到有搭建个人博客的教程，
-便有了自己动手搭建一个属于自己的博客的想法，
-但要准备PAT乙级考试跟四级（不，你没有准备四级。。下次再来的哭脸.png）
-所以就拖到了现在。
 
-开始挺棘手的，
-完全没有经验，
-在不理解啥含义的情况下，
-在CMD里跟着教程瞎敲命令（真是蠢得可以），
-期间还卡了好多次，
-还得感谢SAquarius呆神的不吝赐教，
-在SAquarius的博客学了不少东西，再次感谢！
-
-开博客是想在往后的刷题跟学习中做一些笔记。
-要准备明年三月的：甲级考试、天梯赛跟蓝桥杯（甲级还是有点方，硬着头皮肝它）
-所以近期可能是复习数据结构的知识还有刷题巩固。
-
-除此之外，
-也可能会记录自己的最近的生活状态，
-就当这里是树洞吧。
-
-都怪你老让我吃菜
-不改host网速慢得让我目瞪口呆
-多少次clone的失败是git不肯给我的爱
-多少次pull的失败是gayhub在笑我活该
-重来重来
-冷冷的代码在我脑里胡乱的嗨
-送它离开千里之外
-我的blog终于怀上了胎
-为养这个仔
-硬着头皮跨过markdown的这障碍
-搬砖搬到了现在
-唉">
-<meta name="twitter:description" content="做个小小的记录
+git commit -m &quot;XX&quot;
+双引号里面可以随便的写，但不能缺，
+开始以为注释，原来也是属于命令的一部分。
 
 
-好久之前就想开一个博客，
-也曾在一些博客网站上注册过，
-各式各样的广告让我眼花缭乱，
-还有一堆限制（一脸嫌弃）。
-后来看到有搭建个人博客的教程，
-便有了自己动手搭建一个属于自己的博客的想法，
-但要准备PAT乙级考试跟四级（不，你没有准备四级。。下次再来的哭脸.png）
-所以就拖到了现在。
 
-开始挺棘手的，
-完全没有经验，
-在不理解啥含义的情况下，
-在CMD里跟着教程瞎敲命令（真是蠢得可以），
-期间还卡了好多次，
-还得感谢SAquarius呆神的不吝赐教，
-在SAquarius的博客学了不少东西，再次感谢！
+SSL安全证书得每三个月重新申请，
+重新申请的时候，
+先停用github的海外解析再申请。
 
-开博客是想在往后的刷题跟学习中做一些笔记。
-要准备明年三月的：甲级考试、天梯赛跟蓝桥杯（甲级还是有点方，硬着头皮肝它）
-所以近期可能是复习数据结构的知识还有刷题巩固。
 
-除此之外，
-也可能会记录自己的最近的生活状态，
-就当这里是树洞吧。
 
-都怪你老让我吃菜
-不改host网速慢得让我目瞪口呆
-多少次clone的失败是git不肯给我的爱
-多少次pull的失败是gayhub在笑我活该
-重来重来
-冷冷的代码在我脑里胡乱的嗨
-送它离开千里之外
-我的blog终于怀上了胎
-为养这个仔
-硬着头皮跨过markdown的这障碍
-搬砖搬到了现在
-唉">
+如果在git的CMD里验证coding或者github身份的时候，
+不小心输入错误的密码或账号，
+可以到电脑control-&gt;用户账户-&gt;windows凭证,
+底下有个普通凭证,
+把账号删掉再重新关联仓库就可以了（或者直接修改账号信息）。">
+<meta name="twitter:description" content="总结
+
+感受
+
+搭建的过程还是遇到挺多麻烦的，
+毕竟很多东西都没有接触过。
+从上周六开始着手准备搭建到搭建完成，
+前前后后差不多一个星期，
+因为还没结课，
+白天的时间比较零散，
+断断续续地研究搭建博客。
+开始博客部署在github上，
+访问实在是慢，
+研究coding研究了好久，
+coding这平台真是可（e）爱（xin），
+上传文件夹显示 0 Byte。
+无奈手动上传不了，
+只能再学一下git的使用，
+虽然跟着命令敲，
+但不理解它什么意思，
+真难受，
+一个个ERROF瞬间懵，
+心中无限疑惑，
+催我上bing。
+买一个域名还是挺有必要的，
+github博客同步到coding，
+用自己的域名双线解析，
+可以加快访问博客的速度。
+听说国内的域名要备案，
+今天在DNSPod上解析域名，
+确实要求要备案，
+备案麻烦，
+审核完得好多天。
+今天加了播放音乐的小插件，
+觉得博客有了灵魂，哈
+博客总体就这样了，
+等想起来或者偷学到什么技术的时候再弄。
+
+需要注意的
+
+hugo主题直接clone的话，
+速度是十分慢的，
+可以改电脑上的hosts文件。
+文件路径：
+C:\Windows\System32\drivers\etc\hosts
+
+
+
+git commit -m &quot;XX&quot;
+双引号里面可以随便的写，但不能缺，
+开始以为注释，原来也是属于命令的一部分。
+
+
+
+SSL安全证书得每三个月重新申请，
+重新申请的时候，
+先停用github的海外解析再申请。
+
+
+
+如果在git的CMD里验证coding或者github身份的时候，
+不小心输入错误的密码或账号，
+可以到电脑control-&gt;用户账户-&gt;windows凭证,
+底下有个普通凭证,
+把账号删掉再重新关联仓库就可以了（或者直接修改账号信息）。">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-12-16T23:32:00">
+    <meta property="article:published_time" content="2019-12-20T22:08:09">
   
   
-    <meta property="article:modified_time" content="2019-12-16T23:32:00">
+    <meta property="article:modified_time" content="2019-12-20T22:08:09">
   
   
   
@@ -211,8 +311,8 @@
   <meta property="twitter:image" content="https://NTaurus.github.io/images/autumn1.png">
 
 
-  <meta property="og:image" content="https://NTaurus.github.io/images/autumn1.png">
-  <meta property="twitter:image" content="https://NTaurus.github.io/images/autumn1.png">
+  <meta property="og:image" content="https://NTaurus.github.io/images/sundown.jpg">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/sundown.jpg">
 
 
 
@@ -221,14 +321,14 @@
   <meta property="twitter:image" content="https://NTaurus.github.io/images/touxiang.png">
 
 
-    <title>我的博客开通啦</title>
+    <title>博客搭建好啦！</title>
 
     <link rel="icon" href="https://NTaurus.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://NTaurus.github.io/2019/12/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%BC%80%E9%80%9A%E5%95%A6/">
+    <link rel="canonical" href="https://NTaurus.github.io/2019/12/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%A5%BD%E5%95%A6/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -360,21 +460,21 @@
   <div class="post-header-cover
               text-center
               post-header-cover--full"
-       style="background-image:url('/images/autumn1.png')"
+       style="background-image:url('/images/sundown.jpg')"
        data-behavior="5">
     
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      我的博客开通啦
+      博客搭建好啦！
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-12-16T23:32:00&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-12-20T22:08:09&#43;08:00">
         
-  十二月 16, 2019
+  十二月 20, 2019
 
       </time>
     
@@ -400,59 +500,76 @@
                hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
-            <span class="post-header-cover-caption caption">There are no easy answers,there&rsquo;s only living through the questions.&mdash;&ndash;Zlizabeth George</span>
+            <span class="post-header-cover-caption caption">Start,for a better future.</span>
           
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="做个小小的记录">做个小小的记录</h1>
+              <h1 id="总结">总结</h1>
 
-<p><img src="https://NTaurus.github.io/images/pig.jpg" alt="&quot;猪猪&quot;" />
-好久之前就想开一个博客，<br />
-也曾在一些博客网站上注册过，<br />
-各式各样的广告让我眼花缭乱，<br />
-还有一堆限制（一脸嫌弃）。<br />
-后来看到有搭建个人博客的教程，<br />
-便有了自己动手搭建一个属于自己的博客的想法，<br />
-但要准备PAT乙级考试跟<del>四级</del>（不，你没有准备四级。。下次再来的哭脸.png）<br />
-所以就拖到了现在。</p>
+<h2 id="感受">感受</h2>
 
-<p>开始挺棘手的，<br />
-完全没有经验，<br />
-在不理解啥含义的情况下，<br />
-在CMD里跟着教程瞎敲命令（真是蠢得可以），<br />
-期间还卡了好多次，<br />
-还得感谢<strong>SAquarius</strong>呆神的不吝赐教，<br />
-在<strong>SAquarius</strong>的博客学了不少东西，再次感谢！</p>
+<p>搭建的过程还是遇到挺多麻烦的，<br />
+毕竟很多东西都没有接触过。<br />
+从上周六开始着手准备搭建到搭建完成，<br />
+前前后后差不多一个星期，<br />
+因为还没结课，<br />
+白天的时间比较零散，<br />
+断断续续地研究搭建博客。<br />
+开始博客部署在github上，<br />
+访问实在是慢，<br />
+研究coding研究了好久，<br />
+coding这平台真是可（e）爱（xin），<br />
+上传文件夹显示 0 Byte。<br />
+无奈手动上传不了，<br />
+只能再学一下git的使用，<br />
+虽然跟着命令敲，<br />
+但不理解它什么意思，<br />
+真难受，<br />
+一个个ERROF瞬间懵，<br />
+心中无限疑惑，<br />
+催我上bing。<br />
+买一个域名还是挺有必要的，<br />
+github博客同步到coding，<br />
+用自己的域名双线解析，<br />
+可以加快访问博客的速度。<br />
+听说国内的域名要备案，<br />
+今天在DNSPod上解析域名，<br />
+确实要求要备案，<br />
+备案麻烦，<br />
+审核完得好多天。<br />
+今天加了播放音乐的小插件，<br />
+觉得博客有了灵魂，哈<br />
+博客总体就这样了，<br />
+等想起来或者偷学到什么技术的时候再弄。</p>
 
-<p>开博客是想在往后的刷题跟学习中做一些笔记。<br />
-要准备明年三月的：甲级考试、天梯赛跟蓝桥杯（甲级还是有点方，硬着头皮肝它）<br />
-所以近期可能是复习数据结构的知识还有刷题巩固。</p>
+<h2 id="需要注意的">需要注意的</h2>
 
-<p>除此之外，<br />
-也可能会记录自己的最近的生活状态，<br />
-就当这里是树洞吧。</p>
+<p>hugo主题直接clone的话，<br />
+速度是十分慢的，<br />
+可以改电脑上的hosts文件。<br />
+文件路径：
+<code>C:\Windows\System32\drivers\etc\hosts</code></p>
 
-<p>都怪你老让我吃菜<br />
-不改host网速慢得让我目瞪口呆<br />
-多少次clone的失败是git不肯给我的爱<br />
-多少次pull的失败是gayhub在笑我活该<br />
-重来重来<br />
-冷冷的代码在我脑里胡乱的嗨<br />
-送它离开千里之外<br />
-我的blog终于怀上了胎<br />
-为养这个仔<br />
-硬着头皮跨过markdown的这障碍<br />
-搬砖搬到了现在<br />
-<strong>唉</strong></p>
+<hr />
 
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li><a href="#做个小小的记录">做个小小的记录</a></li>
-</ul>
-</nav>
+<p><code>git commit -m &quot;XX&quot;</code><br />
+双引号里面可以随便的写，但不能缺，<br />
+开始以为注释，原来也是属于命令的一部分。</p>
 
-<!--more-->
+<hr />
+
+<p>SSL安全证书得每三个月重新申请，<br />
+重新申请的时候，<br />
+先停用github的海外解析再申请。</p>
+
+<hr />
+
+<p>如果在git的CMD里验证coding或者github身份的时候，<br />
+不小心输入错误的密码或账号，<br />
+可以到电脑<strong>control</strong>-&gt;<strong>用户账户</strong>-&gt;<strong>windows凭证</strong>,
+底下有个<strong>普通凭证</strong>,<br />
+把账号删掉再重新关联仓库就可以了（或者直接修改账号信息）。</p>
               
             </div>
           </div>
@@ -479,7 +596,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2019/12/%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-tooltip="第二天">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -487,7 +604,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2019/12/%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-tooltip="第二天">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -514,7 +631,7 @@
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+          <a class="post-action-btn btn btn--default" href="#">
         
           <i class="fa fa-list"></i>
         </a>
@@ -547,7 +664,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2019/12/%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-tooltip="第二天">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -555,7 +672,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2019/12/%E7%AC%AC%E4%BA%8C%E5%A4%A9/" data-tooltip="第二天">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -582,7 +699,7 @@
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+          <a class="post-action-btn btn btn--default" href="#">
         
           <i class="fa fa-list"></i>
         </a>
@@ -675,9 +792,9 @@ function updateMinWidth() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/NTaurus.github.io\/2019\/12\/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%BC%80%E9%80%9A%E5%95%A6\/';
+          this.page.url = 'https:\/\/NTaurus.github.io\/2019\/12\/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%A5%BD%E5%95%A6\/';
           
-            this.page.identifier = '\/2019\/12\/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%BC%80%E9%80%9A%E5%95%A6\/'
+            this.page.identifier = '\/2019\/12\/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%A5%BD%E5%95%A6\/'
           
         };
         (function() {
