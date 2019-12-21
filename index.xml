@@ -6,10 +6,479 @@
     <description>Recent content on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Dec 2019 22:08:09 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Dec 2019 19:36:59 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PAT乙级考试总结</title>
+      <link>https://NTaurus.github.io/2019/12/pat%E4%B9%99%E7%BA%A7%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sat, 21 Dec 2019 19:36:59 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2019/12/pat%E4%B9%99%E7%BA%A7%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;h1 id=&#34;冬季乙级考试总结&#34;&gt;冬季乙级考试总结&lt;/h1&gt;
+
+&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;这次考试难度其实并不大，第三题又考了字符串的输出，题库有类似的，只不过换成了String，还有第五题的链表，秋季考了链表，以为不会考了，姥姥真是不按套路出牌，还好对链表还算熟悉。让人糟心的是第四题。考了HELLO WORLD，没错真的是HELLO WORLD，但又不是一般的helloworld，这题光是输入的数据就一百八十多行，用7*5的矩阵表示二十六个字母。只能说会HELLO WORLD就离满分不远了。&lt;br /&gt;
+姥姥在知乎对本次考试的评价是：简单？&lt;br /&gt;
+是简单，只是再也不敢说自己是HELLO WORLD水平了。。&lt;/p&gt;
+
+&lt;h3 id=&#34;7-1-2019数列-15分&#34;&gt;7-1 2019数列 (15分)&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;把 2019 各个数位上的数字 2、0、1、9 作为一个数列的前 4 项，用它们去构造一个无穷数列，其中第 n（&amp;gt;4）项是它前 4 项之和的个位数字。例如第 5 项为 2， 因为 2+0+1+9=12，个位数是 2。&lt;/p&gt;
+
+&lt;p&gt;本题就请你编写程序，列出这个序列的前 n 项。&lt;/p&gt;
+
+&lt;p&gt;输入格式：&lt;br /&gt;
+输入给出正整数 n（≤1000）。&lt;/p&gt;
+
+&lt;p&gt;输出格式：&lt;br /&gt;
+在一行中输出数列的前 n 项，数字间不要有空格。&lt;/p&gt;
+
+&lt;p&gt;输入样例：&lt;br /&gt;
+10&lt;br /&gt;
+输出样例：&lt;br /&gt;
+2019224758&lt;br /&gt;
+题外话：这个数列中永远不会出现 2018，你能证明吗？&lt;/p&gt;
+
+&lt;p&gt;这题比较容易，值得注意的是，初始项并非2019，而是从2开始，开始我以2019为初始项没AC，然后以2为初始项才AC，花了13分钟。。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;string&amp;gt;
+#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;vector&amp;gt;
+using namespace std;
+int main(){
+    int N;
+    int i,j,x;
+    string str=&amp;quot;&amp;quot;;
+    cin&amp;gt;&amp;gt;N;
+    for(j=0,i=0;str.size()&amp;lt;N;i++,j++){
+        if(j&amp;lt;4){
+            if(j==0)str.push_back(&#39;2&#39;);
+            else if(j==1)str.push_back(&#39;0&#39;);
+            else if(j==2)str.push_back(&#39;1&#39;);
+            else if(j==3)str.push_back(&#39;9&#39;);
+            continue;
+        }
+        x=((str[j-1]-&#39;0&#39;)+(str[j-2]-&#39;0&#39;)+(str[j-3]-&#39;0&#39;)+(str[j-4]-&#39;0&#39;))%10;
+        str.push_back(x+&#39;0&#39;);
+    }
+    cout&amp;lt;&amp;lt;str;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;7-2-老鼠爱大米-20分&#34;&gt;7-2 老鼠爱大米 (20分)&lt;/h3&gt;
+
+&lt;p&gt;翁恺老师曾经设计过一款 Java 挑战游戏，叫“老鼠爱大米”（或许因为他的外号叫“胖胖鼠”）。每个玩家用 Java 代码控制一只鼠，目标是抢吃尽可能多的大米让自己变成胖胖鼠，最胖的那只就是冠军。&lt;/p&gt;
+
+&lt;p&gt;因为游戏时间不能太长，我们把玩家分成 N 组，每组 M 只老鼠同场竞技，然后从 N 个分组冠军中直接选出最胖的冠军胖胖鼠。现在就请你写个程序来得到冠军的体重。&lt;/p&gt;
+
+&lt;p&gt;输入格式：&lt;br /&gt;
+输入在第一行中给出 2 个正整数：N（≤100）为组数，M（≤10）为每组玩家个数。随后 N 行，每行给出一组玩家控制的 M 只老鼠最后的体重，均为不超过 10^4的非负整数。数字间以空格分隔。&lt;/p&gt;
+
+&lt;p&gt;输出格式：&lt;br /&gt;
+首先在第一行顺次输出各组冠军的体重，数字间以 1 个空格分隔，行首尾不得有多余空格。随后在第二行输出冠军胖胖鼠的体重。&lt;/p&gt;
+
+&lt;p&gt;输入样例：&lt;br /&gt;
+3 5&lt;br /&gt;
+62 53 88 72 81&lt;br /&gt;
+12 31 9 0 2&lt;br /&gt;
+91 42 39 6 48&lt;br /&gt;
+输出样例：&lt;br /&gt;
+88 31 91&lt;br /&gt;
+91&lt;/p&gt;
+
+&lt;p&gt;这题没啥好说的，sort用的快乐哈，懒得再找最值。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;string&amp;gt;
+#include&amp;lt;cmath&amp;gt;
+include&amp;lt;vector&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+using namespace std;
+int main(){
+    int N,M,max[104],l=0;
+    cin&amp;gt;&amp;gt;N&amp;gt;&amp;gt;M;  
+    for(int i=0;i&amp;lt;N;i++){
+        int a[15];
+        for(int j=0;j&amp;lt;M;j++){   
+            cin&amp;gt;&amp;gt;a[j];      
+        }
+        sort(a,a+M);
+        max[l]=a[M-1];
+        l++;
+    }   
+    for(int i=0;i&amp;lt;l;i++){
+        if(i)cout&amp;lt;&amp;lt;&#39; &#39;;
+        cout&amp;lt;&amp;lt;max[i];
+    }
+    sort(max,max+l);
+    cout&amp;lt;&amp;lt;endl&amp;lt;&amp;lt;max[l-1];
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;7-3-string复读机-20分&#34;&gt;7-3 String复读机 (20分)&lt;/h3&gt;
+
+&lt;p&gt;给定一个长度不超过 10^4的、仅由英文字母构成的字符串。请将字符重新调整顺序，按 StringString&amp;hellip;. （注意区分大小写）这样的顺序输出，并忽略其它字符。当然，六种字符的个数不一定是一样多的，若某种字符已经输出完，则余下的字符仍按 String 的顺序打印，直到所有字符都被输出。例如 gnirtSSs 要调整成 StringS 输出，其中 s 是多余字符被忽略。&lt;/p&gt;
+
+&lt;p&gt;输入格式：&lt;br /&gt;
+输入在一行中给出一个长度不超过 10^4的、仅由英文字母构成的非空字符串。&lt;/p&gt;
+
+&lt;p&gt;输出格式：&lt;br /&gt;
+在一行中按题目要求输出排序后的字符串。题目保证输出非空。&lt;/p&gt;
+
+&lt;p&gt;输入样例：&lt;br /&gt;
+sTRidlinSayBingStrropriiSHSiRiagIgtSSr&lt;br /&gt;
+输出样例：&lt;br /&gt;
+StringStringSrigSriSiSii&lt;/p&gt;
+
+&lt;p&gt;这题跟题库里的那道做法一下，统计数量按顺序输出就好了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;string&amp;gt;
+#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+using namespace std;
+int main(){
+    string str;
+    int s,t,r,i,n,g;
+    int j,k;
+    s=t=r=i=n=g=0;
+    getline(cin,str);
+
+    for(j=0;j&amp;lt;str.size();j++){
+        if(str[j]==&#39;S&#39;)s++;
+        else if(str[j]==&#39;t&#39;)t++;
+        else if(str[j]==&#39;r&#39;)r++;
+        else if(str[j]==&#39;i&#39;)i++;
+        else if(str[j]==&#39;n&#39;)n++;
+        else if(str[j]==&#39;g&#39;)g++;
+    }
+    while(s||t||r||i||n||g){
+
+        if(s){
+            cout&amp;lt;&amp;lt;&#39;S&#39;;
+            s--;
+        }
+        if(t){
+            cout&amp;lt;&amp;lt;&#39;t&#39;;
+            t--;
+        }
+        if(r){
+            cout&amp;lt;&amp;lt;&#39;r&#39;;
+            r--;
+        }
+        if(i){
+            cout&amp;lt;&amp;lt;&#39;i&#39;;
+            i--;
+        }
+        if(n){
+            cout&amp;lt;&amp;lt;&#39;n&#39;;
+            n--;
+        }
+        if(g){
+            cout&amp;lt;&amp;lt;&#39;g&#39;;
+            g--;
+        }
+    }   
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;7-4-擅长c-20分&#34;&gt;7-4 擅长C (20分)&lt;/h3&gt;
+
+&lt;p&gt;输入格式：&lt;br /&gt;
+输入首先给出 26 个英文大写字母 A-Z，每个字母用一个 7×5 的、由 C 和 . 组成的矩阵构成。最后在一行中给出一个句子，以回车结束。句子是由若干个单词（每个包含不超过 10 个连续的大写英文字母）组成的，单词间以任何非大写英文字母分隔。&lt;/p&gt;
+
+&lt;p&gt;题目保证至少给出一个单词。&lt;/p&gt;
+
+&lt;p&gt;输出格式：&lt;br /&gt;
+对每个单词，将其每个字母用矩阵形式在一行中输出，字母间有一列空格分隔。单词的首尾不得有多余空格。&lt;/p&gt;
+
+&lt;p&gt;相邻的两个单词间必须有一空行分隔。输出的首尾不得有多余空行。&lt;/p&gt;
+
+&lt;p&gt;输入样例：&lt;br /&gt;
+..C..&lt;br /&gt;
+.C.C.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCCC&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCC.&lt;br /&gt;
+.CCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.CCC.&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCC.&lt;br /&gt;
+CCCCC&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+CCCCC&lt;br /&gt;
+CCCCC&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C.CCC&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCCC&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCCC&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+CCCCC&lt;br /&gt;
+CCCCC&lt;br /&gt;
+&amp;hellip;.C&lt;br /&gt;
+&amp;hellip;.C&lt;br /&gt;
+&amp;hellip;.C&lt;br /&gt;
+&amp;hellip;.C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.CCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C..C.&lt;br /&gt;
+C.C..&lt;br /&gt;
+CC&amp;hellip;&lt;br /&gt;
+C.C..&lt;br /&gt;
+C..C.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+CCCCC&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CC.CC&lt;br /&gt;
+C.C.C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CC..C&lt;br /&gt;
+C.C.C&lt;br /&gt;
+C..CC&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.CCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.CCC.&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+.CCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C.C.C&lt;br /&gt;
+C..CC&lt;br /&gt;
+.CCC.&lt;br /&gt;
+CCCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+CCCC.&lt;br /&gt;
+CC&amp;hellip;&lt;br /&gt;
+C.C..&lt;br /&gt;
+C..C.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.CCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+.CCC.&lt;br /&gt;
+&amp;hellip;.C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.CCC.&lt;br /&gt;
+CCCCC&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.CCC.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.C.C.&lt;br /&gt;
+..C..&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C.C.C&lt;br /&gt;
+CC.CC&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.C.C.&lt;br /&gt;
+..C..&lt;br /&gt;
+.C.C.&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+C&amp;hellip;C&lt;br /&gt;
+.C.C.&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+..C..&lt;br /&gt;
+CCCCC&lt;br /&gt;
+&amp;hellip;.C&lt;br /&gt;
+&amp;hellip;C.&lt;br /&gt;
+..C..&lt;br /&gt;
+.C&amp;hellip;&lt;br /&gt;
+C&amp;hellip;.&lt;br /&gt;
+CCCCC&lt;br /&gt;
+HELLO~WORLD!&lt;br /&gt;
+输出样例：&lt;br /&gt;
+&lt;img src=&#34;https://NTaurus.github.io/images/helloworld.jpg&#34; alt=&#34;&amp;quot;&amp;quot;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这题我只想说：我不擅长C（哭.png）&lt;br /&gt;
+前面三道二十四分钟就做完了，当时看了一下排名还是算是第十几的并列第一，原本信心满满的栽在了HELLO WORLD上。。这题先留个坑，等复习甲级或者有时间再重新写一遍。卡在79分。。于是就只为过个点至少上80，然后就不写通用的，最后过了题目的样例拿了12分，再处理一个点13分。。而且让人郁闷的是定义的三维数组w[ 26 ][ 7 ][ 5 ],当时用cout&amp;lt;&amp;lt; w[i][j],输出一行居然出来一堆东西，调试看数据是对的，调试半天，最后试了试%c 一个一个字符打印才正确输出。。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;7-5-区块反转-25分&#34;&gt;7-5 区块反转 (25分)&lt;/h3&gt;
+
+&lt;p&gt;给定一个单链表 L，我们将每 K 个结点看成一个区块（链表最后若不足 K 个结点，也看成一个区块），请编写程序将 L 中所有区块的链接反转。例如：给定 L 为 1→2→3→4→5→6→7→8，K 为 3，则输出应该为 7→8→4→5→6→1→2→3。&lt;/p&gt;
+
+&lt;p&gt;输入格式：&lt;br /&gt;
+每个输入包含 1 个测试用例。每个测试用例第 1 行给出第 1 个结点的地址、结点总个数正整数 N (≤10^5)、以及正整数 K (≤N)，即区块的大小。结点的地址是 5 位非负整数，NULL 地址用 −1 表示。&lt;/p&gt;
+
+&lt;p&gt;接下来有 N 行，每行格式为：&lt;/p&gt;
+
+&lt;p&gt;Address Data Next&lt;br /&gt;
+其中 Address 是结点地址，Data 是该结点保存的整数数据，Next 是下一结点的地址。&lt;/p&gt;
+
+&lt;p&gt;输出格式：&lt;br /&gt;
+对每个测试用例，顺序输出反转后的链表，其上每个结点占一行，格式与输入相同。&lt;/p&gt;
+
+&lt;p&gt;输入样例：&lt;br /&gt;
+00100 8 3&lt;br /&gt;
+71120 7 88666&lt;br /&gt;
+00000 4 99999&lt;br /&gt;
+00100 1 12309&lt;br /&gt;
+68237 6 71120&lt;br /&gt;
+33218 3 00000&lt;br /&gt;
+99999 5 68237&lt;br /&gt;
+88666 8 -1&lt;br /&gt;
+12309 2 33218&lt;br /&gt;
+输出样例：&lt;br /&gt;
+71120 7 88666&lt;br /&gt;
+88666 8 00000&lt;br /&gt;
+00000 4 99999&lt;br /&gt;
+99999 5 68237&lt;br /&gt;
+68237 6 00100&lt;br /&gt;
+00100 1 12309&lt;br /&gt;
+12309 2 33218&lt;br /&gt;
+33218 3 -1&lt;/p&gt;
+
+&lt;p&gt;当时直接跳过HELLO WORLD了，看到链表终于找回一点信心。按套路来就行。不过这题有个坑点，好多人都卡在24分，我也是，当时考虑了会不会K=0，但考后看了题目K为正整数，怪不得当时加了K=0的判断还没AC，知乎有人说那一分可能是有个垃圾点不在链表上，这个我做了处理了，也没有AC，所以肯定不是这个的原因。不知道是不是K=1的情况，K=1的话，我的程序是逆序输出的，但K=1的话，反转自己，那岂不是没反转，所以是不是要正序输出。。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;string&amp;gt;
+#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+using namespace std;
+struct node{
+    int next;
+    int data;
+}p[100005];
+int main(){
+    int first,N,K,temp,i;
+   vector&amp;lt;int&amp;gt;ad;
+    cin&amp;gt;&amp;gt;first&amp;gt;&amp;gt;N&amp;gt;&amp;gt;K;
+    for(i=0;i&amp;lt;N;i++){
+        cin&amp;gt;&amp;gt;temp;
+        cin&amp;gt;&amp;gt;p[temp].data&amp;gt;&amp;gt;p[temp].next;
+    }
+   temp=first;
+    while(temp!=-1){
+       ad.push_back(temp);
+        temp=p[temp].next;
+    }
+    for(i=1;i&amp;lt;=ad.size()/K;i++){
+        reverse(ad.begin()+K*(i-1),ad.begin()+K*i);
+    }
+   if(ad.size()%K!=0){
+        reverse(ad.end()-(ad.size()%K),ad.end());
+    }
+    for(i=ad.size()-1;i&amp;gt;=0;i--){
+        if(i)printf(&amp;quot;%05d %d %05d\n&amp;quot;,ad[i],p[ad[i]].data,ad[i-1]);
+        else printf(&amp;quot;%05d %d -1\n&amp;quot;,ad[i],p[ad[i]].data);
+    }   
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;这是第一次参加，只拿了92分，没有满分还是有点遗憾的，下次的甲级加油吧！&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>博客搭建好啦！</title>
