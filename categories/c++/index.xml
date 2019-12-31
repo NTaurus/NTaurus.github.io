@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on NTaurus的乌托邦</title>
+    <link>https://NTaurus.github.io/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on NTaurus的乌托邦</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Dec 2019 11:59:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://NTaurus.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>STL</title>
+      <link>https://NTaurus.github.io/2019/12/stl/</link>
+      <pubDate>Sun, 22 Dec 2019 11:59:15 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2019/12/stl/</guid>
+      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;C++STL(标准模板库)是一组功能强大的C++模板类，它为通用类和函数提供模板，这些模板实现了许多流行和常用的算法和数据结构，如向量（vector）、列表（list）、队列(queue)和堆栈(stack)等等。&lt;/p&gt;
+
+&lt;h3 id=&#34;vector&#34;&gt;vector&lt;/h3&gt;
+
+&lt;p&gt;vector可以理解成变长数组，它会根据需要自动增长;vector可以放任意的数据类型，可以方便、灵活地代替数组。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;vector&amp;gt;    //需要的头文件
+vector&amp;lt;typename&amp;gt;v;    //定义一个向量，typename可以是（如vector&amp;lt;int&amp;gt;v;）int、string、char，也可以是node（结构体）等等..
+vector&amp;lt;typename&amp;gt;v(50)   //定义初始大小为50的向量
+vector&amp;lt;typename&amp;gt;v(50,0) //初始大小为50，元素全为0
+//常用的操作
+vector&amp;lt;int&amp;gt;v;   //先定义一个向量
+
+v.push_back();    //把x加入v中（在尾部插入）
+v.push_back(1);    //插入int型1
+v.push_back(&#39;1&#39;)    //插入char型1
+
+v.pop_back();   //删除最后一个元素
+
+v.back();    //返回最后一个元素
+v.size();   //返回v的大小
+v.clear();  //清空数组
+
+//访问方式
+v[0];   //可以按数组的格式随机访问
+cout&amp;lt;&amp;lt;v[0];    //输出也一样
+
+vector&amp;lt;typename&amp;gt;::iterator it;   //用迭代器访问(先定义,typename要跟前面定义的向量对应)
+for(it=v.begin();it!=v.end();it++){
+    cout&amp;lt;&amp;lt;*it;  //输出元素
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;set&#34;&gt;set&lt;/h3&gt;
+
+&lt;p&gt;set是一种包含已排序对象的关联容器。它的底层是一颗红黑树。set会自动排序，去重。&lt;br /&gt;
+  特别注意的是：set不能修改元素的值，因为set元素是常量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;set&amp;gt;   //需要的头文件
+set&amp;lt;typename&amp;gt;s;   //typename是数据类型名，可以是int、double、string等等..
+
+//常用的操作
+s.size()    //返回集合的大小
+s.empty()   //判断集合是否为空，若为空返回ture
+
+s.begin()   //返回指向第一个元素的迭代器
+s.end()     //返回指向最后一个元素的迭代器
+
+s.rbegin()  //返回指向集合中最后一个元素的反向迭代器
+s.rend()    //返回指向集合中第一个元素的反向迭代器
+
+s.insert()    //在集合中插入元素
+s.insert(1)    //插入元素1
+
+s.erase()   //删除集合中的元素
+s.erase(1)  //删除键值为1的元素
+
+s.find()    //返回一个指向被查找到元素的迭代器
+it=s.find(1)   //如果找到就it!=s.end(),否则it==s.end()
+
+s.clear()   //清空集合
+//访问或遍历
+set不能直接访问，需要用到迭代器
+set&amp;lt;typename&amp;gt;::iterator it;//定义迭代器
+
+for(it=s.begin();it!=s.end();it++){ //遍历输出
+    cout&amp;lt;&amp;lt;*it;  //输出元素
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;map&#34;&gt;map&lt;/h3&gt;
+
+&lt;p&gt;map是一类关联式容器。map中有关键字（key）跟值（value）。&lt;br /&gt;
+map会自动按key升序排序&lt;br /&gt;
+unordered_map则不会&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;map&amp;gt;   //需要的头文件
+map&amp;lt;typename1,typename2&amp;gt;mp; //定义key-&amp;gt;value关系的map（key跟value的类型可以是任意的）
+map&amp;lt;string,int&amp;gt;mp;  //例如：关键字key为string，对应的值value为int型
+
+//常用的操作
+
+//插入
+mp.insert(pair&amp;lt;string, int&amp;gt;(&amp;quot;john&amp;quot;,98)); //插入key为“john”，value为98的元素
+mp[&amp;quot;john&amp;quot;]=98    //也可以直接这样
+
+//输出
+cout&amp;lt;&amp;lt;mp[&amp;quot;john&amp;quot;];
+//迭代器访问
+map&amp;lt;string,int&amp;gt;::iterator it; 
+for(it=mp.begin();it!=mp.end();it++){
+    cout&amp;lt;&amp;lt;*it-&amp;gt;first&amp;lt;&amp;lt;&#39; &#39;&amp;lt;&amp;lt;*it-&amp;gt;second&amp;lt;&amp;lt;endl&amp;gt;&amp;gt;;
+}
+
+it=mp.find(key)    //查找关键字，不存在则返回it=mp.end()
+mp.erase(it)  //删除it指向的映射
+mp.size()   //返回map的大小
+mp.clear()  //清空map
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
