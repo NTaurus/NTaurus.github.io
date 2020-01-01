@@ -6,10 +6,1195 @@
     <description>Recent content on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2020 00:09:28 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 09:58:23 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Data structure</title>
+      <link>https://NTaurus.github.io/2020/01/data-structure/</link>
+      <pubDate>Wed, 01 Jan 2020 09:58:23 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/01/data-structure/</guid>
+      <description>&lt;p&gt;这篇记录自己写的一些关于数据结构知识点的代码&lt;/p&gt;
+
+&lt;h2 id=&#34;链表&#34;&gt;链表&lt;/h2&gt;
+
+&lt;h3 id=&#34;单链表的实现&#34;&gt;单链表的实现&lt;/h3&gt;
+
+&lt;p&gt;链表是链式存储线性表，它与顺序表相比，在插入删除方面十分的方便，不像数组那样需要移动其他的元素，缺点是不能随机访问，查找元素需要从表头开始依次遍历查找。&lt;/p&gt;
+
+&lt;p&gt;链表这块代码也是参考了书上的跟自己的理解写，跟着数据结构的进度前前后后写了蛮久的，期间还不知道翻了多少次车，像呆神说的：别人的指针写哪指哪，我的指针指哪写哪。我的指针像是脱缰的野马，分分钟访问非法。代码风格有点乱（超级乱），不过好歹也写完了，链表的操作常用的应该就这些了，放这里有事没事可以复习复习。（数据结构老师在国庆时还在帮我找我的野指针哈，感谢他）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//已完成的功能有：1.创建  2.插入  3.查找 4.删除 5.打印 6.合并 7.逆序 8.排序  9.（排序后）去重  10.格式化链表 
+
+/*2019-10-9更新  问题1：输入错误的报错提示还未写完 ，在未创建链表的情况下，执行除了6.合并 功能外都会退出程序
+(应该可以在main函数里先申请表头节点（不用申请，因为还没创建链表，直接制空就OK），head-&amp;gt;next=NULL,下面根据head-&amp;gt;NULL是否成立进行判断链表是否创建)
+  */
+//wzh解决方案：像这种问一般可以采用单步跟踪调试的查看每一步的运行结果，来查找问题比较快些。
+//另外，你这个想法是对的，除了1创建外，后面的操作都是基于已存在的链表操作，
+//所以首先创建链表或对是否存在相应的链表做一个初判，在每一个操作里应该有判断，
+//才能进行下一步，这样的程序的健壮性才好。
+//主函数中，链表初始化时置空即可
+
+//问题2：去重函数有些简单粗暴。。在排序后才去重，最重要的是没有释放已除去节点的内存   （待改）
+//wzh解决方案：将要删除的当前结点，比如你程序中的q1，调用free(q1)即可。
+
+//问题3： 1.创建 跟 6.合并 ，如果已经n==1创建La，然后n==6合并两个链表Lb，Lc，Lb跟Lc合并后的Ld
+//会覆盖La。。La内存又浪费   （可以n==6时，只创建一个Lb，合并La跟Lb）
+
+//2019-10-11   去重内存释放已解决，但两两比较去重时，重复元素越多效率会低 
+#include&amp;lt;stdio.h&amp;gt;
+#include&amp;lt;malloc.h&amp;gt;
+#include&amp;lt;stdlib.h&amp;gt;
+typedef int ElenmentType;
+typedef struct List{
+    ElenmentType data;
+    struct List *next;
+}List;
+
+List *create1();//头插创建1
+
+List *create2();//尾插创建1
+
+List *insert(int i, List *head);//插入2
+
+void find(List *head,int x);  //查找 3
+
+List deleten(int i ,struct List *head);//删除4
+
+void print( List *head);//打印5
+
+List *combin2(List *La,List *Lb);  //6合并
+
+List *reverse(List *head);  //反转链表 逆序7
+
+List *sort(List *head);   //排序8
+
+List *delete_repeat(List *head);  //去重9
+
+List *free_L(List *head);   //格式化链表 10
+
+List *create1(){   //  头插法创建
+    int data;
+      List *pl,*head;
+    head=(List *)malloc(sizeof(List));
+    head-&amp;gt;next=NULL;
+    while(1){
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;data);
+        if(data==666)
+            break;
+        pl=(List *)malloc(sizeof(List));
+        pl-&amp;gt;data=data;
+        pl-&amp;gt;next=head-&amp;gt;next;
+        head-&amp;gt;next=pl;
+    }
+    return head;
+}
+
+struct List *create2(){   //尾插法创建
+     List *pl,*p,*head;
+    int data;
+    pl=head=(List *)malloc(sizeof(List));//头指针不能跑，留做链表的标识
+    head-&amp;gt;next=NULL;
+    while(1){
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;data);
+        if(data==666){
+            break;
+        }
+        p=(List *)malloc(sizeof(List));
+        p-&amp;gt;data=data;
+        p-&amp;gt;next=pl-&amp;gt;next;
+        pl-&amp;gt;next=p;
+        pl=p;  //开始写成p=pl导致 输入1 2 3 4..  输出...4 3 2 1 后节点指向前节点
+    }
+    return head;
+}
+
+void print( List *head){  //打印
+    int data,i=0;
+     List *p;
+    p=head-&amp;gt;next;
+    while(p!=NULL){
+        data=p-&amp;gt;data;
+        printf(&amp;quot;%2d-&amp;gt;&amp;quot;,data);
+        i++;
+        if(i%10==0){
+            printf(&amp;quot;\n&amp;quot;);
+        }
+        if(p-&amp;gt;next==NULL){
+            printf(&amp;quot;\n&amp;quot;);
+        }
+        p=p-&amp;gt;next;
+    }
+}
+
+List *insert(int ad,int x,List *head){//插入   ad为位序     x为元素   head为表头
+    int n=0,j;
+    List *p,*q,*pl;
+    p=head;           // 指针p用来跑
+ //if(p-&amp;gt;next==NULL){//wzh
+    if(head-&amp;gt;next==NULL){
+        printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+        exit(1);//wzh
+    }
+    while(p-&amp;gt;next!=NULL){
+    n++;                //统计链表元素个数，找位置
+    p=p-&amp;gt;next;
+    }
+    p=head;        //重置p，继续让p跑
+    pl=(List *)malloc(sizeof(List));   //创建插入的节点
+    pl-&amp;gt;data=x;
+    for(j=1;j&amp;lt;=n;j++){
+        if(j==ad){
+            pl-&amp;gt;next=p-&amp;gt;next;
+
+            if(j==1){    //元素插入到表头，更新表头指针
+                head-&amp;gt;next=pl;
+            }else       //元素插入到链表里
+            p-&amp;gt;next=pl;
+            break;      //插入完就可以退出了，不用继续循环   省时
+        }
+        p=p-&amp;gt;next;
+    }
+    if(ad==n+1){  //元素插入到表尾
+        pl-&amp;gt;next=p-&amp;gt;next;
+        p-&amp;gt;next=pl;
+    }
+    if(ad&amp;lt;1||ad&amp;gt;n+1){
+        printf(&amp;quot;当前元素有%d个\n插入的位序请输入1到%d\n\n&amp;quot;,n,n+1);//插入的位序超过n+1则报错
+        free(pl);  //释放内存
+    }
+    return head;
+}
+
+void find(List *head,int x){  //根据数据查找位置
+    int is=-1,i=0;
+    List *p;
+    p=head;
+    while(p-&amp;gt;next!=NULL){
+        p=p-&amp;gt;next;
+        i++;
+        if(x==p-&amp;gt;data){
+            is=1;
+            printf(&amp;quot;%d在第%d个位置\n\n&amp;quot;,x,i);
+        }
+    }
+    if(is==-1)
+        printf(&amp;quot;No found\n\n&amp;quot;);
+}
+
+List deleten(int ad , List *head){   //删除
+    int j,n=0;
+    List *p,*pl,*q;
+    p=head;
+    while(p-&amp;gt;next!=0){  //遍历统计元素个数
+        n++;
+        p=p-&amp;gt;next;
+    }
+
+    p=head;
+    if(ad&amp;gt;n||ad&amp;lt;1){
+        printf(&amp;quot;当前元素有%d个 \n位序请输入1到%d\n\n&amp;quot;,n,n);
+    }
+    else
+    for(j=1;j&amp;lt;=n;j++){
+
+        if(ad==j){      //找到位置     因为从表头（表头为空表）开始遍历 所以删除分两种情况：是否在表尾
+            if(j!=n){     //位序不在表尾
+            q=p-&amp;gt;next;    //q指向要删除的节点
+            pl=q-&amp;gt;next;   //pl指向q的下一个节点
+            p-&amp;gt;next=pl;   //
+            }
+            if(j==n){   //在表尾   需要p-&amp;gt;next=null
+                q=p-&amp;gt;next;
+                p-&amp;gt;next=NULL;
+            }
+            free(q);  //释放内存
+            break;   //插入完即可退出循环
+        }
+        p=p-&amp;gt;next;
+  }
+}
+
+List *combin2(List *La,List *Lb){  //    合并排序去重
+    List *pa,*pb,*pc,*Lc,*p;
+    Lc=La;pc=La;pa=La-&amp;gt;next;pb=Lb-&amp;gt;next;
+    while(pa!=NULL&amp;amp;&amp;amp;pb!=NULL){
+        if(pa-&amp;gt;data&amp;gt;pb-&amp;gt;data){
+            pc-&amp;gt;next=pb;
+            pc=pb;
+            pb=pb-&amp;gt;next;
+        }
+        if(pa-&amp;gt;data&amp;lt;pb-&amp;gt;data){  //  测试此函数时的数据  6 1 2 3 4 5 666 1 3 6 7 8 9 666
+            pc-&amp;gt;next=pa;pc=pa;pa=pa-&amp;gt;next;
+        }
+        if(pa==NULL||pb==NULL){
+            break;
+        }
+        if(pa-&amp;gt;data==pb-&amp;gt;data){
+            pc-&amp;gt;next=pa;
+            pc=pa;
+            pa=pa-&amp;gt;next;
+            p=pb;
+            pb=pb-&amp;gt;next;
+            free(p);
+        }
+    }
+    if(pa!=NULL){  //说明La比Lb长  则把la后面的元素接到Lc上
+        pc-&amp;gt;next=pa;
+    }
+    else{   //说明Lb比La长   则把lb后面的元素接到Lc上
+        pc-&amp;gt;next=pb;
+    }
+    free(Lb);
+    return (Lc);
+}
+
+List *reverse(List *head){    //反转链表 逆序
+    List *old_h,*new_h,*pl;
+    old_h=head-&amp;gt;next;   //从第一个节点开始倒放
+    new_h=NULL;
+    while(old_h){
+        pl=old_h-&amp;gt;next;
+        old_h-&amp;gt;next=new_h;
+        new_h=old_h;
+        old_h=pl;
+    }
+    head-&amp;gt;next=new_h;   //最后把表头放入
+    return head;
+}
+
+List *sort(List *head){  //排序
+    List *p1,*p2;
+    int min;
+    for(p1=head-&amp;gt;next;p1!=NULL;p1=p1-&amp;gt;next){    //冒泡排序
+        for(p2=head-&amp;gt;next;p2!=NULL;p2=p2-&amp;gt;next){
+            if(p1-&amp;gt;data&amp;lt;p2-&amp;gt;data){   //升序，将小的交换放到前面
+                min=p2-&amp;gt;data;
+                p2-&amp;gt;data=p1-&amp;gt;data;
+                p1-&amp;gt;data=min;
+            }
+        }
+    }
+    return head;
+}
+
+List *delete_repeat(List *head){   //去重  测试数据  1 2 1 2 3 2 4 1 5 6 8 666 9
+    List *p1,*q1,*q2;
+    for(p1=head-&amp;gt;next;p1!=NULL;p1=p1-&amp;gt;next){   //去重完成，但是所去掉的节点，没有释放内存 +_+   怎么释放内存待解决。。
+
+      for(q1=p1-&amp;gt;next;q1!=NULL;q1=q1-&amp;gt;next){
+
+        if(p1-&amp;gt;data==q1-&amp;gt;data){
+
+            p1-&amp;gt;next=q1-&amp;gt;next;
+            q2=q1;
+            free(q1);//wzh 释放当前结点所占的内存  (我)写了这句，会出错。。。 
+            break;  //最后加了break才解决了
+           }
+       }
+    }
+    return head;
+}
+
+List *free_L(List *head){  //格式化链表 
+    List *p,*q; 
+    q=p=head-&amp;gt;next;
+    while(q!=NULL){
+        p=p-&amp;gt;next;
+        free(q);
+        q=p;
+    }
+    head-&amp;gt;next=NULL;
+    return head;
+} 
+
+void menu(){
+        printf(&amp;quot;-------------------------------------\n&amp;quot;);
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;1：创建链表&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;2：插入元素&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;3：查找元素&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;4：删除元素&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;5：打印链表&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;6：合并链表&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;7：逆序链表&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);  
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;8：排序链表&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;9：排序去重&amp;quot;);
+        printf(&amp;quot;            |\n&amp;quot;);
+
+         printf(&amp;quot;|           &amp;quot;);
+        printf(&amp;quot;10：格式化&amp;quot;);
+        printf(&amp;quot;              |\n&amp;quot;);
+
+        printf(&amp;quot;|            &amp;quot;);
+        printf(&amp;quot;0：退出&amp;quot;);
+        printf(&amp;quot;                |\n&amp;quot;);
+        printf(&amp;quot;-------------------------------------\n&amp;quot;);
+}
+
+int main(){   //main里的指针制空用来判断链表是否建立 
+    int n,m,ad,x,is;
+    List *head=NULL,*tmphead=NULL,*La,*Lb,*Lc;//wzh:初始化时置空*head=NULL,*tmphead=NULL
+    do{
+        menu();
+        printf(&amp;quot;\n\n输入要执行的操作：\n\n&amp;quot;);
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;n);
+//wzh 注释2019-10-3
+//wzh:并列关系，多选一，一般用if..else if..else,你的程序建议你用switch更好些
+//10-10已改成switch 
+     switch(n){
+        case 1:{  //创建 
+                printf(&amp;quot;请选择创建方式：\n&amp;quot;);
+                printf(&amp;quot;1：头插法\n&amp;quot;);
+                printf(&amp;quot;2：尾插法\n&amp;quot;);
+                printf(&amp;quot;0：返回\n&amp;quot;);
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;m);
+                if(m==0)continue;
+                printf(&amp;quot;请输入元素\n666作为结束标志：\n&amp;quot;);
+                if(m==1){
+                    head=create1();
+                    print(head);
+                }
+                else if(m==2){
+                    head=create2();
+                    print(head);
+                }
+                break;
+            }
+            case 2 :{   //插入 
+                tmphead=head;
+                if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                //wzh  exit(0);
+                continue;
+            }
+            else{
+                printf(&amp;quot;请输入插入元素的位序ad跟值x：\n&amp;quot;);
+                scanf(&amp;quot;%d %d&amp;quot;,&amp;amp;ad,&amp;amp;x);
+                head=insert(ad,x,head);
+                print(head);
+            }
+            break;
+        }
+
+        case 3 :{   //查找 
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                continue;
+            }
+            else{
+            printf(&amp;quot;请输入要查找的元素：\n&amp;quot;);
+            scanf(&amp;quot;%d&amp;quot;,&amp;amp;x);
+            find(head,x);           
+            }
+            break;
+        }
+        case 4 :{   //删除 
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                continue;
+            }
+            else{
+            printf(&amp;quot;请输入要删除元素的位序：\n&amp;quot;);
+            scanf(&amp;quot;%d&amp;quot;,&amp;amp;ad);
+            deleten(ad,head);
+            print(head);            
+            }           
+            break;
+        }
+        case 5 :{  //打印 
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                continue;
+            }
+            else
+            print(head);  
+            break;
+        }
+        case 6 :{   //合并    
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                continue;
+            }
+            else{
+            printf(&amp;quot;请输入链表Lb：\n666作为结束标志\n&amp;quot;);     //是合并另外的两个链表好呢，还是以n==1新创建为La，然后在这创建lb合并
+            Lb=create2();
+            La=head;  
+
+            head=combin2(La,Lb);
+            printf(&amp;quot;合并后的链表为：\n&amp;quot;);
+            print(head);    
+
+            }
+            break;
+        }
+        case 7 :{   //逆序 
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                continue;
+            }
+            else{
+            head=reverse(head);
+            print(head);    
+            }
+            break;
+        }
+        case 8 :{   //排序 
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                continue;
+            }
+            else{
+            head=sort(head);
+            print(head);    
+            }
+            break;
+        }
+        case 9 :{  //先排序再去重 
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表未创建，请先创建链表\n\n&amp;quot;);
+                continue;
+            }
+            else{
+            head=sort(head);
+            head=delete_repeat(head);
+            print(head);                    
+            }
+            break;
+        }
+        case 10:{
+            tmphead=head;
+            if(tmphead==NULL){
+                printf(&amp;quot;链表本为空\n\n&amp;quot;);
+                continue;
+            }
+            printf(&amp;quot;请确定是否格式化链表：\n1:确定\n2:取消\n&amp;quot;); 
+            scanf(&amp;quot;%d&amp;quot;,&amp;amp;is);
+            if(is==1){
+                head=free_L(head);
+                printf(&amp;quot;链表已格式化...\n&amp;quot;);  
+            }
+            else
+            continue;
+            break;
+        }
+        case 0:{    
+            printf(&amp;quot;See you.\n&amp;quot;);
+            break;
+        }
+        default:{
+            printf(&amp;quot;选项无效,请重新输入...\n&amp;quot;);
+            break;
+        }
+    }
+}while(n!=0);
+return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;单循环链表&#34;&gt;单循环链表&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;stdio.h&amp;gt;
+#include&amp;lt;malloc.h&amp;gt;
+#include&amp;lt;stdlib.h&amp;gt;
+typedef int ElenmentType;
+typedef struct SCLinkList{
+    ElenmentType data;
+    struct SCLinkList *next;
+}SCLinkList;
+
+SCLinkList *create2(); //创建 
+
+void print( SCLinkList *head);//打印
+
+SCLinkList *deleten(int i ,struct SCLinkList *head); //删除 
+
+struct SCLinkList *create2(){   //尾插法创建
+    SCLinkList *pl,*p,*head;
+    int data;
+    pl=head=(SCLinkList *)malloc(sizeof(SCLinkList));//头指针不能跑，留做链表的标识
+    head-&amp;gt;next=head;
+    while(1){
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;data);
+        if(data==666){
+            break;
+        }
+        p=(SCLinkList *)malloc(sizeof(SCLinkList));
+        p-&amp;gt;data=data;
+        p-&amp;gt;next=pl-&amp;gt;next;
+        pl-&amp;gt;next=p;
+        pl=p;  
+    }
+    return head;
+}
+
+void print( SCLinkList *head){  //打印
+    int i=0;
+    int data;
+    SCLinkList *p;
+    p=head-&amp;gt;next;
+    while(p-&amp;gt;next!=head){
+        data=p-&amp;gt;data;
+        printf(&amp;quot;%d&amp;quot;,data);
+        printf(&amp;quot;-&amp;gt;&amp;quot;);
+        i++;
+        if(p-&amp;gt;next==head){
+            printf(&amp;quot;\n&amp;quot;);
+        }
+        p=p-&amp;gt;next;
+    }
+}
+
+SCLinkList *deleten(int ad ,struct SCLinkList *head){
+    int j,n=0;
+    SCLinkList *p,*pl,*q;
+    p=head;
+    while(p-&amp;gt;next!=head){ 
+        n++;
+        p=p-&amp;gt;next;
+    }
+
+    p=head;
+    for(j=1;j&amp;lt;=n;j++){
+
+        if(ad==j){      
+            q=p-&amp;gt;next;  
+            pl=q-&amp;gt;next;  
+            p-&amp;gt;next=pl;   
+            free(q); 
+            break;  
+        }
+        p=p-&amp;gt;next;
+    }
+    return head;
+}
+
+
+int main(){
+    SCLinkList *head;
+    int m,n,ad;
+    do{ 
+        printf(&amp;quot;1：创建链表\n&amp;quot;); 
+        printf(&amp;quot;2：删除元素\n&amp;quot;); 
+        printf(&amp;quot;0：退出\n&amp;quot;); 
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;m);
+        switch(m){
+            case 1:{
+                printf(&amp;quot;请输入元素：\n&amp;quot;); 
+                head=create2();
+                print(head); 
+                break;
+            }
+            case 2:{
+                printf(&amp;quot;请输入要删除元素的位序：\n&amp;quot;);
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;ad);
+                head=deleten(ad,head);
+                print(head); 
+                break;
+            }
+            default:
+            break;
+        }
+        printf(&amp;quot;\n&amp;quot;);
+    }while(m!=0);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;堆栈-stack&#34;&gt;堆栈（Stack）&lt;/h2&gt;
+
+&lt;p&gt;堆栈可以认为是具有一定约束的线性表，插入和删除操作都作用在一个称为栈顶（TOP）的端点位置。&lt;/p&gt;
+
+&lt;p&gt;下面只写链式栈的实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;stdio.h&amp;gt;
+#include&amp;lt;stdlib.h&amp;gt;
+
+typedef int Position;
+
+typedef struct SNode{
+    Position data;
+    SNode *next;
+};
+typedef struct SNode *stack;
+
+void menu();//菜单 
+
+stack create_SNode();//初始化 
+
+stack Push_SNode(stack head,int x);//入栈 
+
+stack Pop_SNode(stack head);  //出栈 
+
+void print_SNode(stack head);//打印栈中所有元素 
+
+void menu(){  //格式菜单 
+    printf(&amp;quot;-------------------------------------\n&amp;quot;);
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;1：入栈&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;2：出栈&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;3：打印&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+
+  printf(&amp;quot;|            &amp;quot;);
+  printf(&amp;quot;0：退出&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+    printf(&amp;quot;-------------------------------------\n&amp;quot;);
+
+}
+
+stack create_SNode(stack head){ //初始化 
+    head=(stack)malloc(sizeof(SNode));
+    head-&amp;gt;next=NULL;
+    return head;
+}
+
+stack Push_SNode(stack head,int x){ //入栈 
+    stack top;
+    top=(stack)malloc(sizeof(SNode));
+    top-&amp;gt;data=x; 
+    if(top){
+        top-&amp;gt;next=head-&amp;gt;next;
+        head-&amp;gt;next=top;
+        printf(&amp;quot;%d入栈成功....\n&amp;quot;,x);
+    }else{
+        printf(&amp;quot;内存已满....\n&amp;quot;); 
+        free(top);
+    }
+}
+
+stack Pop_SNode(stack head){//出栈 
+    stack top;
+    int x;
+    if(head-&amp;gt;next==NULL){
+        printf(&amp;quot;栈已空....\n&amp;quot;);
+    }
+    else{
+        top=head-&amp;gt;next;
+        x=top-&amp;gt;data;
+        head-&amp;gt;next=top-&amp;gt;next;
+        free(top);
+        printf(&amp;quot;%d已出栈....\n&amp;quot;,x);
+    }
+}
+
+void print_SNode(stack head){  //打印栈中所以元素 
+    stack p;
+    int i=0;
+    p=head-&amp;gt;next;
+    if(p)
+    while(p){
+        i++;
+        printf(&amp;quot;%d-&amp;gt;&amp;quot;,p-&amp;gt;data);
+        if(i%10==0||p-&amp;gt;next==NULL){printf(&amp;quot;\n&amp;quot;);
+        }
+        p=p-&amp;gt;next;
+    }
+    else printf(&amp;quot;栈空....\n&amp;quot;);
+}
+
+int main(){
+    int choice,x,n;
+    stack head;
+    head=create_SNode(head);
+    do{
+        menu();
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;choice);
+        if(choice)
+        switch(choice){
+            case 1:{
+                printf(&amp;quot;请输入入栈元素的个数n：\n&amp;quot;);
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;n); 
+                printf(&amp;quot;请输入入栈的%d个元素:\n&amp;quot;,n); 
+                for(int i=1;i&amp;lt;=n;i++){
+                    scanf(&amp;quot;%d&amp;quot;,&amp;amp;x);
+                    Push_SNode(head,x);
+                }
+                break;
+            }
+            case 2:{
+                Pop_SNode(head);
+                break;
+            }
+            case 3:{
+                print_SNode(head);
+                break;
+            }
+            default: {
+                printf(&amp;quot;无效选项,请重新输入\n&amp;quot;);
+                break;
+            }
+        }
+        else printf(&amp;quot;我一定会回来的！\n&amp;quot;);
+    }while(choice);
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;队列-queue&#34;&gt;队列（Queue）&lt;/h2&gt;
+
+&lt;p&gt;队列也是一个有序的线性表，但队列的插入跟删除操作是分别在线性表的两个不同的端点进行的。&lt;/p&gt;
+
+&lt;p&gt;下面是链式队列的实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;stdio.h&amp;gt;
+#include&amp;lt;stdlib.h&amp;gt;
+
+typedef int ElementType;
+
+typedef struct Node{
+    ElementType data;
+    struct Node *next;
+}*List;
+
+void menu();//菜单  
+
+List create_QNode();
+
+List enqueue_Node(List Q,int x); 
+
+List dequeue_Node(List front,List rear);
+
+void printf_queue(List Q,List rear);
+
+void menu(){  //格式菜单 
+    printf(&amp;quot;-------------------------------------\n&amp;quot;);
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;1：入队&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;2：出队&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;3：打印&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;0：退出&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+    printf(&amp;quot;-------------------------------------\n&amp;quot;);
+
+}
+
+List create_QNode(){
+    List Q;
+    Q=(List)malloc(sizeof(struct Node));
+    if(Q) Q-&amp;gt;next=NULL;
+    return Q;
+}
+
+List enqueue_Node(List front,List rear,int x){
+    List temp;
+    temp=(List)malloc(sizeof(struct Node));
+
+    temp-&amp;gt;data=x;
+    temp-&amp;gt;next=NULL;
+
+    if(temp==NULL){
+    printf(&amp;quot;内存已满....\n&amp;quot;);
+    free(temp);
+    }else{
+        rear-&amp;gt;next=temp;
+        rear=temp;
+        printf(&amp;quot;%d入队成功....\n&amp;quot;,x);
+    }
+    return rear;
+}
+
+List dequeue_Node(List front,List rear){
+    List p;
+    p=front-&amp;gt;next;  
+    if(front-&amp;gt;next==NULL){
+        printf(&amp;quot;队列已空....\n&amp;quot;);
+    }else if(front-&amp;gt;next==rear){
+        front-&amp;gt;next=p-&amp;gt;next;
+        printf(&amp;quot;%d已出队....\n&amp;quot;,p-&amp;gt;data);
+        free(p);
+        rear=front;
+    }
+    else{
+        front-&amp;gt;next=p-&amp;gt;next;
+        printf(&amp;quot;%d已出队....\n&amp;quot;,p-&amp;gt;data);
+        free(p);
+    }
+    return rear;
+}
+
+void printf_queue(List front){
+    List head;
+    int i=0;
+    head=front-&amp;gt;next;
+    if(head==NULL){
+        printf(&amp;quot;队列空....\n&amp;quot;); 
+    }else{
+        while(head){
+            i++;
+            printf(&amp;quot;%d-&amp;gt;&amp;quot;,head-&amp;gt;data);
+            if(i%10==0||head-&amp;gt;next==NULL){
+                printf(&amp;quot;\n&amp;quot;);
+            }
+            head=head-&amp;gt;next;
+        }
+    }
+}
+
+int main(){
+    int choice,x,n;
+    List Q,rear,front;
+    Q=rear=front=create_QNode();
+    do{
+        menu();
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;choice);
+        if(choice)
+        switch(choice){
+            case 1:{
+                printf(&amp;quot;请输入入栈元素的个数n：\n&amp;quot;);
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;n); 
+                printf(&amp;quot;请输入入栈的%d个元素:\n&amp;quot;,n); 
+                for(int i=1;i&amp;lt;=n;i++){
+                    scanf(&amp;quot;%d&amp;quot;,&amp;amp;x);
+                    rear=enqueue_Node(front,rear,x);
+                }
+                break;
+            }
+            case 2:{
+                rear=dequeue_Node(front,rear);
+                break;
+            }
+            case 3:{
+                printf_queue(front);
+                break;
+            }
+            default: {
+                printf(&amp;quot;无效选项,请重新输入\n&amp;quot;);
+                break;
+            }
+        }
+        else printf(&amp;quot;我一定会回来的！\n&amp;quot;);
+    }while(choice);
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;树&#34;&gt;树&lt;/h2&gt;
+
+&lt;h3 id=&#34;多叉树的实现&#34;&gt;多叉树的实现&lt;/h3&gt;
+
+&lt;p&gt;这里用孩子兄弟表示法实现多叉树&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;stdio.h&amp;gt;
+#include&amp;lt;stdlib.h&amp;gt;
+
+typedef int ElementType;
+
+struct Tree_Node{
+    ElementType data;
+    struct  Tree_Node *child,*sibling;
+};
+
+typedef struct Tree_Node *Tree;
+
+void menu();
+
+Tree create_TNode(Tree root,ElementType data);  //创建根节点 
+
+void find_Troot(Tree temp,ElementType root_data);
+
+void insert_TNode(Tree temp,ElementType data,int m);
+
+void printf_Tree(Tree temp); 
+
+Tree create_TNode(Tree Tree_root,ElementType data){  //创建树根 
+    Tree_root=(Tree)malloc(sizeof(Tree_Node));
+    Tree_root-&amp;gt;sibling=Tree_root-&amp;gt;child=NULL;
+    Tree_root-&amp;gt;data=data;
+    return Tree_root;
+}
+
+void insert_TNode(Tree temp,ElementType data,int m){ //插入 
+    Tree Tnode;
+    Tnode=(Tree)malloc(sizeof(Tree_Node));
+    Tnode-&amp;gt;sibling=Tnode-&amp;gt;child=NULL;
+    Tnode-&amp;gt;data=data;
+    if(m==1){  //m=1插入孩子   
+        temp-&amp;gt;child=Tnode;
+    }else{
+        temp-&amp;gt;sibling=Tnode;//m=2 插入兄弟 
+    }
+} 
+
+Tree P_root;  //遍历时找到节点就存到这里 
+
+void find_Troot(Tree temp,ElementType root_data){  //遍历查找   从根的孩子开始才能分为左右子树 
+    if(temp){
+        if(temp-&amp;gt;data==root_data){
+        P_root=temp;
+        return ;
+        }
+//      printf(&amp;quot;%d &amp;quot;,temp-&amp;gt;data);
+        find_Troot(temp-&amp;gt;child,root_data);
+//      if(temp-&amp;gt;data==root_data)return temp;
+        find_Troot(temp-&amp;gt;sibling,root_data); 
+//      if(temp-&amp;gt;data==root_data)return temp;
+    } 
+}
+
+
+
+void printf_Tree(Tree temp){ //递归遍历 
+    if(temp){
+        printf(&amp;quot;%d &amp;quot;,temp-&amp;gt;data);
+        printf_Tree(temp-&amp;gt;child);
+        printf_Tree(temp-&amp;gt;sibling);
+    }
+}
+
+int main(){  //1 17 2 17 1 1 2 1 1 4 2 4 2 5 2 1 2 2 2 2 2 3 2 3 1 6 2 6 1 7 2 7 2 8 2 8 2 9
+    Tree Tree_root,temp_root;  //
+    Tree_root=NULL;
+    int choice=1,m,n;
+    ElementType data,root_data; 
+    do{
+        menu();
+        scanf(&amp;quot;%d&amp;quot;,&amp;amp;choice);
+        switch(choice){
+            case 1:{   //插入树根 
+                printf(&amp;quot;请输入作为树根的元素：\n&amp;quot;);
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;root_data);
+                Tree_root=create_TNode(Tree_root,root_data);
+                printf(&amp;quot;树根%d创建成功\n&amp;quot;,root_data);                 
+                break;
+            }
+            case 2:{   //插入节点 
+                printf(&amp;quot;请输入要插入元素的根节点元素：\n&amp;quot;);
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;root_data);
+                    printf(&amp;quot;请输入\n1：插入儿子\n2：插入兄弟\n&amp;quot;);
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;m);
+                printf(&amp;quot;请输入要插入的元素：\n&amp;quot;); 
+                scanf(&amp;quot;%d&amp;quot;,&amp;amp;data);
+
+                if(Tree_root-&amp;gt;data==root_data){
+                    insert_TNode(Tree_root,data,m);
+                }
+                else{
+                    temp_root=Tree_root-&amp;gt;child;
+                    find_Troot(temp_root,root_data);//找到将要插入元素的根节点地址 
+                    if(P_root==NULL){
+                        printf(&amp;quot;无此根节点...\n&amp;quot;); 
+                    }else 
+                    insert_TNode(P_root,data,m); //m作为判断是插入孩子还是插入兄弟 
+                }
+                    printf(&amp;quot;%d插入成功\n&amp;quot;,data);
+                break;
+            }
+            case 3 :{
+                printf(&amp;quot;%d &amp;quot;,Tree_root-&amp;gt;data); 
+                temp_root=Tree_root-&amp;gt;child; //孩子兄弟表示法  树根没有兄弟，从树根的孩子开始才与二叉树结构相同，所以输出树根后再当作二叉树，进行递归遍历输出 
+                printf_Tree(temp_root); 
+                printf(&amp;quot;\n&amp;quot;);
+                break;
+            }
+            default:break;
+
+
+        }
+    }while(choice); 
+/*
+
+            R
+        /  |  \
+        A    B   C
+    /  \       |
+    D    E      F
+            / | \
+            G H  I
+    孩子兄弟表示法： ^表示NULL 
+            R17
+        /   \
+        A1     ^
+    /   \
+    D4    B2
+    /  \   /  \
+^   E5 ^    C3
+    /\     /  \     
+    ^ ^    F6  ^   
+        / \
+        G7  ^
+        /  \
+        ^    H8
+        /   \
+        ^     I9
+            /  \
+            ^    ^          
+    */  
+
+    return 0;
+}
+
+
+void menu(){  //格式菜单 
+    printf(&amp;quot;\n-------------------------------------\n&amp;quot;);
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;1：创建树根&amp;quot;);
+    printf(&amp;quot;            |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;2：插入元素&amp;quot;);
+    printf(&amp;quot;            |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;3：打印树&amp;quot;);
+    printf(&amp;quot;              |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;0：退出&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+    printf(&amp;quot;-------------------------------------\n&amp;quot;);
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;二叉树&#34;&gt;二叉树&lt;/h3&gt;
+
+&lt;p&gt;下面的二叉树是先序创建&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;cstdlib&amp;gt;
+using namespace std;
+typedef char ElementType;
+
+struct BT_Node{
+    ElementType data;
+    struct BT_Node *Lchild,*Rchild;
+};
+
+typedef struct BT_Node *Tree;
+
+void create_Tree(Tree &amp;amp;root);
+
+void printf_Tree(Tree temp);
+
+void menu();
+
+//  递归创建函数中形参要写成Tree &amp;amp;root   这里涉及形参的引用传递跟传值的区别 ，单单递归遍历则不需要加取地址&amp;amp; 
+
+void create_Tree(Tree &amp;amp;root){//AD*E**B*CFG*H*I****
+    ElementType Data;
+    cin&amp;gt;&amp;gt;Data;
+    if(Data!=&#39;*&#39;){
+        root=(Tree)malloc(sizeof(BT_Node)); 
+        root-&amp;gt;data=Data;
+        create_Tree(root-&amp;gt;Lchild);
+        create_Tree(root-&amp;gt;Rchild);      
+    }
+    else root=NULL;
+}
+
+void printf_Tree(Tree root){ //递归遍历   先序 
+    if(root){
+        cout&amp;lt;&amp;lt;root-&amp;gt;data;
+        printf_Tree(root-&amp;gt;Lchild);
+        printf_Tree(root-&amp;gt;Rchild);
+    }
+}
+
+
+int main(){
+    Tree root;
+//  menu();
+    create_Tree(root);
+    printf_Tree(root);
+
+    return 0;
+} //AD*E**B*CFG*H*I****
+/* 
+        A1     
+    /   \
+    D4    B2
+    /  \   /  \
+^   E5 ^    C3
+    / \     /  \    
+    ^  ^    F6  ^   
+        /   \
+        G7   ^
+        /  \
+        ^    H8
+        /   \
+        ^     I9
+            /  \
+            ^    ^          
+    */  
+
+    void menu(){  //格式菜单 
+    printf(&amp;quot;\n-------------------------------------\n&amp;quot;);
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;1：创建树&amp;quot;);
+    printf(&amp;quot;            |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;2：插入元素&amp;quot;);
+    printf(&amp;quot;            |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;3：打印树&amp;quot;);
+    printf(&amp;quot;              |\n&amp;quot;);
+
+    printf(&amp;quot;|            &amp;quot;);
+    printf(&amp;quot;0：退出&amp;quot;);
+    printf(&amp;quot;                |\n&amp;quot;);
+    printf(&amp;quot;-------------------------------------\n&amp;quot;);
+
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     
     <item>
       <title>偶尔</title>
