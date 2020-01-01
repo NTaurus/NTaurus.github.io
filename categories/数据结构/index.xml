@@ -19,6 +19,8 @@
       <guid>https://NTaurus.github.io/2020/01/data-structure/</guid>
       <description>&lt;p&gt;这篇记录自己写的一些关于数据结构知识点的代码&lt;/p&gt;
 
+&lt;!-- toc --&gt;
+
 &lt;h2 id=&#34;链表&#34;&gt;链表&lt;/h2&gt;
 
 &lt;h3 id=&#34;单链表的实现&#34;&gt;单链表的实现&lt;/h3&gt;
