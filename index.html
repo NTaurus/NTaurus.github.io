@@ -308,7 +308,7 @@
     
       <a href="https://NTaurus.github.io/2019/12/%E9%93%BE%E8%A1%A8/">
         <div class="postShorten-thumbnailimg">
-          <img alt="" itemprop="image" src="https://NTaurus.github.io/images/cue_animal.jpg"/>
+          <img alt="" itemprop="image" src="https://NTaurus.github.io/images/starry_sky.png"/>
         </div>
       </a>
     
@@ -418,8 +418,86 @@ int main(){
         }
     }
     for(i=0;i&lt;l;i++){   //输出的格式是address  data  next
-        if(i!=l-1)printf(&quot;%05d %d %05d\n&quot;,ans[i],p[ans[i]].data，ans[i+1]);     //这里ans[i]为当前结点的地址 p[ans[i]].data就是地址指向的结点的数据 ans[i+1]为下一个地址 
+        if(i!=l-1)printf(&quot;%05d %d %05d\n&quot;,ans[i],p[ans[i]].data,ans[i+1]);     //这里ans[i]为当前结点的地址 p[ans[i]].data就是地址指向的结点的数据 ans[i+1]为下一个地址 
         else printf(&quot;%05d %d -1\n&quot;,ans[i],p[ans[i]].data);  //因为最后一个结点的下一个地址是NULL，所以分开输出
+    }
+    return 0;
+}
+</code></pre>
+
+<hr />
+
+<h3 id="1075-链表元素分类-25分">1075 链表元素分类 (25分)</h3>
+
+<p>给定一个单链表，请编写程序将链表元素进行分类排列，使得所有负值元素都排在非负值元素的前面，而 [0, K] 区间内的元素都排在大于 K 的元素前面。但每一类内部元素的顺序是不能改变的。例如：给定链表为 18→7→-4→0→5→-6→10→11→-2，K 为 10，则输出应该为 -4→-6→-2→7→0→5→10→18→11。</p>
+
+<p>输入格式：<br />
+每个输入包含一个测试用例。每个测试用例第 1 行给出：第 1 个结点的地址；结点总个数，即正整数N (≤10^5​​ )；以及正整数K (≤10^3​​ )。结点的地址是 5 位非负整数，NULL 地址用 −1 表示。</p>
+
+<p>接下来有 N 行，每行格式为：</p>
+
+<p>Address Data Next</p>
+
+<p>其中 Address 是结点地址；Data 是该结点保存的数据，为 [−10^5​​ ,10^​5​​ ] 区间内的整数；Next 是下一结点的地址。题目保证给出的链表不为空。</p>
+
+<p>输出格式：<br />
+对每个测试用例，按链表从头到尾的顺序输出重排后的结果链表，其上每个结点占一行，格式与输入相同。</p>
+
+<p>输入样例：<br />
+00100 9 10<br />
+23333 10 27777<br />
+00000 0 99999<br />
+00100 18 12309<br />
+68237 -6 23333<br />
+33218 -4 00000<br />
+48652 -2 -1<br />
+99999 5 68237<br />
+27777 11 48652<br />
+12309 7 33218</p>
+
+<p>输出样例：<br />
+33218 -4 68237<br />
+68237 -6 48652<br />
+48652 -2 12309<br />
+12309 7 00000<br />
+00000 0 99999<br />
+99999 5 23333<br />
+23333 10 00100<br />
+00100 18 27777<br />
+27777 11 -1</p>
+
+<p>这题有点麻烦，要求有点多，我的方法比较直接（笨）。题目要求：<strong>负值</strong> 排前面，其次 <strong>[0,K]</strong>,最后排 <strong>&gt;K</strong> 的元素。所以直接用3个组数分别把三个区间的元素挑选出来，再按顺序合并到一个数组，最后输出就可以了。</p>
+
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+struct node{
+    int data;
+    int next;
+}p[100005];
+int main(){//f存负数，kl存[0,K]的数，kr存大于K的数，ans存结果 
+    int N,K,temp,a[100004],f[100004],kl[100004],kr[100004],ans[100004],first;
+    int i,l=0,la=0,lr=0,lk=0,lf=0;
+    cin&gt;&gt;first&gt;&gt;N&gt;&gt;K;
+    for(i=0;i&lt;N;i++){
+        cin&gt;&gt;temp;
+        cin&gt;&gt;p[temp].data&gt;&gt;p[temp].next;
+    }
+    while(first!=-1){
+        a[la++]=first;
+        first=p[first].next;
+    }//下面为元素分类 
+    for(i=0;i&lt;la;i++){
+        if(p[a[i]].data&lt;0)  f[lf++]=a[i];   //负数 
+        else if(p[a[i]].data&gt;=0&amp;&amp;p[a[i]].data&lt;=K)   kl[lk++]=a[i];  //0~K的数 
+        else    kr[lr++]=a[i];  // 大于K的数 
+    }//下面按顺序合并 
+    for(i=0;i&lt;lf;i++)   ans[l++]=f[i];      //负数 
+    for(i=0;i&lt;lk;i++)   ans[l++]=kl[i];     //0~K的数 
+    for(i=0;i&lt;lr;i++)   ans[l++]=kr[i];     // 大于K的数 
+    for(i=0;i&lt;l;i++){   
+        if(i!=l-1)printf(&quot;%05d %d %05d\n&quot;,ans[i],p[ans[i]].data,ans[i+1]);   
+        else printf(&quot;%05d %d -1\n&quot;,ans[i],p[ans[i]].data);  
     }
     return 0;
 }
@@ -497,6 +575,77 @@ int main(){
     for(i=0;i&lt;c.size();i++){    //链c输出
         if(i!=c.size()-1)   printf(&quot;%05d %d %05d\n&quot;,c[i],p[c[i]].data,c[i+1]);
         else    printf(&quot;%05d %d %d\n&quot;,c[i],p[c[i]].data,-1);
+    }
+    return 0;
+}
+</code></pre>
+
+<hr />
+
+<h3 id="l2-022-重排链表-25分">L2-022 重排链表 (25分)</h3>
+
+<p>给定一个单链表 L​1 →L2 →⋯→Ln−1→Ln，请编写程序将链表重新排列为 Ln →L1→L​n−1→L2→⋯。例如：给定L为1→2→3→4→5→6，则输出应该为6→1→5→2→4→3。</p>
+
+<p>输入格式：<br />
+每个输入包含1个测试用例。每个测试用例第1行给出第1个结点的地址和结点总个数，即正整数N (≤10^5)。结点的地址是5位非负整数，NULL地址用−1表示。</p>
+
+<p>接下来有N行，每行格式为：</p>
+
+<p>Address Data Next</p>
+
+<p>其中Address是结点地址；Data是该结点保存的数据，为不超过10^5的正整数；Next是下一结点的地址。题目保证给出的链表上至少有两个结点。</p>
+
+<p>输出格式：<br />
+对每个测试用例，顺序输出重排后的结果链表，其上每个结点占一行，格式与输入相同。</p>
+
+<p>输入样例：<br />
+00100 6<br />
+00000 4 99999<br />
+00100 1 12309<br />
+68237 6 -1<br />
+33218 3 00000<br />
+99999 5 68237<br />
+12309 2 33218</p>
+
+<p>输出样例：<br />
+68237 6 00100<br />
+00100 1 99999<br />
+99999 5 12309<br />
+12309 2 00000<br />
+00000 4 33218<br />
+33218 3 -1</p>
+
+<p>这题排序很容易实现，先取尾部元素，再取头部元素就可以了。</p>
+
+<pre><code>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+struct node{
+    int next;
+    int data;
+}p[100005];
+int main(){
+    int N,i,j,temp,first;
+    vector&lt;int&gt;a,ans;
+    cin&gt;&gt;first&gt;&gt;N;
+    for(i=0;i&lt;N;i++){    
+        cin&gt;&gt;temp;  //先输入temp
+        cin&gt;&gt;p[temp].data&gt;&gt;p[temp].next;
+    //  cin&gt;&gt;temp&gt;&gt;p[temp].data&gt;&gt;p[temp].next;  写成一行，有问题，可能是temp还没赋上值，所以后面两个输入失败 
+    }
+    while(first!=-1){   //排序+过滤 
+        a.push_back(first);
+        first=p[first].next;
+    }
+    for(i=0,j=a.size()-1;i!=a.size()/2;i++,j--){     
+        ans.push_back(a[j]);    //先加尾部元素 
+        ans.push_back(a[i]);    //后加头部元素 
+    }
+    if(a.size()%2) ans.push_back(a[i]); //上面循环只对偶数个有效，当a.size()%2!=0时，把中间的元素加上 
+    for(i=0;i&lt;ans.size();i++){  //输出 
+        if(i!=ans.size()-1) printf(&quot;%05d %d %05d\n&quot;,ans[i],p[ans[i]].data,ans[i+1]);
+        else    printf(&quot;%05d %d %d\n&quot;,ans[i],p[ans[i]].data,-1);
     }
     return 0;
 }
