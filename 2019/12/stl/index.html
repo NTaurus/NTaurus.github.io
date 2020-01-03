@@ -8,426 +8,18 @@
 <meta name="generator" content="Hugo 0.59.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="NTaurus">
 <meta name="keywords" content="tech">
-<meta name="description" content="
-
-前言
-
-C&#43;&#43;STL(标准模板库)是一组功能强大的C&#43;&#43;模板类，它为通用类和函数提供模板，这些模板实现了许多流行和常用的算法和数据结构，如向量（vector）、列表（list）、队列(queue)和堆栈(stack)等等。
-
-vector
-
-vector可以理解成变长数组，它会根据需要自动增长;vector可以放任意的数据类型，可以方便、灵活地代替数组。
-
-#include&lt;vector&gt;    //需要的头文件
-vector&lt;typename&gt;v;    //定义一个向量，typename可以是（如vector&lt;int&gt;v;）int、string、char，也可以是node（结构体）等等..
-vector&lt;typename&gt;v(50)   //定义初始大小为50的向量
-vector&lt;typename&gt;v(50,0) //初始大小为50，元素全为0
-//常用的操作
-vector&lt;int&gt;v;   //先定义一个向量
-
-v.push_back();    //把x加入v中（在尾部插入）
-v.push_back(1);    //插入int型1
-v.push_back(&#39;1&#39;)    //插入char型1
-
-v.pop_back();   //删除最后一个元素
-
-v.back();    //返回最后一个元素
-v.size();   //返回v的大小
-v.clear();  //清空数组
-
-//访问方式
-v[0];   //可以按数组的格式随机访问
-cout&lt;&lt;v[0];    //输出也一样
-
-vector&lt;typename&gt;::iterator it;   //用迭代器访问(先定义,typename要跟前面定义的向量对应)
-for(it=v.begin();it!=v.end();it&#43;&#43;){
-    cout&lt;&lt;*it;  //输出元素
-}
+<meta name="description" content="">
 
 
-set
-
-set是一种包含已排序对象的关联容器。它的底层是一颗红黑树。set会自动排序，去重。
-  特别注意的是：set不能修改元素的值，因为set元素是常量
-
-#include&lt;set&gt;   //需要的头文件
-set&lt;typename&gt;s;   //typename是数据类型名，可以是int、double、string等等..
-
-//常用的操作
-s.size()    //返回集合的大小
-s.empty()   //判断集合是否为空，若为空返回ture
-
-s.begin()   //返回指向第一个元素的迭代器
-s.end()     //返回指向最后一个元素的迭代器
-
-s.rbegin()  //返回指向集合中最后一个元素的反向迭代器
-s.rend()    //返回指向集合中第一个元素的反向迭代器
-
-s.insert()    //在集合中插入元素
-s.insert(1)    //插入元素1
-
-s.erase()   //删除集合中的元素
-s.erase(1)  //删除键值为1的元素
-
-s.find()    //返回一个指向被查找到元素的迭代器
-it=s.find(1)   //如果找到就it!=s.end(),否则it==s.end()
-
-s.clear()   //清空集合
-//访问或遍历
-set不能直接访问，需要用到迭代器
-set&lt;typename&gt;::iterator it;//定义迭代器
-
-for(it=s.begin();it!=s.end();it&#43;&#43;){ //遍历输出
-    cout&lt;&lt;*it;  //输出元素
-}
-
-
-map
-
-map是一类关联式容器。map中有关键字（key）跟值（value）。
-map会自动按key升序排序
-unordered_map则不会
-
-#include&lt;map&gt;   //需要的头文件
-map&lt;typename1,typename2&gt;mp; //定义key-&gt;value关系的map（key跟value的类型可以是任意的）
-map&lt;string,int&gt;mp;  //例如：关键字key为string，对应的值value为int型
-
-//常用的操作
-
-//插入
-mp.insert(pair&lt;string, int&gt;(&quot;john&quot;,98)); //插入key为“john”，value为98的元素
-mp[&quot;john&quot;]=98    //也可以直接这样
-
-//输出
-cout&lt;&lt;mp[&quot;john&quot;];
-//迭代器访问
-map&lt;string,int&gt;::iterator it; 
-for(it=mp.begin();it!=mp.end();it&#43;&#43;){
-    cout&lt;&lt;*it-&gt;first&lt;&lt;&#39; &#39;&lt;&lt;*it-&gt;second&lt;&lt;endl&gt;&gt;;
-}
-
-it=mp.find(key)    //查找关键字，不存在则返回it=mp.end()
-mp.erase(it)  //删除it指向的映射
-mp.size()   //返回map的大小
-mp.clear()  //清空map
-">
-
-
-<meta property="og:description" content="
-
-前言
-
-C&#43;&#43;STL(标准模板库)是一组功能强大的C&#43;&#43;模板类，它为通用类和函数提供模板，这些模板实现了许多流行和常用的算法和数据结构，如向量（vector）、列表（list）、队列(queue)和堆栈(stack)等等。
-
-vector
-
-vector可以理解成变长数组，它会根据需要自动增长;vector可以放任意的数据类型，可以方便、灵活地代替数组。
-
-#include&lt;vector&gt;    //需要的头文件
-vector&lt;typename&gt;v;    //定义一个向量，typename可以是（如vector&lt;int&gt;v;）int、string、char，也可以是node（结构体）等等..
-vector&lt;typename&gt;v(50)   //定义初始大小为50的向量
-vector&lt;typename&gt;v(50,0) //初始大小为50，元素全为0
-//常用的操作
-vector&lt;int&gt;v;   //先定义一个向量
-
-v.push_back();    //把x加入v中（在尾部插入）
-v.push_back(1);    //插入int型1
-v.push_back(&#39;1&#39;)    //插入char型1
-
-v.pop_back();   //删除最后一个元素
-
-v.back();    //返回最后一个元素
-v.size();   //返回v的大小
-v.clear();  //清空数组
-
-//访问方式
-v[0];   //可以按数组的格式随机访问
-cout&lt;&lt;v[0];    //输出也一样
-
-vector&lt;typename&gt;::iterator it;   //用迭代器访问(先定义,typename要跟前面定义的向量对应)
-for(it=v.begin();it!=v.end();it&#43;&#43;){
-    cout&lt;&lt;*it;  //输出元素
-}
-
-
-set
-
-set是一种包含已排序对象的关联容器。它的底层是一颗红黑树。set会自动排序，去重。
-  特别注意的是：set不能修改元素的值，因为set元素是常量
-
-#include&lt;set&gt;   //需要的头文件
-set&lt;typename&gt;s;   //typename是数据类型名，可以是int、double、string等等..
-
-//常用的操作
-s.size()    //返回集合的大小
-s.empty()   //判断集合是否为空，若为空返回ture
-
-s.begin()   //返回指向第一个元素的迭代器
-s.end()     //返回指向最后一个元素的迭代器
-
-s.rbegin()  //返回指向集合中最后一个元素的反向迭代器
-s.rend()    //返回指向集合中第一个元素的反向迭代器
-
-s.insert()    //在集合中插入元素
-s.insert(1)    //插入元素1
-
-s.erase()   //删除集合中的元素
-s.erase(1)  //删除键值为1的元素
-
-s.find()    //返回一个指向被查找到元素的迭代器
-it=s.find(1)   //如果找到就it!=s.end(),否则it==s.end()
-
-s.clear()   //清空集合
-//访问或遍历
-set不能直接访问，需要用到迭代器
-set&lt;typename&gt;::iterator it;//定义迭代器
-
-for(it=s.begin();it!=s.end();it&#43;&#43;){ //遍历输出
-    cout&lt;&lt;*it;  //输出元素
-}
-
-
-map
-
-map是一类关联式容器。map中有关键字（key）跟值（value）。
-map会自动按key升序排序
-unordered_map则不会
-
-#include&lt;map&gt;   //需要的头文件
-map&lt;typename1,typename2&gt;mp; //定义key-&gt;value关系的map（key跟value的类型可以是任意的）
-map&lt;string,int&gt;mp;  //例如：关键字key为string，对应的值value为int型
-
-//常用的操作
-
-//插入
-mp.insert(pair&lt;string, int&gt;(&quot;john&quot;,98)); //插入key为“john”，value为98的元素
-mp[&quot;john&quot;]=98    //也可以直接这样
-
-//输出
-cout&lt;&lt;mp[&quot;john&quot;];
-//迭代器访问
-map&lt;string,int&gt;::iterator it; 
-for(it=mp.begin();it!=mp.end();it&#43;&#43;){
-    cout&lt;&lt;*it-&gt;first&lt;&lt;&#39; &#39;&lt;&lt;*it-&gt;second&lt;&lt;endl&gt;&gt;;
-}
-
-it=mp.find(key)    //查找关键字，不存在则返回it=mp.end()
-mp.erase(it)  //删除it指向的映射
-mp.size()   //返回map的大小
-mp.clear()  //清空map
-">
+<meta property="og:description" content="">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STL">
 <meta name="twitter:title" content="STL">
 <meta property="og:url" content="https://NTaurus.github.io/2019/12/stl/">
 <meta property="twitter:url" content="https://NTaurus.github.io/2019/12/stl/">
 <meta property="og:site_name" content="NTaurus的乌托邦">
-<meta property="og:description" content="
-
-前言
-
-C&#43;&#43;STL(标准模板库)是一组功能强大的C&#43;&#43;模板类，它为通用类和函数提供模板，这些模板实现了许多流行和常用的算法和数据结构，如向量（vector）、列表（list）、队列(queue)和堆栈(stack)等等。
-
-vector
-
-vector可以理解成变长数组，它会根据需要自动增长;vector可以放任意的数据类型，可以方便、灵活地代替数组。
-
-#include&lt;vector&gt;    //需要的头文件
-vector&lt;typename&gt;v;    //定义一个向量，typename可以是（如vector&lt;int&gt;v;）int、string、char，也可以是node（结构体）等等..
-vector&lt;typename&gt;v(50)   //定义初始大小为50的向量
-vector&lt;typename&gt;v(50,0) //初始大小为50，元素全为0
-//常用的操作
-vector&lt;int&gt;v;   //先定义一个向量
-
-v.push_back();    //把x加入v中（在尾部插入）
-v.push_back(1);    //插入int型1
-v.push_back(&#39;1&#39;)    //插入char型1
-
-v.pop_back();   //删除最后一个元素
-
-v.back();    //返回最后一个元素
-v.size();   //返回v的大小
-v.clear();  //清空数组
-
-//访问方式
-v[0];   //可以按数组的格式随机访问
-cout&lt;&lt;v[0];    //输出也一样
-
-vector&lt;typename&gt;::iterator it;   //用迭代器访问(先定义,typename要跟前面定义的向量对应)
-for(it=v.begin();it!=v.end();it&#43;&#43;){
-    cout&lt;&lt;*it;  //输出元素
-}
-
-
-set
-
-set是一种包含已排序对象的关联容器。它的底层是一颗红黑树。set会自动排序，去重。
-  特别注意的是：set不能修改元素的值，因为set元素是常量
-
-#include&lt;set&gt;   //需要的头文件
-set&lt;typename&gt;s;   //typename是数据类型名，可以是int、double、string等等..
-
-//常用的操作
-s.size()    //返回集合的大小
-s.empty()   //判断集合是否为空，若为空返回ture
-
-s.begin()   //返回指向第一个元素的迭代器
-s.end()     //返回指向最后一个元素的迭代器
-
-s.rbegin()  //返回指向集合中最后一个元素的反向迭代器
-s.rend()    //返回指向集合中第一个元素的反向迭代器
-
-s.insert()    //在集合中插入元素
-s.insert(1)    //插入元素1
-
-s.erase()   //删除集合中的元素
-s.erase(1)  //删除键值为1的元素
-
-s.find()    //返回一个指向被查找到元素的迭代器
-it=s.find(1)   //如果找到就it!=s.end(),否则it==s.end()
-
-s.clear()   //清空集合
-//访问或遍历
-set不能直接访问，需要用到迭代器
-set&lt;typename&gt;::iterator it;//定义迭代器
-
-for(it=s.begin();it!=s.end();it&#43;&#43;){ //遍历输出
-    cout&lt;&lt;*it;  //输出元素
-}
-
-
-map
-
-map是一类关联式容器。map中有关键字（key）跟值（value）。
-map会自动按key升序排序
-unordered_map则不会
-
-#include&lt;map&gt;   //需要的头文件
-map&lt;typename1,typename2&gt;mp; //定义key-&gt;value关系的map（key跟value的类型可以是任意的）
-map&lt;string,int&gt;mp;  //例如：关键字key为string，对应的值value为int型
-
-//常用的操作
-
-//插入
-mp.insert(pair&lt;string, int&gt;(&quot;john&quot;,98)); //插入key为“john”，value为98的元素
-mp[&quot;john&quot;]=98    //也可以直接这样
-
-//输出
-cout&lt;&lt;mp[&quot;john&quot;];
-//迭代器访问
-map&lt;string,int&gt;::iterator it; 
-for(it=mp.begin();it!=mp.end();it&#43;&#43;){
-    cout&lt;&lt;*it-&gt;first&lt;&lt;&#39; &#39;&lt;&lt;*it-&gt;second&lt;&lt;endl&gt;&gt;;
-}
-
-it=mp.find(key)    //查找关键字，不存在则返回it=mp.end()
-mp.erase(it)  //删除it指向的映射
-mp.size()   //返回map的大小
-mp.clear()  //清空map
-">
-<meta name="twitter:description" content="
-
-前言
-
-C&#43;&#43;STL(标准模板库)是一组功能强大的C&#43;&#43;模板类，它为通用类和函数提供模板，这些模板实现了许多流行和常用的算法和数据结构，如向量（vector）、列表（list）、队列(queue)和堆栈(stack)等等。
-
-vector
-
-vector可以理解成变长数组，它会根据需要自动增长;vector可以放任意的数据类型，可以方便、灵活地代替数组。
-
-#include&lt;vector&gt;    //需要的头文件
-vector&lt;typename&gt;v;    //定义一个向量，typename可以是（如vector&lt;int&gt;v;）int、string、char，也可以是node（结构体）等等..
-vector&lt;typename&gt;v(50)   //定义初始大小为50的向量
-vector&lt;typename&gt;v(50,0) //初始大小为50，元素全为0
-//常用的操作
-vector&lt;int&gt;v;   //先定义一个向量
-
-v.push_back();    //把x加入v中（在尾部插入）
-v.push_back(1);    //插入int型1
-v.push_back(&#39;1&#39;)    //插入char型1
-
-v.pop_back();   //删除最后一个元素
-
-v.back();    //返回最后一个元素
-v.size();   //返回v的大小
-v.clear();  //清空数组
-
-//访问方式
-v[0];   //可以按数组的格式随机访问
-cout&lt;&lt;v[0];    //输出也一样
-
-vector&lt;typename&gt;::iterator it;   //用迭代器访问(先定义,typename要跟前面定义的向量对应)
-for(it=v.begin();it!=v.end();it&#43;&#43;){
-    cout&lt;&lt;*it;  //输出元素
-}
-
-
-set
-
-set是一种包含已排序对象的关联容器。它的底层是一颗红黑树。set会自动排序，去重。
-  特别注意的是：set不能修改元素的值，因为set元素是常量
-
-#include&lt;set&gt;   //需要的头文件
-set&lt;typename&gt;s;   //typename是数据类型名，可以是int、double、string等等..
-
-//常用的操作
-s.size()    //返回集合的大小
-s.empty()   //判断集合是否为空，若为空返回ture
-
-s.begin()   //返回指向第一个元素的迭代器
-s.end()     //返回指向最后一个元素的迭代器
-
-s.rbegin()  //返回指向集合中最后一个元素的反向迭代器
-s.rend()    //返回指向集合中第一个元素的反向迭代器
-
-s.insert()    //在集合中插入元素
-s.insert(1)    //插入元素1
-
-s.erase()   //删除集合中的元素
-s.erase(1)  //删除键值为1的元素
-
-s.find()    //返回一个指向被查找到元素的迭代器
-it=s.find(1)   //如果找到就it!=s.end(),否则it==s.end()
-
-s.clear()   //清空集合
-//访问或遍历
-set不能直接访问，需要用到迭代器
-set&lt;typename&gt;::iterator it;//定义迭代器
-
-for(it=s.begin();it!=s.end();it&#43;&#43;){ //遍历输出
-    cout&lt;&lt;*it;  //输出元素
-}
-
-
-map
-
-map是一类关联式容器。map中有关键字（key）跟值（value）。
-map会自动按key升序排序
-unordered_map则不会
-
-#include&lt;map&gt;   //需要的头文件
-map&lt;typename1,typename2&gt;mp; //定义key-&gt;value关系的map（key跟value的类型可以是任意的）
-map&lt;string,int&gt;mp;  //例如：关键字key为string，对应的值value为int型
-
-//常用的操作
-
-//插入
-mp.insert(pair&lt;string, int&gt;(&quot;john&quot;,98)); //插入key为“john”，value为98的元素
-mp[&quot;john&quot;]=98    //也可以直接这样
-
-//输出
-cout&lt;&lt;mp[&quot;john&quot;];
-//迭代器访问
-map&lt;string,int&gt;::iterator it; 
-for(it=mp.begin();it!=mp.end();it&#43;&#43;){
-    cout&lt;&lt;*it-&gt;first&lt;&lt;&#39; &#39;&lt;&lt;*it-&gt;second&lt;&lt;endl&gt;&gt;;
-}
-
-it=mp.find(key)    //查找关键字，不存在则返回it=mp.end()
-mp.erase(it)  //删除it指向的映射
-mp.size()   //返回map的大小
-mp.clear()  //清空map
-">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
@@ -673,18 +265,23 @@ mp.clear()  //清空map
 <ul>
 <li>
 <ul>
-<li><a href="#前言">前言</a></li>
+<li><a href="#stl的介绍">stl的介绍</a></li>
 <li><a href="#vector">vector</a></li>
 <li><a href="#set">set</a></li>
 <li><a href="#map">map</a></li>
+<li><a href="#string">string</a></li>
+<li><a href="#queue">queue</a></li>
+<li><a href="#stack">stack</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </nav>
 
-<h3 id="前言">前言</h3>
+<h3 id="stl的介绍">stl的介绍</h3>
 
-<p>C++STL(标准模板库)是一组功能强大的C++模板类，它为通用类和函数提供模板，这些模板实现了许多流行和常用的算法和数据结构，如向量（vector）、列表（list）、队列(queue)和堆栈(stack)等等。</p>
+<p>C++中的STL标准模板库（Standard Template Library）是一组功能强大的C++模板类，它为通用类和函数提供模板，这些模板实现了许多流行和常用的算法和数据结构，如向量（vector）、列表（list）、队列(queue)和堆栈(stack)等等。</p>
+
+<p>先啰嗦两句哈：学习的过程中一定自己多敲两遍才更好的记住</p>
 
 <h3 id="vector">vector</h3>
 
@@ -694,10 +291,15 @@ mp.clear()  //清空map
 vector&lt;typename&gt;v;    //定义一个向量，typename可以是（如vector&lt;int&gt;v;）int、string、char，也可以是node（结构体）等等..
 vector&lt;typename&gt;v(50)   //定义初始大小为50的向量
 vector&lt;typename&gt;v(50,0) //初始大小为50，元素全为0
+
+//二维数组的定义
+vector&lt;typename&gt;v[size];    //v[0]~v[size-1]中每一个都是一个vector容器
+vector&lt;vector&lt;typename&gt; &gt;v;   // 注意 vector&lt;vector&lt;typename&gt; &gt;v;里面的空格不能少哦
+
 //常用的操作
 vector&lt;int&gt;v;   //先定义一个向量
 
-v.push_back();    //把x加入v中（在尾部插入）
+v.push_back(x);    //把x加入v中（在尾部插入）
 v.push_back(1);    //插入int型1
 v.push_back('1')    //插入char型1
 
@@ -705,7 +307,7 @@ v.pop_back();   //删除最后一个元素
 
 v.back();    //返回最后一个元素
 v.size();   //返回v的大小
-v.clear();  //清空数组
+v.clear();  //清空数组  实现复杂度O(N)！！
 
 //访问方式
 v[0];   //可以按数组的格式随机访问
@@ -716,6 +318,10 @@ for(it=v.begin();it!=v.end();it++){
     cout&lt;&lt;*it;  //输出元素
 }
 </code></pre>
+
+<p>刷题应用：可以无需用多余的变量来存数组的长度。</p>
+
+<hr />
 
 <h3 id="set">set</h3>
 
@@ -744,7 +350,8 @@ s.erase(1)  //删除键值为1的元素
 s.find()    //返回一个指向被查找到元素的迭代器
 it=s.find(1)   //如果找到就it!=s.end(),否则it==s.end()
 
-s.clear()   //清空集合
+s.clear()   //清空集合  时间复杂度为O(N)!!
+
 //访问或遍历
 set不能直接访问，需要用到迭代器
 set&lt;typename&gt;::iterator it;//定义迭代器
@@ -753,6 +360,10 @@ for(it=s.begin();it!=s.end();it++){ //遍历输出
     cout&lt;&lt;*it;  //输出元素
 }
 </code></pre>
+
+<p>刷题的应用：如果题目需要去重且排序的，则可以用将元素存到set中可以。</p>
+
+<hr />
 
 <h3 id="map">map</h3>
 
@@ -763,6 +374,9 @@ unordered_map则不会</p>
 <pre><code>#include&lt;map&gt;   //需要的头文件
 map&lt;typename1,typename2&gt;mp; //定义key-&gt;value关系的map（key跟value的类型可以是任意的）
 map&lt;string,int&gt;mp;  //例如：关键字key为string，对应的值value为int型
+
+#include&lt;unordered_map&gt;    //不自动排序的map的头文件
+unordered_map&lt;tyoename1，typename2&gt;mp;  //不自动排序的map的定义
 
 //常用的操作
 
@@ -781,7 +395,114 @@ for(it=mp.begin();it!=mp.end();it++){
 it=mp.find(key)    //查找关键字，不存在则返回it=mp.end()
 mp.erase(it)  //删除it指向的映射
 mp.size()   //返回map的大小
-mp.clear()  //清空map
+mp.clear()  //清空map   时间复杂度为O(N)
+</code></pre>
+
+<p>刷题应用：当只需要查询时，可以使用unordered_map来实现O(1)的时间复杂度，或者用来确认某个待插入的元素是否时第一次出现的。</p>
+
+<hr />
+
+<h3 id="string">string</h3>
+
+<p>C++在STL中加入了string类型，对字符串常用的需求功能进行了封装，使得操作起来更方便，且不易出错。</p>
+
+<pre><code>#include&lt;string&gt;    //需要的头文件
+using namespace std;//别忘了加这个哦
+
+string str; //定义一个string
+string str=&quot;我要学string&quot; //也可以直接赋值
+
+//输入
+cin&gt;&gt;str;   //遇到空格结束
+getline(cin,str);   //遇到回车结束
+scanf(&quot;%s&quot;,str.c_str);  //用scanf输入需要以str.c_str()形式输出
+
+//输出
+cout&lt;&lt;str;  
+printf(&quot;%s&quot;,str.c_str());   //用c_str()将string类型转化为字符数组进行输出
+
+//访问
+str[0]; 可以像字符数组那样访问string
+string::iterator it;    通过迭代器访问
+for(it=str.begin();it!=str.end();it++){
+    cout&lt;&lt;*it;
+    //printf(&quot;%c&quot;,*it);
+}
+
+//string可以直接用‘+’号对两个string进行拼接
+string str1=&quot;abc&quot;,str2=&quot;xyz&quot;,str;
+str=str1+str2;  //此时str=&quot;abcxyz&quot;
+
+//两个string可以直接按照字典序的规则进行比较
+if(str1==str2)
+if(str1!=str2)
+if(str1&gt;str2)   //或者&gt;=
+if(str1&lt;str2)   //或者&lt;=
+
+str.length()
+str.size()  //两个都是返回字符串的长度
+
+str.insert()    //插入
+str.insert(index,string);   //在index号插入字符串string
+string =&quot;abc&quot;,str2=&quot;123&quot;;
+str.insert(2,str2);  //此时str=&quot;ab123c&quot;;
+
+str.erase()    //删除单个字符或一个区间的所有元素。时间复杂度：O(N)
+str.erase(it)   //删除it指向的字符
+str.erase(first,last)   //删除[first,last)区间内的元素
+str.erase(index,length) //删除从index开始length个元素
+
+str.clear() //清空数据
+
+str.substr()    //截取子串
+str.substr(index,len)   //返回从index位开始，长度为len的子串
+
+str.find()  //查找子串
+str.find(str2)  //返回str2第一次出现的位置
+
+str.replace()   //替换
+str.replace(index,len,str2)   //把str从index号位开始，长度为len的子串替换为str2
+str.replace(it1,it2,str2)   //把str的迭代器[it1,it2)范围的子串替换为str2
+</code></pre>
+
+<hr />
+
+<h3 id="queue">queue</h3>
+
+<p>queue是队列的意思，在STL中主要是实现一个先进先出的容器。</p>
+
+<pre><code>#include&lt;queue&gt; //需要的头文件
+queue&lt;typename&gt; q;  //定义一个队列
+
+//访问，队列只能访问队首、队尾元素
+q.front()   //访问队首
+q.back()    //访问队尾
+
+//常用操作
+q.push()    //入队
+q.push(x)   //x入队
+
+q.pop() //出队
+
+q.empty()   //判断队列是否为空
+q.size()    //返回队列大小
+</code></pre>
+
+<hr />
+
+<h3 id="stack">stack</h3>
+
+<p>stack的意思是栈，是STL中实现一个后进先出的容器。</p>
+
+<pre><code>#include&lt;stack&gt; //需要的头文件
+stack&lt; typename &gt;s; //定义一个栈
+
+s.push()    //入栈
+s.pop()     //出栈
+
+s.top()     //返回栈顶元素
+s.empty()   //判断栈是否为空
+s.size()    //返回栈内元素的个数
 </code></pre>
               
             </div>
