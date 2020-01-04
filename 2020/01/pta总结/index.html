@@ -23,24 +23,20 @@
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-01-03T21:27:55">
+    <meta property="article:published_time" content="2020-01-04T21:52:21">
   
   
-    <meta property="article:modified_time" content="2020-01-03T21:27:55">
+    <meta property="article:modified_time" content="2020-01-04T21:52:21">
   
   
   
     
-      <meta property="article:section" content="category">
-    
-      <meta property="article:section" content="subcategory">
+      <meta property="article:section" content="PTA">
     
   
   
     
-      <meta property="article:tag" content="tag1">
-    
-      <meta property="article:tag" content="tag2">
+      <meta property="article:tag" content="pta">
     
   
 
@@ -53,6 +49,12 @@
 
 
 
+  <meta property="og:image" content="https://NTaurus.github.io/images/leaf.jpg">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/leaf.jpg">
+
+
+  <meta property="og:image" content="https://NTaurus.github.io/images/leaf.jpg">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/leaf.jpg">
 
 
 
@@ -209,15 +211,13 @@
 </nav>
 
       
-
-      <div id="main" data-behavior="5"
-        class="
-               hasCoverMetaIn
-               ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-          
-            <div class="post-header main-content-wrap text-left">
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/leaf.jpg')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
       PTA总结
@@ -226,9 +226,9 @@
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-01-03T21:27:55&#43;08:00">
+      <time itemprop="datePublished" datetime="2020-01-04T21:52:21&#43;08:00">
         
-  一月 3, 2020
+  一月 4, 2020
 
       </time>
     
@@ -237,19 +237,102 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://NTaurus.github.io/categories/category">category</a>, 
-    
-      <a class="category-link" href="https://NTaurus.github.io/categories/subcategory">subcategory</a>
+      <a class="category-link" href="https://NTaurus.github.io/categories/pta">PTA</a>
     
   
 
   </div>
 
 </div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">这篇记录PTA上常用的一些方法</span>
+          
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#最大公约数">最大公约数</a></li>
+<li><a href="#最小公倍数">最小公倍数</a></li>
+<li><a href="#素数">素数</a>
+<ul>
+<li><a href="#素数的判断">素数的判断</a></li>
+<li><a href="#筛选法获取素数">筛选法获取素数</a></li>
+</ul></li>
+<li><a href="#sscanf与sprintf">sscanf与sprintf</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h3 id="最大公约数">最大公约数</h3>
+
+<pre><code>int gcd(int a,int b){
+    return !b?a:gcd(b,a%b);
+}
+</code></pre>
+
+<h3 id="最小公倍数">最小公倍数</h3>
+
+<pre><code>//先求最大公约数d
+a*b/d;  //最小公倍数=a*b/最大公约数
+a/d*b;  //怕溢出就写成
+</code></pre>
+
+<h3 id="素数">素数</h3>
+
+<h4 id="素数的判断">素数的判断</h4>
+
+<pre><code>bool isprime(int n){
+    if(n&lt;=1)return false;
+    for(int i=2;i*i&lt;=n;i++){
+        if(!n%i)return flase;
+    }
+    return true;
+}
+</code></pre>
+
+<h4 id="筛选法获取素数">筛选法获取素数</h4>
+
+<p>用上面素数的判断来求素的方法，当n&lt;10^5时是可以承受的，但如果需要求更大范围的数则可以用下面的算法：筛选法</p>
+
+<pre><code>int num[100],l=0;//num存素数
+bool p[100]={0};
+for(int i=2;i&lt;100;i++){
+    if(p[i]==false){
+        num[l++]=i; i是素数就存起来
+        for(int j=i+i;j&lt;100;j+=i){
+            p[j]=true;  //把i的倍数全部筛选掉
+        }
+    }
+}
+</code></pre>
+
+<h3 id="sscanf与sprintf">sscanf与sprintf</h3>
+
+<p>sscanf与sprintf分别可以理解为sscanf = string + scanf 与 sprintf = string + printf</p>
+
+<pre><code>string str=&quot;123abc&quot;;
+char ch[50];
+int a;
+sscanf(str.c_str(),&quot;%d&quot;,&amp;a);    //sscanf是把字符串str以&quot;%d&quot;的格式写到a中
+sprintf(ch,&quot;%d&quot;,a);    //sprintf是把a以&quot;%d&quot;的格式写到ch字符数组中
+//string类要使用sscanf时需要写成 str.c_str() 但用在sprintf会报错，不知道什么原因，就先使用字符数组ch存吧                    
+cout&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;ch&lt;&lt;endl; //打印结果为 123 123
+</code></pre>
               
             </div>
           </div>
@@ -261,9 +344,7 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/tag1/">tag1</a>
-
-  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/tag2/">tag2</a>
+  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/pta/">pta</a>
 
                   </div>
                 
@@ -311,7 +392,7 @@
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -379,7 +460,7 @@
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -432,7 +513,7 @@
     
   
     
-      <div id="cover" style="background-image:url('https://NTaurus.github.io/images/cover.jpg');"></div>
+      <div id="cover" style="background-image:url('https://NTaurus.github.io/images/wooden2.jpg');"></div>
     
   
 
