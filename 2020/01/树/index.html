@@ -13,20 +13,20 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PTA总结">
-<meta name="twitter:title" content="PTA总结">
-<meta property="og:url" content="https://NTaurus.github.io/2020/01/pta%E6%80%BB%E7%BB%93/">
-<meta property="twitter:url" content="https://NTaurus.github.io/2020/01/pta%E6%80%BB%E7%BB%93/">
+<meta property="og:title" content="树">
+<meta name="twitter:title" content="树">
+<meta property="og:url" content="https://NTaurus.github.io/2020/01/%E6%A0%91/">
+<meta property="twitter:url" content="https://NTaurus.github.io/2020/01/%E6%A0%91/">
 <meta property="og:site_name" content="NTaurus的乌托邦">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-01-04T21:52:21">
+    <meta property="article:published_time" content="2020-01-24T21:43:37">
   
   
-    <meta property="article:modified_time" content="2020-01-04T21:52:21">
+    <meta property="article:modified_time" content="2020-01-24T21:43:37">
   
   
   
@@ -49,12 +49,12 @@
 
 
 
-  <meta property="og:image" content="https://NTaurus.github.io/images/leaf.jpg">
-  <meta property="twitter:image" content="https://NTaurus.github.io/images/leaf.jpg">
+  <meta property="og:image" content="https://NTaurus.github.io/images/road.jpg">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/road.jpg">
 
 
-  <meta property="og:image" content="https://NTaurus.github.io/images/leaf.jpg">
-  <meta property="twitter:image" content="https://NTaurus.github.io/images/leaf.jpg">
+  <meta property="og:image" content="https://NTaurus.github.io/images/road.jpg">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/road.jpg">
 
 
 
@@ -63,14 +63,14 @@
   <meta property="twitter:image" content="https://NTaurus.github.io/images/touxiang.png">
 
 
-    <title>PTA总结</title>
+    <title>树</title>
 
     <link rel="icon" href="https://NTaurus.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://NTaurus.github.io/2020/01/pta%E6%80%BB%E7%BB%93/">
+    <link rel="canonical" href="https://NTaurus.github.io/2020/01/%E6%A0%91/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -214,21 +214,21 @@
   <div class="post-header-cover
               text-center
               post-header-cover--full"
-       style="background-image:url('/images/leaf.jpg')"
+       style="background-image:url('/images/road.jpg')"
        data-behavior="5">
     
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      PTA总结
+      树
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-01-04T21:52:21&#43;08:00">
+      <time itemprop="datePublished" datetime="2020-01-24T21:43:37&#43;08:00">
         
-  一月 4, 2020
+  一月 24, 2020
 
       </time>
     
@@ -251,306 +251,156 @@
       <div id="main" data-behavior="5"
         class="hasCover
                hasCoverMetaIn
-               hasCoverCaption">
+               ">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-            <span class="post-header-cover-caption caption">这篇记录PTA上常用的一些方法</span>
           
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#基础">基础</a>
-<ul>
-<li><a href="#基本数据类型">基本数据类型</a></li>
-<li><a href="#scanf格式符">scanf格式符</a></li>
-<li><a href="#printf格式符">printf格式符</a></li>
-<li><a href="#最大公约数">最大公约数</a></li>
-<li><a href="#最小公倍数">最小公倍数</a></li>
-<li><a href="#素数">素数</a>
-<ul>
-<li><a href="#素数的判断">素数的判断</a></li>
-<li><a href="#筛选法获取素数">筛选法获取素数</a></li>
-</ul></li>
-<li><a href="#sscanf与sprintf">sscanf与sprintf</a></li>
-<li><a href="#常用math函数">常用math函数</a></li>
-<li><a href="#浮点数的比较">浮点数的比较</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+              <h2 id="前言">前言</h2>
 
-<h2 id="基础">基础</h2>
+<p>这篇记录PTA上考查树的题。</p>
 
-<h3 id="基本数据类型">基本数据类型</h3>
+<h3 id="1020-tree-traversals-25分">1020 Tree Traversals (25分)</h3>
 
-<table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th>取值范围</th>
-<th>大致范围</th>
-</tr>
-</thead>
+<p>Suppose that all the keys in a binary tree are distinct positive integers. Given the postorder and inorder traversal sequences, you are supposed to output the level order traversal sequence of the corresponding binary tree.</p>
 
-<tbody>
-<tr>
-<td align="center">int</td>
-<td>-2147483648 ~ 2147483647</td>
-<td>-2*10^9~2*10^9</td>
-</tr>
+<p>Input Specification:<br />
+Each input file contains one test case. For each case, the first line gives a positive integer N (≤30), the total number of nodes in the binary tree. The second line gives the postorder sequence and the third line gives the inorder sequence. All the numbers in a line are separated by a space.</p>
 
-<tr>
-<td align="center">long long</td>
-<td>-2^63 ~ (2^63-1)</td>
-<td>-9*10^18 ~ 9*10^18</td>
-</tr>
+<p>Output Specification:
+For each test case, print in one line the level order traversal sequence of the corresponding binary tree. All the numbers in a line must be separated by exactly one space, and there must be no extra space at the end of the line.</p>
 
-<tr>
-<td align="center">float</td>
-<td>-2^128 ~ 2^128</td>
-<td>实际精度6~7位</td>
-</tr>
+<p>Sample Input:<br />
+    7<br />
+    2 3 1 5 7 6 4<br />
+    1 2 3 4 5 6 7</p>
 
-<tr>
-<td align="center">double</td>
-<td>-2^1024~2 ^ 1024</td>
-<td>实际精度15~16位</td>
-</tr>
+<p>Sample Output:<br />
+    4 1 6 3 5 7 2</p>
 
-<tr>
-<td align="center">char</td>
-<td>-128 ~ 127</td>
-<td>-128 ~ 127</td>
-</tr>
+<p>根据后序跟中序建树，按层序输出。</p>
 
-<tr>
-<td align="center">bool</td>
-<td>0(false) or 1(true)</td>
-<td>0(false) or 1(true)</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="scanf格式符">scanf格式符</h3>
-
-<table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th>取值范围</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="center">int</td>
-<td>%d</td>
-</tr>
-
-<tr>
-<td align="center">long long</td>
-<td>%lld</td>
-</tr>
-
-<tr>
-<td align="center">float</td>
-<td>%f</td>
-</tr>
-
-<tr>
-<td align="center">double</td>
-<td>%lf</td>
-</tr>
-
-<tr>
-<td align="center">char</td>
-<td>%c</td>
-</tr>
-
-<tr>
-<td align="center">字符串(遇空格结束)</td>
-<td>%s</td>
-</tr>
-
-<tr>
-<td align="center">字符串(遇换行结束)</td>
-<td>%[^\n]s</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="printf格式符">printf格式符</h3>
-
-<table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th>格式符</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="center">int</td>
-<td>%d</td>
-</tr>
-
-<tr>
-<td align="center">long long</td>
-<td>%lld</td>
-</tr>
-
-<tr>
-<td align="center">float</td>
-<td>%f</td>
-</tr>
-
-<tr>
-<td align="center">double</td>
-<td>%lf</td>
-</tr>
-
-<tr>
-<td align="center">char</td>
-<td>%c</td>
-</tr>
-
-<tr>
-<td align="center">字符串</td>
-<td>%s</td>
-</tr>
-
-<tr>
-<td align="center">无符号int</td>
-<td>%ud(m为宽度)</td>
-</tr>
-
-<tr>
-<td align="center">&mdash;&mdash;&mdash;</td>
-<td>&mdash;&mdash;&mdash;-</td>
-</tr>
-
-<tr>
-<td align="center">作用</td>
-<td>格式符</td>
-</tr>
-
-<tr>
-<td align="center">宽度</td>
-<td>%md(m为宽度)</td>
-</tr>
-
-<tr>
-<td align="center">左对齐</td>
-<td>%-md(m为宽度)</td>
-</tr>
-
-<tr>
-<td align="center">右对齐</td>
-<td>%md(m为宽度)</td>
-</tr>
-
-<tr>
-<td align="center">保留小数</td>
-<td>%.nf(n为保留的小数的位数)</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="最大公约数">最大公约数</h3>
-
-<pre><code>int gcd(int a,int b){
-    return !b?a:gcd(b,a%b);
-}
-</code></pre>
-
-<h3 id="最小公倍数">最小公倍数</h3>
-
-<pre><code>//先求最大公约数d
-a*b/d;  //最小公倍数=a*b/最大公约数
-a/d*b;  //怕溢出就写成
-</code></pre>
-
-<h3 id="素数">素数</h3>
-
-<h4 id="素数的判断">素数的判断</h4>
-
-<pre><code>bool isprime(int n){
-    if(n&lt;=1)return false;
-    for(int i=2;i*i&lt;=n;i++){
-        if(!n%i)return flase;
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;map&gt;
+#include&lt;set&gt;
+#include&lt;queue&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct node{
+    node *Lchild,*Rchild;
+    int data;
+};
+int pre[55],in[55],post[55];
+int n;  //结点个数 
+node *create(int postL,int postR,int inL,int inR){
+    if(postL&gt;postR){
+        return NULL;    //后序序列长度小于等于0时，直接返回 
     }
-    return true;
-}
-</code></pre>
-
-<h4 id="筛选法获取素数">筛选法获取素数</h4>
-
-<p>用上面素数的判断来求素的方法，当n&lt;10^5时是可以承受的，但如果需要求更大范围的数则可以用下面的算法：筛选法</p>
-
-<pre><code>int num[100],l=0;//num存素数
-bool p[100]={0};
-for(int i=2;i&lt;100;i++){
-    if(p[i]==false){
-        num[l++]=i; i是素数就存起来
-        for(int j=i+i;j&lt;100;j+=i){
-            p[j]=true;  //把i的倍数全部筛选掉
+    node * root = new node; //创建一个新结点，用来存放当前二叉树的根结点
+    root-&gt;data = post[postR];//新结点的数据域为根节点的值
+    int k;
+    for(k=inL;k&lt;=inR;k++){
+        if(in[k]==post[postR]){ //在中序序列中找到in[k]==pre[L]的结点 
+            break;
         }
     }
+    int numLeft = k-inL;    //左子树的结点个数
+    //返回左子树的根结点地址，赋值给root的左指针
+    root-&gt;Lchild=create(postL,postL+numLeft-1,inL,k-1);
+    root-&gt;Rchild=create(postL+numLeft,postR-1,k+1,inR);
+    return root;
+}
+int num =0; //已输出的结点个数
+void BFS(node *root){   //层序输出
+    queue&lt;node*&gt;q;
+    node *now;
+    q.push(root);
+    while(!q.empty()){
+        now=q.front();
+        q.pop();
+        num++;
+        cout&lt;&lt;now-&gt;data;
+        if(num!=n)cout&lt;&lt;' ';
+        if(now-&gt;Lchild!=NULL)   q.push(now-&gt;Lchild);
+        if(now-&gt;Rchild!=NULL)   q.push(now-&gt;Rchild);
+    }
+} 
+int main(){
+    cin&gt;&gt;n;
+    for(int i=0;i&lt;n;i++)cin&gt;&gt;post[i];
+    for(int i=0;i&lt;n;i++)cin&gt;&gt;in[i];
+    node *root = create(0,n-1,0,n-1);
+    BFS(root);  
+    return 0;
 }
 </code></pre>
 
-<h3 id="sscanf与sprintf">sscanf与sprintf</h3>
+<h3 id="l2-011-玩转二叉树-25分">L2-011 玩转二叉树 (25分)</h3>
 
-<p>sscanf与sprintf分别可以理解为sscanf = string + scanf 与 sprintf = string + printf</p>
+<p>给定一棵二叉树的中序遍历和前序遍历，请你先将树做个镜面反转，再输出反转后的层序遍历的序列。所谓镜面反转，是指将所有非叶结点的左右孩子对换。这里假设键值都是互不相等的正整数。</p>
 
-<pre><code>string str=&quot;123abc&quot;;
-char ch[50];
-int a;
-sscanf(str.c_str(),&quot;%d&quot;,&amp;a);    //sscanf是把字符串str以&quot;%d&quot;的格式写到a中
-sprintf(ch,&quot;%d&quot;,a);    //sprintf是把a以&quot;%d&quot;的格式写到ch字符数组中
-//string类要使用sscanf时需要写成 str.c_str() 但用在sprintf会报错，不知道什么原因，就先使用字符数组ch存吧                    
-cout&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;ch&lt;&lt;endl; //打印结果为 123 123
-</code></pre>
+<p>输入格式：<br />
+输入第一行给出一个正整数N（≤30），是二叉树中结点的个数。第二行给出其中序遍历序列。第三行给出其前序遍历序列。数字间以空格分隔。</p>
 
-<h3 id="常用math函数">常用math函数</h3>
+<p>输出格式：<br />
+在一行中输出该树反转后的层序遍历的序列。数字间以1个空格分隔，行首尾不得有多余空格。</p>
 
-<pre><code>fabs(double x)  //取绝对值
+<p>输入样例<br />
+    7
+    1 2 3 4 5 6 7<br />
+    4 1 3 2 6 5 7</p>
 
-floor(double x) //向下取整
-ceil(double x)  //向上取整
-round(double x) //四舍五入
+<p>输出样例：<br />
+    4 6 1 7 5 3 2</p>
 
-pow(double r,double p)  //返回r^p
+<p>根据先序跟中序建树，并将所有结点的左右子树交换，最后按层序输出。</p>
 
-sqrt(double x)  //算术平方根
-
-log(double x)   //返回以e为底的对数
-</code></pre>
-
-<h3 id="浮点数的比较">浮点数的比较</h3>
-
-<p>由于浮点数在计算机总的存储并不总是精确的,且在C/C++中的“==”操作是完全相同才能判True,所以需要引入一个极小数来对这种误差进行修正。</p>
-
-<pre><code>const double eps = 1e-8 //取误差的范围
-//a等于b
-#define Equ(a,b) ( ( fabs((a)-(b)) ) &lt; eps )    //定义宏 当a、b的误差比eps小时，可以认为a=b
-
-//a大于b
-#define More(a,b) ( ( (a)-(b) ) &gt; (eps) )   //当a-b大于eps，可以认为a&gt;b
-
-//a小于b
- #define Less(a,b) ( ( (a)-(b) ) &lt; (-eps) ) //当a-b小于-eps，可以认为a&lt;b
-
-//a大于等于b
- #define MoreEqu(a,b) ( ( (a)-(b) ) &gt; (-eps) ) //当a-b大于-eps，可以认为a&gt;=b
-
- //a小于等于b
- #define LessEqu(a,b) ( ( (a)-(b) ) &lt; (eps) ) //当a-b小于eps，可以认为a&lt;=b
+<pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;queue&gt;
+using namespace std;
+struct node{
+    node *lchild,*rchild;
+    int data;
+};
+int n,num=0;
+int pre[35],in[35];
+node *create(int prel,int prer,int inl,int inr){
+    if(prel&gt;prer)return NULL;
+    node *root=new node;
+    root-&gt;data=pre[prel];
+    int k;
+    for(k=inl;k&lt;=inr;k++){
+        if(in[k]==pre[prel])break;
+    }
+    int numleft=k-inl;
+    root-&gt;lchild=create(prel+1,prel+numleft,inl,k-1);
+    root-&gt;rchild=create(prel+numleft+1,prer,k+1,inr);
+    return root;
+}
+int main(){
+    cin&gt;&gt;n;
+    for(int i=0;i&lt;n;i++)cin&gt;&gt;in[i];
+    for(int i=0;i&lt;n;i++)cin&gt;&gt;pre[i];
+    node *root=create(0,n-1,0,n-1);//根据先序跟中序创建树
+    queue&lt;node*&gt;q;  //利用队列实现左右子树的交换
+    q.push(root);
+    while(!q.empty()){
+        node *p=q.front();
+        node *temp=p-&gt;lchild;       
+        p-&gt;lchild=p-&gt;rchild;
+        p-&gt;rchild=temp;
+        q.pop();
+        if(p-&gt;lchild!=NULL) q.push(p-&gt;lchild);
+        if(p-&gt;rchild!=NULL) q.push(p-&gt;rchild);
+    }
+    BFS(root);
+    return 0;
+}
 </code></pre>
               
             </div>
@@ -569,7 +419,7 @@ log(double x)   //返回以e为底的对数
                 
               
             
-              <span id="/2020/01/pta%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="PTA总结">
+              <span id="/2020/01/%E6%A0%91/" class="leancloud_visitors" data-flag-title="树">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -596,7 +446,7 @@ log(double x)   //返回以e为底的对数
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/01/%E4%BB%8Ec%E8%BD%AC%E5%88%B0c-/" data-tooltip="从c转到c&#43;&#43;">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/01/pta%E6%80%BB%E7%BB%93/" data-tooltip="PTA总结">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -604,7 +454,7 @@ log(double x)   //返回以e为底的对数
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/01/%E6%A0%91/" data-tooltip="树">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -631,7 +481,7 @@ log(double x)   //返回以e为底的对数
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+          <a class="post-action-btn btn btn--default" href="#">
         
           <i class="fa fa-list"></i>
         </a>
@@ -664,7 +514,7 @@ log(double x)   //返回以e为底的对数
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/01/%E4%BB%8Ec%E8%BD%AC%E5%88%B0c-/" data-tooltip="从c转到c&#43;&#43;">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/01/pta%E6%80%BB%E7%BB%93/" data-tooltip="PTA总结">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -672,7 +522,7 @@ log(double x)   //返回以e为底的对数
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/01/%E6%A0%91/" data-tooltip="树">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -699,7 +549,7 @@ log(double x)   //返回以e为底的对数
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+          <a class="post-action-btn btn btn--default" href="#">
         
           <i class="fa fa-list"></i>
         </a>
@@ -808,9 +658,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/NTaurus.github.io\/2020\/01\/pta%E6%80%BB%E7%BB%93\/';
+          this.page.url = 'https:\/\/NTaurus.github.io\/2020\/01\/%E6%A0%91\/';
           
-            this.page.identifier = '\/2020\/01\/pta%E6%80%BB%E7%BB%93\/'
+            this.page.identifier = '\/2020\/01\/%E6%A0%91\/'
           
         };
         (function() {

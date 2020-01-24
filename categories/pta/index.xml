@@ -6,10 +6,19 @@
     <description>Recent content in PTA on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Jan 2020 21:52:21 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jan 2020 21:43:37 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/categories/pta/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>树</title>
+      <link>https://NTaurus.github.io/2020/01/%E6%A0%91/</link>
+      <pubDate>Fri, 24 Jan 2020 21:43:37 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/01/%E6%A0%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>PTA总结</title>
