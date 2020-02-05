@@ -207,7 +207,7 @@
 
     </ul>
   </div>
-  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=52 src="//music.163.com/outchain/player?type=0&id=3128674638&auto=1&height=32"></iframe>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=52 src="//music.163.com/outchain/player?type=0&id=3128674638&auto=0&height=32"></iframe>
 </nav>
 
       
@@ -278,6 +278,7 @@
 <li><a href="#sscanf与sprintf">sscanf与sprintf</a></li>
 <li><a href="#常用math函数">常用math函数</a></li>
 <li><a href="#浮点数的比较">浮点数的比较</a></li>
+<li><a href="#字符函数库-ctype-h">字符函数库 ctype.h</a></li>
 <li><a href="#甲级刷题模板">甲级刷题模板</a></li>
 </ul></li>
 </ul></li>
@@ -552,6 +553,23 @@ log(double x)   //返回以e为底的对数
 
  //a小于等于b
  #define LessEqu(a,b) ( ( (a)-(b) ) &lt; (eps) ) //当a-b小于eps，可以认为a&lt;=b
+</code></pre>
+
+<h3 id="字符函数库-ctype-h">字符函数库 ctype.h</h3>
+
+<p>字符函数库中函数用于对单个字符的操作。</p>
+
+<pre><code>isalnum()   //判断字符是否为字母或数字函数
+isalpha()   //判断字符是否为英文字母函数
+
+islower()   //判断字符是否为英文小写字母函数
+isupper()   //判断字符是否为英文大写字母函数
+//是则返回true，否则返回false
+
+
+toupper()   //将字符转换为大写字母函数
+tolower()   //将字符转换为小写字母函数
+//返回转换后的字符
 </code></pre>
 
 <h3 id="甲级刷题模板">甲级刷题模板</h3>
