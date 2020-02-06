@@ -1,15 +1,249 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>pta on NTaurus的乌托邦</title>
+    <title>PTA on NTaurus的乌托邦</title>
     <link>https://NTaurus.github.io/tags/pta/</link>
-    <description>Recent content in pta on NTaurus的乌托邦</description>
+    <description>Recent content in PTA on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Jan 2020 21:43:37 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 06 Feb 2020 12:42:28 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/tags/pta/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A1042</title>
+      <link>https://NTaurus.github.io/2020/02/a1042/</link>
+      <pubDate>Thu, 06 Feb 2020 12:42:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1042/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1041</title>
+      <link>https://NTaurus.github.io/2020/02/a1041/</link>
+      <pubDate>Thu, 06 Feb 2020 12:41:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1041/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1040</title>
+      <link>https://NTaurus.github.io/2020/02/a1040/</link>
+      <pubDate>Thu, 06 Feb 2020 12:40:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1040/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1039</title>
+      <link>https://NTaurus.github.io/2020/02/a1039/</link>
+      <pubDate>Thu, 06 Feb 2020 12:39:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1039/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1037</title>
+      <link>https://NTaurus.github.io/2020/02/a1037/</link>
+      <pubDate>Thu, 06 Feb 2020 12:37:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1037/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1036</title>
+      <link>https://NTaurus.github.io/2020/02/a1036/</link>
+      <pubDate>Thu, 06 Feb 2020 12:36:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1036/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1035</title>
+      <link>https://NTaurus.github.io/2020/02/a1035/</link>
+      <pubDate>Thu, 06 Feb 2020 12:35:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1035/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1032</title>
+      <link>https://NTaurus.github.io/2020/02/a1032/</link>
+      <pubDate>Thu, 06 Feb 2020 12:32:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1032/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1031</title>
+      <link>https://NTaurus.github.io/2020/02/a1031/</link>
+      <pubDate>Thu, 06 Feb 2020 12:31:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1031/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1029</title>
+      <link>https://NTaurus.github.io/2020/02/a1029/</link>
+      <pubDate>Thu, 06 Feb 2020 12:29:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1029/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1028</title>
+      <link>https://NTaurus.github.io/2020/02/a1028/</link>
+      <pubDate>Thu, 06 Feb 2020 12:28:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1028/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1027</title>
+      <link>https://NTaurus.github.io/2020/02/a1027/</link>
+      <pubDate>Thu, 06 Feb 2020 12:27:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1027/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1025</title>
+      <link>https://NTaurus.github.io/2020/02/a1025/</link>
+      <pubDate>Thu, 06 Feb 2020 12:25:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1025/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1024</title>
+      <link>https://NTaurus.github.io/2020/02/a1024/</link>
+      <pubDate>Thu, 06 Feb 2020 12:24:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1024/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1023</title>
+      <link>https://NTaurus.github.io/2020/02/a1023/</link>
+      <pubDate>Thu, 06 Feb 2020 12:23:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1023/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1020</title>
+      <link>https://NTaurus.github.io/2020/02/a1020/</link>
+      <pubDate>Thu, 06 Feb 2020 12:20:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1020/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1019</title>
+      <link>https://NTaurus.github.io/2020/02/a1019/</link>
+      <pubDate>Thu, 06 Feb 2020 12:19:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1015</title>
+      <link>https://NTaurus.github.io/2020/02/a1015/</link>
+      <pubDate>Thu, 06 Feb 2020 12:15:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1011</title>
+      <link>https://NTaurus.github.io/2020/02/a1011/</link>
+      <pubDate>Thu, 06 Feb 2020 11:42:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1011/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1009</title>
+      <link>https://NTaurus.github.io/2020/02/a1009/</link>
+      <pubDate>Thu, 06 Feb 2020 11:41:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1009/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1008</title>
+      <link>https://NTaurus.github.io/2020/02/a1008/</link>
+      <pubDate>Thu, 06 Feb 2020 11:40:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1008/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1007</title>
+      <link>https://NTaurus.github.io/2020/02/a1007/</link>
+      <pubDate>Thu, 06 Feb 2020 11:39:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1007/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1006</title>
+      <link>https://NTaurus.github.io/2020/02/a1006/</link>
+      <pubDate>Thu, 06 Feb 2020 11:38:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1006/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1005</title>
+      <link>https://NTaurus.github.io/2020/02/a1005/</link>
+      <pubDate>Thu, 06 Feb 2020 11:37:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1005/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1002</title>
+      <link>https://NTaurus.github.io/2020/02/a1002/</link>
+      <pubDate>Thu, 06 Feb 2020 11:34:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1002/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A1001</title>
+      <link>https://NTaurus.github.io/2020/02/a1001/</link>
+      <pubDate>Thu, 06 Feb 2020 11:34:27 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1001/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>树</title>
