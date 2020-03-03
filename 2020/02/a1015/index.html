@@ -288,31 +288,33 @@ Yes
 No
 </code></pre>
 
-<p>#include<iostream>
-#include<string>
-#include<vector>
-#include<map>
-#include<set>
-#include<queue>
-#include<cstdio>
-#include<cmath>
-#include<algorithm>
+<hr />
+
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;map&gt;
+#include&lt;set&gt;
+#include&lt;queue&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
 using namespace std;
 int prime(int x){
-    if(x<2)return 0;
-    for(int i=2;i*i<=x;i++){
+    if(x&lt;2)return 0;
+    for(int i=2;i*i&lt;=x;i++){
         if(x%i==0)return 0;
     }
     return 1;
 }
 int change(int x,int d){
-    vector<int>num;
+    vector&lt;int&gt;num;
     while(x){
         num.push_back(x%d);
         x/=d;
     }
     int sum=0;
-    for(int i=0;i<num.size();i++)
+    for(int i=0;i&lt;num.size();i++)
         sum=sum*d+num[i];
     if(prime(sum))return 1;
     else return 0;
@@ -320,13 +322,14 @@ int change(int x,int d){
 int main(){
     int n,d;
     while(1){
-        cin>&gt;n&gt;&gt;d;
+        cin&gt;&gt;n&gt;&gt;d;
         if(n&lt;0)return 0;
         if(prime(n)&amp;&amp;change(n,d))
-            cout&lt;&lt;&ldquo;Yes&rdquo;&lt;&lt;endl;
-        else cout&lt;&lt;&ldquo;No&rdquo;&lt;&lt;endl;
+            cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
+        else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
     }
-}</p>
+}
+</code></pre>
               
             </div>
           </div>
