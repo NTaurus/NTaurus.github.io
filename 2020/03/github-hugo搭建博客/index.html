@@ -57,7 +57,7 @@
 
     <title>Github&#43;hugo搭建博客</title>
 
-    <link rel="icon" href="https://NTaurus.github.io/favicon.png">
+    <link rel="icon" href="https://NTaurus.github.io/toy.jpg">
     
 
     
@@ -255,6 +255,11 @@
 <li><a href="#创建站点">创建站点</a></li>
 <li><a href="#下载主题">下载主题</a></li>
 </ul></li>
+<li><a href="#配置主题">配置主题</a>
+<ul>
+<li><a href="#添加js特效">添加js特效</a></li>
+<li><a href="#创建博客文章">创建博客文章</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -270,6 +275,10 @@
 （2）Git与Hugo<br />
 （3）LeanCloud账户（评论系统要用到，开始的时候可以先放着，等熟悉了再添加）<br />
 （4）Vs code(写博客十分方便，强力推荐)</p>
+
+<div class="alert warning ">
+  <p>以下提供两个下载方式，如果网络不错的话，改了host后，最好在命令行git clone（可以熟悉）。有像我一样移动热点走天下的就去选择下面的百度云下载吧。</p>
+</div>
 
 <h2 id="安装git">安装Git</h2>
 
@@ -336,29 +345,14 @@ cd NTaurus
 //例如：hugo new site blog
 </code></pre>
 
-<h3 id="下载主题">下载主题</h3>
+<p><img src="https://NTaurus.github.io/images/newsite.png" alt="new_site" /></p>
 
-<div class="alert warning ">
-  <p>Praesent diam elit, interdum ut pulvinar placerat, imperdiet at magna.</p>
-</div>
+<h3 id="下载主题">下载主题</h3>
 
 <p>首先我们先修改一下host，不改的话在命令行里git clone主题到本地会十分地慢。
 在Windows下找到路径C:/Windows/system32/drivers/etc/hosts，用VS code打开hosts文件，在尾部添加以下全部内容。</p>
 
 <pre><code># Github
-151.101.44.249 github.global.ssl.fastly.net
-192.30.253.113 github.com
-103.245.222.133 assets-cdn.github.com
-23.235.47.133 assets-cdn.github.com
-203.208.39.104 assets-cdn.github.com
-204.232.175.78 documentcloud.github.com
-204.232.175.94 gist.github.com
-107.21.116.220 help.github.com
-207.97.227.252 nodeload.github.com
-199.27.76.130 raw.github.com
-107.22.3.110 status.github.com
-204.232.175.78 training.github.com
-207.97.227.243 www.github.com
 185.31.16.184 github.global.ssl.fastly.net
 185.31.18.133 avatars0.githubusercontent.com
 185.31.19.133 avatars1.githubusercontent.com
@@ -379,11 +373,417 @@ cd NTaurus
 <pre><code>cd themes
 git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git tranquilpeak
 //主题名默认很长，clone下来后可以改成tranquilpeak
+//等待clone完成
 </code></pre>
 
-<p>如果刚刚改了host后，git clone 还是特别地慢甚至失败的话，别慌！<br />
+<p>如果刚刚改了host后，git clone 还是特别地慢甚至失败的话，多试两次，如果还不行，别慌！<br />
 在自己选择的主题页面里找到Download，进去点绿色的按钮 <strong>clone or download</strong>，然后选择download zip下载到桌面，下载完成后把文件夹复制到刚刚根目录下的themes文件夹（blog/themes）<br />
 <img src="https://NTaurus.github.io/images/download.png" alt="download" /></p>
+
+<h2 id="配置主题">配置主题</h2>
+
+<p>主题下载好后去在根目录下进入themes/tranquilpeak/exampleSite，找到里面的config.toml配置文件,用vs code打开。</p>
+
+<pre><code># Tranquilpeak
+# Version : 0.4.7-BETA
+# Author : Thibaud Leprêtre
+
+# I STRONGLY recommend you to use a CDN to speed up loading of pages.
+# There is many free CDN like Cloudinary or you can also use indirectly
+# by using services like Google Photos.
+
+# If you want to store images yourself, please read this guidelines:
+# For users, if you only use this theme, put your images directly in `source/assets/images` folder
+# But if you want to add local images, you can put your images directly in `source/assets/images` folder
+# For developpers, if you modify this theme, put your images in `source/images` folder and
+# use grunt task `build` to synchronize assets
+
+# 这是github账户的URL，注册了可以填上，注意是https://XXXX.github.io XXXX是你账户的名字
+baseURL = &quot;https://NTaurus.github.io&quot;
+
+# 这样就是中文的
+languageCode = &quot;en-us&quot;
+defaultContentLanguage = &quot;zh-cn&quot;
+
+# blog标题
+title = &quot;NTaurus&quot;
+
+# 使用的主题，把刚刚themes里面的主题文件名复制过来
+theme = &quot;tranquilpeak&quot;
+
+# 评论系统，我用的leancloud账户
+# 初次使用可以先不加，等熟悉后再加上
+disqusShortname = &quot;valine&quot;
+
+# 博客每一页显示文章的数量
+paginate = 6
+
+# 不知道是啥，先默认
+canonifyurls = true
+
+# 时间格式
+[permalinks]
+post = &quot;/:year/:month/:slug/&quot;
+
+# 这里不用改
+[taxonomies]
+tag = &quot;tags&quot;
+category = &quot;categories&quot;
+archive = &quot;archives&quot;
+
+# 以下是博客作者的个人信息，可以依照自己的喜好填
+[author]
+name = &quot;NTaurus&quot;
+bio = &quot;好蠢一男&quot;
+job = &quot;学生&quot;
+location = &quot;家礼炖&quot;
+
+# 头像，路径是tranquilpeak/static/images
+# 以后所有要使用的图片可以放到这里，自己多存一些图片
+picture = &quot;/images/touxiang.jpg&quot;
+
+
+# 侧边框里的一些资料
+# 可以按下面的来
+[[menu.main]]
+weight = 1
+identifier = &quot;首页&quot;
+name = &quot;首页&quot;
+pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-home\&quot;&gt;&lt;/i&gt;&quot;
+url = &quot;/&quot;
+[[menu.main]]
+weight = 2
+identifier = &quot;类别&quot;
+name = &quot;类别&quot;
+pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-bookmark\&quot;&gt;&lt;/i&gt;&quot;
+url = &quot;/categories&quot;
+[[menu.main]]
+weight = 3
+identifier = &quot;标签&quot;
+name = &quot;标签&quot;
+pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-tags\&quot;&gt;&lt;/i&gt;&quot;
+url = &quot;/tags&quot;
+[[menu.main]]
+weight = 4
+identifier = &quot;归档&quot;
+name = &quot;归档&quot;
+pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-archive\&quot;&gt;&lt;/i&gt;&quot;
+url = &quot;/archives&quot;
+[[menu.main]]
+weight = 5
+identifier = &quot;关于&quot;
+name = &quot;关于&quot;
+pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-question\&quot;&gt;&lt;/i&gt;&quot;
+url = &quot;/#about&quot;
+
+# 下面是GitHub账户的链接，把链接填上，别人可以访问你的GitHub
+[[menu.links]]
+weight = 1
+identifier = &quot;github&quot;
+name = &quot;GitHub&quot;
+pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-github\&quot;&gt;&lt;/i&gt;&quot;
+url = &quot;https://github.com/NTaurus&quot;
+
+#[[menu.links]]
+#weight = 2
+#identifier = &quot;stackoverflow&quot;
+#name = &quot;Stack Overflow&quot;
+#pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg #fa-stack-overflow\&quot;&gt;&lt;/i&gt;&quot;
+#url = &quot;https://stackoverflow.com/users/636472/kakawait&quot;
+
+[[menu.misc]]
+weight = 1
+identifier = &quot;rss&quot;
+name = &quot;RSS&quot;
+pre = &quot;&lt;i class=\&quot;sidebar-button-icon fa fa-lg fa-rss\&quot;&gt;&lt;/i&gt;&quot;
+url = &quot;/index.xml&quot;
+
+[params]
+# 代码格式，有prism.js跟highlight.js可以选择。
+syntaxHighlighter = &quot;prism.js&quot;
+
+# Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. (true: enable, false: disable)
+# 阅读文章是，侧边框会缩进去
+clearReading = true
+
+# Define categories will create hierarchy between parents: `categories = [&quot;foo&quot;, &quot;bar&quot;]` will consider &quot;bar&quot; a sub-category of &quot;foo&quot;.
+# If false it will flat categories.
+# 默认true就可以
+hierarchicalCategories = true
+
+# 对博客的描述
+description = &quot;NTaurus的乌托邦&quot;
+
+# Customization
+# Define the behavior of the sidebar
+# 1: Display extra large sidebar on extra large screen, large sidebar on large screen,
+#    medium sidebar on medium screen and header bar on small screen and
+# extra large sidebar is swiped on extra large screen and large sidebar on all lower screen (default)
+# 2: Display large sidebar on large screen, medium sidebar on medium screen and
+#    header bar on small screen and large sidebar is swiped
+# 3: Display medium sidebar on large and medium screen and header bar on small screen and
+#    medium sidebar is swiped
+# 4: Display header bar on all screens, extra large sidebar is swiped on extra large screen and
+#    large sidebar is swiped on all lower screens
+# 5: Display header bar on all screens and large sidebar is swiped on large screen
+# 6: Display header bar on all screens and medium sidebar is swiped
+# 侧边框的参数，表示宽度，可以自己调成喜欢的大小
+sidebarBehavior = 2
+
+# Your blog cover picture. I STRONGLY recommend you to use a CDN to speed up loading of pages.
+# There is many free CDN like Cloudinary or you can also use indirectly
+# by using services like Google Photos.
+# Current image is on AWS S3 and delivered by AWS CloudFront.
+# Otherwise put your image, for example `cover.jpg` in folder `static/images/`,
+# and use relative url : `images/cover.jpg`
+#  博客的封面，图片在刚刚说的跟头像在相同的路径
+coverImage = &quot;images/cover.jpg&quot;
+
+# Display an image gallery at the end of a post which have photos variables (false: disabled, true: enabled)
+# 照片墙
+imageGallery = true
+
+# Display thumbnail image of each post on index pages (false: disabled, true: enabled)
+thumbnailImage = true
+# Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`)
+# Set this value to `right` if you have old posts to keep the old style on them
+# and define `thumbnailImagePosition` on a post to overwrite this setting
+# 文章缩略图功能
+thumbnailImagePosition = &quot;bottom&quot;
+
+
+# Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image
+# Set this value to `true` if you have old posts that use the cover image or the first photo as the thumbnail image
+# and set `autoThumbnailImage` to `false` on a post to overwrite this setting
+# 默认配置
+autoThumbnailImage = true
+
+# Your favicon path, default is &quot;/favicon.png&quot;
+# 访问博客时，浏览器会显示站点图标，可以自己做一个图标
+# favicon = &quot;/favicon.png&quot;
+
+# Header configuration
+# The link at the right of the header is customizable
+# You can add a link (as an icon) at the right of the header instead of the author's gravatar image or author's picture.
+# By default, author's gravatar or author's picture is displayed.
+#     url: /#search
+#     icon: search
+#     class: st-search-show-outputs
+
+# Display `Next` on left side of the pagination, and `Prev` on right side one.
+# If you set this value to `true`, these positions swap.
+swapPaginator = true
+
+# Custom CSS. Put here your custom CSS files. They are loaded after the theme CSS;
+# they have to be referred from static root. Example
+# [[params.customCSS]]
+#   href = &quot;css/mystyle.css&quot;
+
+# Custom JS. Put here your custom JS files. They are loaded after the theme JS;
+# they have to be referred from static root. Example
+
+# 添加JS装饰，代码下面会给出
+# 爱心特效
+[[params.customJS]]
+    src = &quot;js/clicklove.js&quot;
+# 雪花飘落特效
+[[params.customJS]]
+    src = &quot;js/snow.js&quot;
+
+
+# Sharing options
+# 以下时分享的一些功能，暂时不用，先注释掉
+
+# Comment and uncomment to enable or disable sharing options
+# If you wanna add a sharing option, read user documentation :
+# Tranquilpeak configuration &gt; Theme configuration &gt; sharing-options
+#[[params.sharingOptions]]
+#  name = &quot;Facebook&quot;
+#  icon = &quot;fa-facebook-official&quot;
+#  url = &quot;https://www.facebook.com/sharer/sharer.php?u=%s&quot;
+
+#  [[params.sharingOptions]]
+#    name = &quot;Twitter&quot;
+#    icon = &quot;fa-twitter&quot;
+#    url = &quot;https://twitter.com/intent/tweet?text=%s&quot;
+
+#  [[params.sharingOptions]]
+#    name = &quot;Google+&quot;
+#    icon = &quot;fa-google-plus&quot;
+#    url = &quot;https://plus.google.com/share?url=%s&quot;
+
+
+#点击about，会展示个人信息
+[params.header.rightLink]
+    class = &quot;&quot;
+    icon = &quot;&quot;
+    url = &quot;/#about&quot;
+
+# 评论功能，添加评论功能时再加也不迟
+# 这里添加Valine的相关参数,xxxx后面会讲怎么填
+[params.valine]
+    enable = true
+    appId = 'xxxxxxxxxx'
+    appKey = 'xxxxxxxxx'
+    notify = false
+    vertify = false
+    avatar = 'mp'
+    placeholder = '你划一划屏幕，不留一个评论....'
+    visitor = true
+
+
+# Customize link of author avatar in sidebar
+# [params.sidebar.profile]
+#   url = &quot;/#about&quot;
+
+# Customize copyright value &quot;© 2017 &lt;CUSTOMIZATION&gt;. All Rights Reserved&quot;
+# [params.footer]
+#   copyright = &quot;&lt;a href=\&quot;https://github.com/kakawait\&quot;&gt;kakawait&lt;/a&gt;&quot;
+</code></pre>
+
+<h3 id="添加js特效">添加js特效</h3>
+
+<p>在vs code里新建文件，将下面两个代码分别复制到文件内（一个特效一个文件），然后另存为，选择路径：博客根目录下mblog/themes/tranquilpeak/static/js(顺着头像图片存放的路径找就找到js文件夹了)。</p>
+
+<p>爱心特效：</p>
+
+<pre><code>(function(window,document,undefined){
+    var hearts = [];
+
+    window.requestAnimationFrame = (function(){
+        return window.requestAnimationFrame || 
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (callback){
+            setTimeout(callback,1000/60);
+        }
+    })();
+
+    init();
+
+    function init(){
+        css(&quot;.heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}&quot;);
+        attachEvent();
+        gameloop();
+    }
+
+    function gameloop(){
+        for(var i=0;i&lt;hearts.length;i++){
+            if(hearts[i].alpha &lt;=0){
+                document.body.removeChild(hearts[i].el);
+                hearts.splice(i,1);
+                continue;
+            }
+
+            hearts[i].y--;
+            hearts[i].scale += 0.004;
+            hearts[i].alpha -= 0.013;
+            hearts[i].el.style.cssText = &quot;left:&quot;+hearts[i].x+&quot;px;top:&quot;+hearts[i].y+&quot;px;opacity:&quot;+hearts[i].alpha+&quot;;transform:scale(&quot;+hearts[i].scale+&quot;,&quot;+hearts[i].scale+&quot;) rotate(45deg);background:&quot;+hearts[i].color;
+        }
+
+        requestAnimationFrame(gameloop);
+    }
+
+    function attachEvent(){
+        var old = typeof window.onclick===&quot;function&quot; &amp;&amp; window.onclick;
+        window.onclick = function(event){
+            old &amp;&amp; old();
+            createHeart(event);
+        }
+    }
+
+    function createHeart(event){
+        var d = document.createElement(&quot;div&quot;);
+        d.className = &quot;heart&quot;;
+        hearts.push({
+            el : d,
+            x : event.clientX - 5,
+            y : event.clientY - 5,
+            scale : 1,
+            alpha : 1,
+            color : randomColor()
+        });
+
+        document.body.appendChild(d);
+    }
+
+    function css(css){
+        var style = document.createElement(&quot;style&quot;);
+        style.type=&quot;text/css&quot;;
+        try{
+            style.appendChild(document.createTextNode(css));
+        }
+        catch(ex){
+            style.styleSheet.cssText = css;
+        }
+
+        document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor(){
+        return &quot;rgb(&quot;+(~~(Math.random()*255))+&quot;,&quot;+(~~(Math.random()*255))+&quot;,&quot;+(~~(Math.random()*255))+&quot;)&quot;;
+    }
+
+})(window,document);
+</code></pre>
+
+<p>雪花飘落特效：</p>
+
+<pre><code>(function($){
+    $.fn.snow = function(options){
+        var $flake = $('&lt;div id=&quot;snowbox&quot; /&gt;').css({'position': 'absolute','z-index':'9999', 'top': '-50px'}).html('&amp;#10052;'),
+            documentHeight  = $(document).height(),
+            documentWidth   = $(document).width(),
+            defaults = {
+                minSize     : 10,
+                maxSize     : 20,
+                newOn       : 1000,
+                flakeColor  : &quot;#FF7F50&quot; /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
+            },
+            options = $.extend({}, defaults, options);
+        var interval= setInterval( function(){
+            var startPositionLeft = Math.random() * documentWidth - 100,
+                startOpacity = 0.5 + Math.random(),
+                sizeFlake = options.minSize + Math.random() * options.maxSize,
+                endPositionTop = documentHeight - 200,
+                endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
+                durationFall = documentHeight * 10 + Math.random() * 5000;
+            $flake.clone().appendTo('body').css({
+                left: startPositionLeft,
+                opacity: startOpacity,
+                'font-size': sizeFlake,
+                color: options.flakeColor
+            }).animate({
+                top: endPositionTop,
+                left: endPositionLeft,
+                opacity: 0.2
+            },durationFall,'linear',function(){
+                $(this).remove()
+            });
+        }, options.newOn);
+    };
+})(jQuery);
+$(function(){
+    $.fn.snow({
+        minSize: 2, /* 定义雪花最小尺寸 */
+        maxSize: 40,/* 定义雪花最大尺寸 */
+        newOn: 1000  /* 定义密集程度，数字越小越密集 */
+    });
+});
+</code></pre>
+
+<h3 id="创建博客文章">创建博客文章</h3>
+
+<p>为了方便编辑，先在vs code中打开博客根目录：点击File-&gt;open Folder<br />
+选择根目录（mblog文件夹）确定后，你就可以看见站点各个文件夹了。</p>
+
+<p>然后转到cmd，在根目录下（/mblog）敲：</p>
+
+<pre><code>hugo new post/xxx.md
+//例如hugo new post/我的第一篇博客.md
+</code></pre>
               
             </div>
           </div>
