@@ -260,6 +260,7 @@
 <li><a href="#添加js特效">添加js特效</a></li>
 <li><a href="#创建博客文章">创建博客文章</a></li>
 </ul></li>
+<li><a href="#启动博客的本地预览">启动博客的本地预览</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -342,7 +343,7 @@ cd NTaurus
 
 <pre><code>hugo new site xxx
 //xxx是存放站点的文件名(即站点根目录)
-//例如：hugo new site blog
+//例如：hugo new site mblog
 </code></pre>
 
 <p><img src="https://NTaurus.github.io/images/newsite.png" alt="new_site" /></p>
@@ -376,8 +377,7 @@ git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git tranquilpeak
 //等待clone完成
 </code></pre>
 
-<p>如果刚刚改了host后，git clone 还是特别地慢甚至失败的话，多试两次，如果还不行，别慌！<br />
-在自己选择的主题页面里找到Download，进去点绿色的按钮 <strong>clone or download</strong>，然后选择download zip下载到桌面，下载完成后把文件夹复制到刚刚根目录下的themes文件夹（blog/themes）<br />
+<p>如果刚刚改了host后，git clone 还是特别地慢甚至失败的话，多试两次，如果还不行，别慌！在自己选择的主题页面里找到Download，进去点绿色的按钮 <strong>clone or download</strong>，然后选择download zip下载到桌面，下载完成后把文件夹复制到刚刚根目录下的themes文件夹（blog/themes）<br />
 <img src="https://NTaurus.github.io/images/download.png" alt="download" /></p>
 
 <h2 id="配置主题">配置主题</h2>
@@ -784,6 +784,65 @@ $(function(){
 <pre><code>hugo new post/xxx.md
 //例如hugo new post/我的第一篇博客.md
 </code></pre>
+
+<p>此时会显示文章创建成功，可以在根目录下的content/post里看到。回到vs code选择刚刚打开的站点文件夹（mblog），进入content/post，选择刚刚创建的文章，默认生成的属性如下：</p>
+
+<pre><code>---
+title: &quot;我的第一篇博客&quot;//文章标题
+date: 2020-03-05T13:23:24+08:00//创建时间
+categories: //分类
+- 日志  //可以随便改
+- 生活
+tags:   //标签
+- tag1  //可以随便改
+- tag2
+keywords:   //关键词，搜索用的
+- tech
+#thumbnailImage: //example.com/image.jpg    //文章里面的图片封面
+---
+
+&lt;!--more--&gt; //在博客页面不会显示全部内容，可以自己尝试删除后文章是如何显示的
+从这里开始写内容
+</code></pre>
+
+<p>文章模板：</p>
+
+<pre><code>---
+title: &quot;Github+hugo搭建博客&quot;
+date: 2020-03-04T10:17:11+08:00
+
+thumbnailImage: /images//sundown.jpg    //缩略图
+thumbnailImagePosition: left    //缩略图位置
+autoThumbnailImage: yes //缩略设置
+metaAlignment: center
+coverImage: /images/sundown.jpg 
+coverCaption: &quot;Start,for a better future.&quot;  //图片描述
+coverMeta: in   //文字布置位置
+coverSize: full //full会好看点
+
+
+---
+&lt;!--toc--&gt;  //显示文章里面的标题
+&lt;!--more--&gt;
+</code></pre>
+
+<p>还有其他设置可以到themes/tranquilpeak/exampleSite/content/post查看样例文章。</p>
+
+<h2 id="启动博客的本地预览">启动博客的本地预览</h2>
+
+<p>上面的主题配置根创建文章在vs code完成后保持，将原来在themes/tranquilpeak/exampleSite的config.toml文件(就是主题配置文件)复制到根目录下，覆盖到那里的config.toml。<br />
+然后回到cmd命令行在根目录下敲：</p>
+
+<pre><code>hugo server -D
+</code></pre>
+
+<p><img src="https://NTaurus.github.io/images/本地预览.png" alt="本地预览" /></p>
+
+<p>生成的网址一般为：<a href="http://localhost:1313/复制此网址到浏览器中，即可查看博客。">http://localhost:1313/复制此网址到浏览器中，即可查看博客。</a></p>
+
+<p><img src="https://NTaurus.github.io/images/mblog.png" alt="本地预览" /></p>
+
+<p>图中我没有放头像上去，所以“作者图片”那里没有显示。</p>
               
             </div>
           </div>
