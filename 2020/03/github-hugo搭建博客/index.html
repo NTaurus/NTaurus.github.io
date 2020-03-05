@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="NTaurus">
-<meta name="keywords" content="">
+<meta name="keywords" content="tech">
 <meta name="description" content="">
 
 
@@ -30,6 +30,14 @@
   
   
   
+    
+      <meta property="article:section" content="Github">
+    
+  
+  
+    
+      <meta property="article:tag" content="学习">
+    
   
 
 
@@ -225,6 +233,14 @@
       </time>
     
     
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://NTaurus.github.io/categories/github">Github</a>
+    
+  
+
   </div>
 
 </div>
@@ -245,7 +261,7 @@
             <div class="main-content-wrap">
               <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
-<li><a href="#基于windows">基于Windows</a>
+<li><a href="#基于windows的博客搭建教程">基于Windows的博客搭建教程</a>
 <ul>
 <li><a href="#前言">前言</a></li>
 <li><a href="#安装git">安装Git</a></li>
@@ -261,11 +277,19 @@
 <li><a href="#创建博客文章">创建博客文章</a></li>
 </ul></li>
 <li><a href="#启动博客的本地预览">启动博客的本地预览</a></li>
+<li><a href="#建立github-pages并部署到线上">建立Github pages并部署到线上</a>
+<ul>
+<li><a href="#创建github仓库">创建Github仓库</a></li>
+<li><a href="#生成静态文件">生成静态文件</a></li>
+<li><a href="#设置全局用户名和邮箱">设置全局用户名和邮箱</a></li>
+<li><a href="#博客部署">博客部署</a></li>
+<li><a href="#后续更新">后续更新</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
 
-<h1 id="基于windows">基于Windows</h1>
+<h1 id="基于windows的博客搭建教程">基于Windows的博客搭建教程</h1>
 
 <h2 id="前言">前言</h2>
 
@@ -398,7 +422,7 @@ git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git tranquilpeak
 # For developpers, if you modify this theme, put your images in `source/images` folder and
 # use grunt task `build` to synchronize assets
 
-# 这是github账户的URL，注册了可以填上，注意是https://XXXX.github.io XXXX是你账户的名字
+# 这是Github仓库的URL,注意是https://XXXX.github.io XXXX是你仓库的名字
 baseURL = &quot;https://NTaurus.github.io&quot;
 
 # 这样就是中文的
@@ -838,16 +862,113 @@ coverSize: full //full会好看点
 
 <p><img src="https://NTaurus.github.io/images/本地预览.png" alt="本地预览" /></p>
 
-<p>生成的网址一般为：<a href="http://localhost:1313/复制此网址到浏览器中，即可查看博客。">http://localhost:1313/复制此网址到浏览器中，即可查看博客。</a></p>
+<p>生成的网址一般为：</p>
+
+<pre><code>http://localhost:1313/
+</code></pre>
+
+<p>复制此网址到浏览器中，即可查看博客。</p>
 
 <p><img src="https://NTaurus.github.io/images/mblog.png" alt="本地预览" /></p>
 
 <p>图中我没有放头像上去，所以“作者图片”那里没有显示。</p>
+
+<h2 id="建立github-pages并部署到线上">建立Github pages并部署到线上</h2>
+
+<h3 id="创建github仓库">创建Github仓库</h3>
+
+<p>注册Github后，在主界面点击Repository 旁边的绿色按钮 <strong>NEW</strong></p>
+
+<p><img src="https://NTaurus.github.io/images/R2.png" alt="build" /></p>
+
+<p><strong>仓库名字最好全英</strong></p>
+
+<p><img src="https://NTaurus.github.io/images/R1.png" alt="build" /></p>
+
+<h3 id="生成静态文件">生成静态文件</h3>
+
+<p>仓库创建好后把主题配置config文件里面的URL填上仓库的地址。
+<strong>baseUrl=“https：//XXXXXXXX.github.io/”</strong></p>
+
+<p>接下来在根目录下敲：</p>
+
+<pre><code>hugo
+</code></pre>
+
+<p><img src="https://NTaurus.github.io/images/public.png" alt="build" /></p>
+
+<p>此时会生成一个public文件，博客部署到Github上，就是将public内的文件push到Github仓库。</p>
+
+<h3 id="设置全局用户名和邮箱">设置全局用户名和邮箱</h3>
+
+<pre><code>git config --global user.name &quot;xxxxx&quot;
+git config --global user.email &quot;xxxxx@xx.com&quot;
+</code></pre>
+
+<h3 id="博客部署">博客部署</h3>
+
+<p>在cmd中的根目录下执行以下：</p>
+
+<pre><code>cd public   //进入public文件夹
+
+git init    //初始化
+
+git add .   //添加所有文件
+
+git commit -m &quot;XXXXXXXX&quot;    //提交描述xxx随便写
+
+git remote add origin https://github.com/XXXXX/XXXXX.github.io.git  //链接到远端，把XXXX替换成自己的内容，不要忘了还有后缀.git
+//可以在仓库里面找到绿色按钮clone or download,点击出现HTTPS，复制过来即可
+git pull origin master
+git push -u origin master
+</code></pre>
+
+<p>第一次push需要输入GitHub账户跟密码，之后就不再需要。如果第一次push失败的话，尝试加 -f即：</p>
+
+<pre><code>git push -u origin master -f
+</code></pre>
+
+<div class="alert warning ">
+  <p>如果填写密码错误的话，去电脑中找到控制面板，<strong>用户账户</strong>-&gt;<strong>windows凭证</strong>底下有个<strong>普通凭证</strong>，找到github账户，修改密码，重新push操作即可。</p>
+</div>
+
+<div class="alert success ">
+  <p>push成功后就可以复制仓库地址到浏览器，就可以访问你的博客了！！</p>
+</div>
+
+<h3 id="后续更新">后续更新</h3>
+
+<p>创建文章：</p>
+
+<pre><code>hugo new post/xx.md
+</code></pre>
+
+<p>更新博客：</p>
+
+<pre><code>hugo
+cd public
+git add .
+git commit -m &quot;XXXXXXX&quot;
+git pull origin master
+git push origin master
+</code></pre>
+
+<p>待续。。</p>
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+
+                  </div>
+                
               
             
               <span id="/2020/03/github-hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="leancloud_visitors" data-flag-title="Github&#43;hugo搭建博客">
