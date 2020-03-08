@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>笔记 on NTaurus的乌托邦</title>
+    <link>https://NTaurus.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记 on NTaurus的乌托邦</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Mar 2020 21:18:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://NTaurus.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CodeBlock配置EGE</title>
+      <link>https://NTaurus.github.io/2020/03/codeblock%E9%85%8D%E7%BD%AEege/</link>
+      <pubDate>Sun, 08 Mar 2020 21:18:50 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/03/codeblock%E9%85%8D%E7%BD%AEege/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
