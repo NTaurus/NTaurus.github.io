@@ -283,22 +283,22 @@
 
 <p>下载成功后打开，看到include跟lib两个文件夹：<img src="https://NTaurus.github.io/images/ege1.png" alt="." /><br />
 1.先进入include文件夹，把里面6个.h文件复制一下（ege文件夹里还有4个）<br />
-<img src="https://NTaurus.github.io/images/ege2.png" alt="." /></p>
+<img src="https://NTaurus.github.io/images/ege2.png" alt="ege" /></p>
 
 <p>2.在找到codeblock的安装路径(如果默认安装的话是C:\Program Files (x86)\CodeBlocks\MinGW)来到这里同样看到include跟lib两个文件夹，进入include文件夹，把刚刚复制的6个文件粘贴到此。<br />
-<img src="https://NTaurus.github.io/images/ege3.png" alt="." /></p>
+<img src="https://NTaurus.github.io/images/ege3.png" alt="ege" /></p>
 
 <p>3.回到<strong>ege19.01_all</strong>文件中，进入lib文件夹：分别进入mingw32跟mingw64复制里面的<strong>libgraphics.a</strong>跟<strong>libgraphics64.a</strong>
-<img src="https://NTaurus.github.io/images/ege4.png" alt="." /><br />
+<img src="https://NTaurus.github.io/images/ege4.png" alt="ege" /><br />
 回到：<strong>C:\Program Files (x86)\CodeBlocks\MinGW</strong>中，进入lib文件夹，把刚刚复制的<strong>libgraphics.a</strong>跟<strong>libgraphics64.a</strong>粘贴到此。<br />
-<img src="https://NTaurus.github.io/images/ege5.png" alt="." /></p>
+<img src="https://NTaurus.github.io/images/ege5.png" alt="ege" /></p>
 
 <p>4.接下来打开CodeBlock,然后点File-&gt;New-&gt;Project-&gt;Console application，然后跟着步骤创建：<img src="https://NTaurus.github.io/images/ege6.png" alt="." />
-<img src="https://NTaurus.github.io/images/ege7.png" alt="." /><br />
-<img src="https://NTaurus.github.io/images/ege8.png" alt="." /><br />
+<img src="https://NTaurus.github.io/images/ege7.png" alt="ege" /><br />
+<img src="https://NTaurus.github.io/images/ege8.png" alt="ege" /><br />
 5.工程创建完后点击setting-&gt;compiler-&gt;Global compiler setting-&gt;Linker setting:
 在左边框Link libraries:点击ADD-&gt;选择路径<strong>C:\Program Files (x86)\CodeBlocks\MinGW\lib</strong>：
-<img src="https://NTaurus.github.io/images/ege9.png" alt="." /></p>
+<img src="https://NTaurus.github.io/images/ege9.png" alt="ege" /></p>
 
 <p>6.左边框添加完后，把下面的内容填到右边框中（other Linker options）保存:</p>
 
@@ -314,7 +314,7 @@
 
 <p>7.在左边刚刚创建的test工程中点开sources，双击main.cpp，把一下代码复制到里面，运行即可。</p>
 
-<p><img src="https://NTaurus.github.io/images/ege10.png" alt="." /></p>
+<p><img src="https://NTaurus.github.io/images/ege10.png" alt="ege" /></p>
 
 <pre><code>#include &lt;graphics.h&gt;
 int main()
