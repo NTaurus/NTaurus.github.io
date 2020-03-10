@@ -6,7 +6,7 @@
     <description>Recent content on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Mar 2020 10:17:11 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 08 Mar 2020 21:18:50 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,6 +17,15 @@
       <pubDate>Thu, 06 Feb 2020 20:00:19 +0800</pubDate>
       
       <guid>https://NTaurus.github.io/2020/02/%E7%BD%AE%E9%A1%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CodeBlock配置EGE</title>
+      <link>https://NTaurus.github.io/2020/03/codeblock%E9%85%8D%E7%BD%AEege/</link>
+      <pubDate>Sun, 08 Mar 2020 21:18:50 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/03/codeblock%E9%85%8D%E7%BD%AEege/</guid>
       <description></description>
     </item>
     
