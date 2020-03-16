@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="NTaurus">
-<meta name="keywords" content="加法器, 乌托邦, PTA, PAT甲级, NTaurus, CodeBlock配置EGE, hugo博客搭建">
+<meta name="keywords" content="加法器, NTaurus的乌托邦">
 <meta name="description" content="">
 
 
@@ -257,111 +257,343 @@
                hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
-            <span class="post-header-cover-caption caption">慢点..再慢点.</span>
+            <span class="post-header-cover-caption caption">从一开始的云里雾里,到现在都有了意义..</span>
           
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h2 id="加法数据的剪辑技术">加法数据的剪辑技术</h2>
+              <h1 id="加法器模拟">加法器模拟</h1>
 
-<h3 id="数据的截断">数据的截断</h3>
+<p>用程序来模拟三值光学计算机在计算的过程中数据所进行的变换，此次模拟只有192个数据位，理论上在三值光学计算机中是可以不断拓展数据位的；模拟了三值光计算机的三种状态（0、1、-1），在程序中为了方便转换，用2代表-1。接下来先熟悉仿真平台，然后用此程序来呈现数据的变换过程。</p>
 
-<h2 id="数据的拼接">数据的拼接</h2>
-
-<p>迈出一步啦！</p>
-
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;string&gt;
-#include&lt;cmath&gt;
-#include&lt;iostream&gt;
+<pre><code>#include&lt;graphics.h&gt;
+#include&lt;time.h&gt;
+#include&lt;bits/stdc++.h&gt;
 using namespace std;
+//真值表：其中0对应0，1对应1，2对应-1.
+//程序中：蓝色代表0；绿色代表1；红色代表2.
+
 char T[4][4]={{'0','1','2'},{'1','1','0'},{'2','0','2'}};
 char W[4][4]={{'0','2','1'},{'2','0','0'},{'1','0','0'}};
 char T2[4][4]={{'0','0','0'},{'0','1','0'},{'0','0','2'}};
 char W2[4][4]={{'0','1','2'},{'1','0','0'},{'2','0','0'}};
-string MSD_add(string a , string b){
-    string u1,u2,w1,w2,ans,zero=&quot;0&quot;;
-    // 补零 
-    int L = a.size()-b.size();  // 两数的位数差 
-    if(L&lt;0) for(int i = 0 ; i &lt; -L ; i++) a.insert(0,zero);
-    if(L&gt;0) for(int i = 0 ; i &lt; L ; i++) b.insert(0,zero);
 
-    for(int i = 0 ; i &lt; a.size() ; i++){
-        u1.push_back(T[b[i]-'0'][a[i]-'0']);    //T1变换
-        w1.push_back(W[b[i]-'0'][a[i]-'0']);    //W1变换
+struct origin_num{
+    string a,b,u1[100],u2[100],w1[100],w2[100],ans[100];
+    int lg,LL;
+};
+
+int d_x,d_y,x,y;//右屏幕的起点坐标
+const int delay_time=1000;   //变换的速度
+
+void init_blackbar(){
+    setfillcolor(BLACK);
+    bar(0,503,440,540);
+}
+
+void init_num(){
+    for(int i=0;i&lt;8;i++){
+        char ch=i+'0';
+        if(i&lt;4)outtextxy(60+42*i,17,ch);
+        else outtextxy(72+42*i,17,ch);
     }
-    cout&lt;&lt;&quot;T1变换: &quot;;
-    for(int i = 0 ; i &lt; u1.size() ; i++)cout&lt;&lt;u1[i];
-    cout&lt;&lt;&quot;\nW1变换: &quot;;
-    for(int i = 0 ; i &lt; w1.size() ; i++)cout&lt;&lt;w1[i];
+    for(int i=0;i&lt;24;i++){
+        char ch1,ch2;
+        ch1=i/10+'0',ch2=i%10+'0';
+        if(ch1!='0')outtextxy(20,45+19*i,ch1);
+        outtextxy(28,45+19*i,ch2);
+    }
+}
 
-    u1.push_back('0');  //u1后面补零 
-    w1.insert(0,zero);  //w1前面补零 
+void printf_bar(int &amp;x,int &amp;y,int flag,int index){
+    for(int i=0;i&lt;24;i++){
+        for(int j=0;j&lt;4;j++){
+            bar(x,y,x+30,y+15);
+            x=x+flag*(30+12);
+            Sleep(10);
+        }
+        Sleep(10);
+        flag=-flag;
+        x=x+flag*(30+12);
+        y=y+index*19;
+    }
+}
 
-    for(int i = 0 ; i &lt; u1.size() ; i++){
-        u2.push_back(T2[w1[i]-'0'][u1[i]-'0']); //T2变换 
-        w2.push_back(W2[w1[i]-'0'][u1[i]-'0']);//W2变换 
+void init_windows(){
+    int ploy[10]={40,40,400,40,400,500,40,500,40,40};
+    setcolor(GREEN);
+    init_blackbar();
+    outtextxy(190,515,&quot;初始化中...&quot;);
+    setfillcolor(WHITE);
+    setlinewidth(3);
+    fillpoly(5,ploy);   //白色矩形
+    setcolor(GREEN);
+    for(int i=2;i&lt;=24;i++)  line(220,(i-1)*20+25,220,20*i+20);  //中心虚线
+    init_num();
+
+    setfillcolor(EGERGB(128,128,128));
+    x=178,y=482;
+    printf_bar(x,y,-1,-1);
+    x+=54,y+=19;
+    d_x=x,d_y=y;
+    printf_bar(x,y,1,1);
+    init_blackbar();
+    outtextxy(190,515,&quot;初始化完成！&quot;);
+    cout&lt;&lt;endl;
+    Sleep(delay_time);
+}
+void printgraph(string str[],int L,int ad,struct origin_num p[]){
+    Sleep(delay_time);
+
+    int xx=178,yy=482,flag=-1,index=-1;
+    int dx=p[ad].lg-p[ad].LL;
+
+    for(int i = 0 ; i &lt; dx ; i++){  //确定位置
+        if((i+1)%4==0){
+            flag=-flag;
+            yy=yy+index*19;
+        }
+        else    xx+=flag*(30+12);
+        if(xx+54==232&amp;&amp;yy+19==45){
+            xx=d_x,yy=d_y;
+            flag=index=1;
+        }
     }
 
-    cout&lt;&lt;&quot;\nT2变换: &quot;;
-    for(int i = 0 ; i &lt; u2.size() ; i++)cout&lt;&lt;u2[i];
-    cout&lt;&lt;&quot;\nW2变换: &quot;;
-    for(int i = 0 ; i &lt; w2.size() ; i++)cout&lt;&lt;w2[i];
+    for(int i=0,j; i &lt; L ; i++,dx++){
 
-    u2.push_back('0');  //u2后面补零 
-    w2.insert(0,zero);
+        for(j = 0 ; j &lt; 3 ; j++)if(str[i][j] != '-')break;
+        if(j==0)setfillcolor(BLUE);
+        else if(j==1)setfillcolor(GREEN);
+        else setfillcolor(RED);
 
-    for(int i = 0 ; i &lt; u2.size() ; i++)    // u2与w2变换 
-        ans.push_back(T[w2[i]-'0'][u2[i]-'0']);
+        bar(xx,yy,xx+30,yy+15);
+        Sleep(delay_time);
+        if((dx+1)%4==0){
+            flag=-flag;
+            yy=yy+index*19;
+        }
+        else    xx+=flag*(30+12);
 
-    cout&lt;&lt;&quot;\nT变换: &quot;;
-    for(int i = 0 ; i &lt; ans.size() ; i++)cout&lt;&lt;ans[i];
+        if(xx+54==232&amp;&amp;yy+19==45){
+            xx=d_x,yy=d_y;
+            flag=index=1;
+        }
+        cout&lt;&lt;str[i]&lt;&lt;'|';
+    }
+}
+
+void MSD_add(string a,string b,int index,struct origin_num p[]){
+    string u1[200],u2[200],temp_w2[200],temp_w1[200],w1[200],w2[200],ans[200],zero=&quot;0--&quot;,init=&quot;---&quot;,z=&quot;0&quot;;
+    // 补零
+    int L = a.size()-b.size();  // 两数的位数差
+    if(L&lt;0) for(int i = 0 ; i &lt; -L ; i++) a.insert(0,z);
+    if(L&gt;0) for(int i = 0 ; i &lt; L ; i++) b.insert(0,z);
+
+    for(int i = 0 ; i &lt; p[index].LL + 2 ; i++){ //初始化
+        if(i&lt;p[index].LL){
+            temp_w1[i] = u1[i] = init;
+        }
+        u2[i]= temp_w2[i] = ans[i] = init;
+    }
+
+    for(int i = 0 ; i &lt; p[index].LL ; i++){
+        u1[i][T[b[i] - '0'][a[i] - '0'] - '0']=T[b[i] - '0'][a[i] - '0'];   //T1变换
+        temp_w1[i][W[b[i] - '0'][a[i] - '0'] - '0']=W[b[i] - '0'][a[i] - '0'];  //W1变换
+    }
+
+    //存u1w1
+    for(int i=0;i&lt;p[index].LL;i++){
+        p[index].u1[i]=u1[i];
+        p[index].w1[i]=temp_w1[i];
+    }
+
+    u1[p[index].LL] = zero; //u1后面补零
+
+    w1[0] = zero;   //w1前面补零
+    for(int i = 1 ; i &lt;= p[index].LL ; i++)w1[i] = temp_w1[i-1];
+
+    for(int i = 0 ; i &lt; p[index].LL+1 ; i++){
+        int j,k;
+        for(j = 0 ; j &lt; 3 ; j++)if(w1[i][j] != '-')break;
+        for(k = 0 ; k &lt; 3 ; k++)if(u1[i][k] != '-')break;
+
+        u2[i][T2[w1[i][j] -'0'][u1[i][k] -'0'] - '0'] = T2[w1[i][j] - '0'][u1[i][k] - '0']; //T2变换
+
+        temp_w2[i][W2[w1[i][j] - '0'][u1[i][k] - '0'] - '0'] = W2[w1[i][j] - '0'][u1[i][k] - '0'];//W2变换
+    }
+
+    //存u2,w2
+    for(int i=0;i&lt;p[index].LL+1;i++){
+        p[index].w2[i]=temp_w2[i];
+        p[index].u2[i]=u2[i];
+    }
+
+    u2[p[index].LL+1] = zero;   //u2后面补零
+
+    w2[0] = zero;   //w2前面补零
+    for(int i = 1 ; i &lt; p[index].LL+2 ; i++)    w2[i] = temp_w2[i-1];
+
+    for(int i = 0 ; i &lt; p[index].LL + 2 ; i++){
+        int j,k;
+        for(j = 0 ; j &lt; 3 ; j++)    if(w2[i][j] != '-') break;
+        for(k = 0 ; k &lt; 3 ; k++)    if(u2[i][k] != '-') break;
+        ans[i][T[w2[i][j]-'0'][u2[i][k]-'0']-'0'] = T[w2[i][j]-'0'][u2[i][k]-'0'];// u2与w2变换
+    }
+
+    //存结果
+    for(int i=0;i&lt;p[index].LL+2;i++){
+        p[index].ans[i]=ans[i];
+    }
 
     long long sum = 0;
-    for(int i = 0 ; i &lt; ans.size() ; i++){  //求和 
-        if(ans[i]!='2') sum += (ans[i]-'0') * pow(2,ans.size()-i-1);
-        else sum -= pow(2,ans.size()-i-1);
+    for(int i = 0 ; i &lt; p[index].LL + 2 ; i++){ //求和
+        int k = 0;
+        for( ; k &lt; p[index].LL + 2 ; k++)    if(ans[i][k] != '-') break;
+
+        if(ans[i][k] != '2') sum += (ans[i][k]-'0') * pow(2,p[index].LL-i+1);
+        else sum -= pow(2,p[index].LL-i+1);
     }
-    printf(&quot;\n结果:%lld\n&quot;,sum);
+    printf(&quot;\n第%02d组结果为：%ld&quot;,index+1,sum);
 }
+
+string change(long long num){
+        string str;
+        while(num){
+            if(num%2==-1)str.push_back('2');
+            else if(num%2==1)str.push_back('1');
+            else str.push_back('0');
+            num/=2;
+        }
+    reverse(str.begin(),str.end());
+    return str;
+}
+void printf_num(int root){
+    char ch1=(root+1)/10+'0',ch2=(root+1)%10+'0';
+    outtextxy(155,515,&quot;第&quot;);
+    outtextxy(171,515,ch1);
+    outtextxy(181,515,ch2);
+    outtextxy(190,515,&quot;组&quot;);
+}
+
+void T1(int root,struct origin_num p[]){
+    printf(&quot;\n第%02d组T1变换: |&quot;,root+1);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;T1变换中...&quot;);
+    printgraph(p[root].u1,p[root].LL,root,p);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;T1变换完成！&quot;);
+    delay_fps(delay_time);
+}
+
+void W1(int root,struct origin_num p[]){
+    printf(&quot;\n第%02d组W1变换: |&quot;,root+1);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;W1变换中...&quot;);
+    printgraph(p[root].w1,p[root].LL,root,p);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;W1变换完成！&quot;);
+    Sleep(delay_time);
+}
+
+void TT(int root,struct origin_num p[]){
+    printf(&quot;\n第%02d组T2变换: |&quot;,root+1);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;T2变换中...&quot;);
+    printgraph(p[root].u2,p[root].LL+1,root,p);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;T2变换完成！&quot;);
+    Sleep(delay_time);
+}
+
+void WW(int root,struct origin_num p[]){
+    printf(&quot;\n第%02d组W2变换: |&quot;,root+1);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;W2变换中...&quot;);
+    printgraph(p[root].w2,p[root].LL+1,root,p);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;W2变换完成！&quot;);
+    Sleep(delay_time);
+}
+
+void Ans(int root,struct origin_num p[]){
+    printf(&quot;\n第%02d组T变换:  |&quot;,root+1);
+    printf_num(root);
+    outtextxy(205,515,&quot;T变换中...&quot;);
+    printgraph(p[root].ans,p[root].LL+2,root,p);
+    init_blackbar();
+    printf_num(root);
+    outtextxy(205,515,&quot;T变换完成！&quot;);
+    Sleep(delay_time);
+}
+void TWchange(int N,struct origin_num p[]){
+        for(int i=0;i&lt;N;i++){
+            T1(i,p);
+            Sleep(delay_time);
+        }
+        init_windows();
+        for(int i=0;i&lt;N;i++){
+            W1(i,p);
+            Sleep(delay_time);
+        }
+        init_windows();
+        for(int i=0;i&lt;N;i++){
+            TT(i,p);Sleep(delay_time);
+        }
+        init_windows();
+        for(int i=0;i&lt;N;i++){
+            WW(i,p);
+            Sleep(delay_time);
+        }
+        init_windows();
+        for(int i=0;i&lt;N;i++){
+            Ans(i,p);
+            Sleep(delay_time);
+        }
+        init_windows();
+}
+
 int main(){
-    string numa,numb;
-
-    cin&gt;&gt;numa&gt;&gt;numb;    //以二进制输入 
-    MSD_add(numa,numb);
-
+    initgraph(440,540);
+    setfillcolor(EGERGB(255,255,255));
+    init_windows();
+    freopen(&quot;in.txt&quot;, &quot;r&quot;, stdin);
+    while(1){
+        int N,tempL=0,Interval=2;
+        string stra,strb;
+        cout&lt;&lt;&quot;请输入要计算的组数:&quot;;
+        cin&gt;&gt;N;
+        getchar();
+        struct origin_num p[150];
+        for(int i=0;i&lt;N;i++){
+            long long a,b;
+            cin&gt;&gt;a&gt;&gt;b;
+            stra=p[i].a=change(a);   //转二进制
+            strb=p[i].b=change(b);   //转二进制
+            tempL+=(p[i].a.size()&gt;p[i].b.size()?p[i].a.size():p[i].b.size());
+            if(i)tempL+=Interval;
+            p[i].lg=tempL;
+            p[i].LL=p[i].a.size()&gt;p[i].b.size()?p[i].a.size():p[i].b.size();
+            MSD_add(stra,strb,i,p);
+        }
+        if(tempL+2&gt;192){
+            cout&lt;&lt;&quot;位数不足，请重新输入计算的组数&quot;&lt;&lt;endl;
+            printf(&quot;当前已超出%d位\n&quot;,tempL-190);
+        }
+        else    TWchange(N,p);
+    }
+//    getch();
+//    closegraph();
     return 0;
 }
-/* 
-T 变换
-        a
-    0  1  2
-0  0  1  2
-b  1  1  1  0
-2  2  0  2
-
-W 变换
-        a
-    0  1  2 
-0  0  2  1
-b 1  2  0  0
-2  1  0  0
-
-T2 变换  
-        a
-    0  1  2 
-0  0  0  0
-b 1  0  1  0
-2  0  0  2
-
-W2变换
-        a
-    0  1  2 
-0  0  1  2
-b 1  1  0  0
-2  2  0  0
-
-*/
 </code></pre>
               
             </div>
