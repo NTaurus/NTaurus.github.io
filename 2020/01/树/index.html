@@ -109,11 +109,6 @@
     </a>
   
 
-
-
-
-  
-  
 </header>
 
       
@@ -263,13 +258,100 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h2 id="前言">前言</h2>
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前言">前言</a>
+<ul>
+<li><a href="#二叉树的定义">二叉树的定义</a></li>
+<li><a href="#二叉树的遍历">二叉树的遍历</a>
+<ul>
+<li><a href="#dfs遍历">DFS遍历</a></li>
+<li><a href="#bfs遍历">BFS遍历</a></li>
+</ul></li>
+<li><a href="#二叉树的建立">二叉树的建立</a>
+<ul>
+<li><a href="#后序-中序建树">后序+中序建树</a></li>
+<li><a href="#先序-中序建树">先序+中序建树</a></li>
+</ul></li>
+<li><a href="#二叉搜索树的创建">二叉搜索树的创建</a></li>
+<li><a href="#平衡二叉树的创建">平衡二叉树的创建</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
 
-<p>这篇记录PTA上考查树的题。</p>
+<h2 id="前言">前言</h2>
 
-<h3 id="1020-tree-traversals-25分">1020 Tree Traversals (25分)</h3>
+<p>这篇记录树的知识点以及PTA上考查树的题。</p>
 
-<p>Suppose that all the keys in a binary tree are distinct positive integers. Given the postorder and inorder traversal sequences, you are supposed to output the level order traversal sequence of the corresponding binary tree.</p>
+<h3 id="二叉树的定义">二叉树的定义</h3>
+
+<pre><code>struct node{
+    int val;
+    node *lchild,*rchild;
+}
+</code></pre>
+
+<h3 id="二叉树的遍历">二叉树的遍历</h3>
+
+<h4 id="dfs遍历">DFS遍历</h4>
+
+<p>先序遍历：</p>
+
+<pre><code>void Preorder(node *root){
+    if(root==NULL)return;
+    cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+    Preorder(root-&gt;lchild);
+    Preorder(root-&gt;rchild);
+}
+</code></pre>
+
+<p>中序遍历：</p>
+
+<pre><code>void Inorder(node *root){
+    if(root==NULL)return;
+    Inorder(root-&gt;lchild);
+    cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+    Inorder(root-&gt;rchild);
+}
+</code></pre>
+
+<p>后序遍历：</p>
+
+<pre><code>void Postorder(node *root){
+    if(root==NULL)return;
+    Postorder(root-&gt;lchild);
+    Postorder(root-&gt;rchild);
+    cout&lt;&lt;root-&gt;val&lt;&lt;' ';   
+}
+</code></pre>
+
+<h4 id="bfs遍历">BFS遍历</h4>
+
+<p>层序遍历：</p>
+
+<pre><code>void levelorder(node *root){
+    queue&lt;node* &gt;q;
+    q.push(root);
+    while(!q.empty()){
+        root=q.front();
+        q.pop();
+        cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+        if(root-&gt;lchild!=NULL)q.push(root-&gt;lchild);
+        if(root-&gt;rchild!=NULL)q.push(root-&gt;rchild);
+    }
+}
+</code></pre>
+
+<h3 id="二叉树的建立">二叉树的建立</h3>
+
+<h4 id="后序-中序建树">后序+中序建树</h4>
+
+<p>PTA甲级：<br />
+A1020 Tree Traversals (25分)<br />
+Suppose that all the keys in a binary tree are distinct positive integers. Given the postorder and inorder traversal sequences, you are supposed to output the level order traversal sequence of the corresponding binary tree.</p>
 
 <p>Input Specification:<br />
 Each input file contains one test case. For each case, the first line gives a positive integer N (≤30), the total number of nodes in the binary tree. The second line gives the postorder sequence and the third line gives the inorder sequence. All the numbers in a line are separated by a space.</p>
@@ -285,7 +367,7 @@ For each test case, print in one line the level order traversal sequence of the 
 <p>Sample Output:<br />
     4 1 6 3 5 7 2</p>
 
-<p>根据后序跟中序建树，按层序输出。</p>
+<p>题目大意根据后序跟中序建树，最后按层序输出。</p>
 
 <pre><code>#include&lt;iostream&gt;
 #include&lt;string&gt;
@@ -345,9 +427,10 @@ int main(){
 }
 </code></pre>
 
-<h3 id="l2-011-玩转二叉树-25分">L2-011 玩转二叉树 (25分)</h3>
+<h4 id="先序-中序建树">先序+中序建树</h4>
 
-<p>给定一棵二叉树的中序遍历和前序遍历，请你先将树做个镜面反转，再输出反转后的层序遍历的序列。所谓镜面反转，是指将所有非叶结点的左右孩子对换。这里假设键值都是互不相等的正整数。</p>
+<p>L2-011 玩转二叉树 (25分)<br />
+给定一棵二叉树的中序遍历和前序遍历，请你先将树做个镜面反转，再输出反转后的层序遍历的序列。所谓镜面反转，是指将所有非叶结点的左右孩子对换。这里假设键值都是互不相等的正整数。</p>
 
 <p>输入格式：<br />
 输入第一行给出一个正整数N（≤30），是二叉树中结点的个数。第二行给出其中序遍历序列。第三行给出其前序遍历序列。数字间以空格分隔。</p>
@@ -388,6 +471,19 @@ node *create(int prel,int prer,int inl,int inr){
     root-&gt;rchild=create(prel+numleft+1,prer,k+1,inr);
     return root;
 }
+void BFS(node *root){
+    node *now=root;
+    queue&lt;node*&gt;q;
+    q.push(now);
+    while(!q.empty()){
+        now=q.front();
+        q.pop();
+        cout&lt;&lt;now-&gt;data;
+        num++;if(num!=n)cout&lt;&lt;' ';
+        if(now-&gt;lchild!=NULL)   q.push(now-&gt;lchild);
+        if(now-&gt;rchild!=NULL)   q.push(now-&gt;rchild);
+    }
+}
 int main(){
     cin&gt;&gt;n;
     for(int i=0;i&lt;n;i++)cin&gt;&gt;in[i];
@@ -405,6 +501,178 @@ int main(){
         if(p-&gt;rchild!=NULL) q.push(p-&gt;rchild);
     }
     BFS(root);
+    return 0;
+}
+</code></pre>
+
+<h3 id="二叉搜索树的创建">二叉搜索树的创建</h3>
+
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+struct node{
+    int val;
+    node *lchild,*rchild;
+};
+node *insert(node *root,int val){
+    if(root==NULL){     //当结点为空时创建
+        root=new node;
+        root-&gt;val=val;
+        root-&gt;lchild=root-&gt;rchild=NULL;
+    }
+    else if(val&lt;root-&gt;val){     //当新插入的值比该结点值小则去左子树创建
+        root-&gt;lchild=insert(root-&gt;lchild,val);
+    }
+    else root-&gt;rchild=insert(root-&gt;rchild,val);     //当新插入的值大或等于该结点值则去右子树创建
+}
+void Preorder(node *root){
+    if(root==NULL)return;
+    cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+    Preorder(root-&gt;lchild);
+    Preorder(root-&gt;rchild);
+}
+void Inorder(node *root){
+    if(root==NULL)return;
+    Inorder(root-&gt;lchild);
+    cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+    Inorder(root-&gt;rchild);
+}
+void Postorder(node *root){
+    if(root==NULL)return;
+    Postorder(root-&gt;lchild);
+    Postorder(root-&gt;rchild);
+    cout&lt;&lt;root-&gt;val&lt;&lt;' ';   
+}
+void levelorder(node *root){
+    queue&lt;node* &gt;q;
+    q.push(root);
+    while(!q.empty()){
+        root=q.front();
+        q.pop();
+        cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+        if(root-&gt;lchild!=NULL)q.push(root-&gt;lchild);
+        if(root-&gt;rchild!=NULL)q.push(root-&gt;rchild);
+    }
+}
+int main(){
+    int N,val;
+    cin&gt;&gt;N;
+    node *root=NULL; 
+    for(int i=0;i&lt;N;i++){
+        cin&gt;&gt;val;
+        root=insert(root,val); 
+    }
+    cout&lt;&lt;&quot;先序遍历：&quot;;
+    Preorder(root);
+    cout&lt;&lt;&quot;\n中序遍历：&quot;;
+    Inorder(root);
+    cout&lt;&lt;&quot;\n后序遍历：&quot;;
+    Postorder(root); 
+    cout&lt;&lt;&quot;\n层序遍历：&quot;;
+    levelorder(root);
+    return 0;
+}
+</code></pre>
+
+<h3 id="平衡二叉树的创建">平衡二叉树的创建</h3>
+
+<p>平衡二叉树失衡的类型有RR、LL、RL、LR四种类型。<br />
+当失衡的类型为RR时，只进行左旋，当失衡类型为LL时，只进行右旋。<br />
+当失衡的类型为RL时，先对失衡结点的右孩子进行右旋，再对该失衡结点进行左旋。<br />
+当失衡的类型为LR时，先对失衡结点的左孩子进行左旋，再对该失衡结点进行右旋。</p>
+
+<p>A1066 Root of AVL Tree (25分)<br />
+An AVL tree is a self-balancing binary search tree. In an AVL tree, the heights of the two child subtrees of any node differ by at most one; if at any time they differ by more than one, rebalancing is done to restore this property. Figures 1-4 illustrate the rotation rules.</p>
+
+<p>Now given a sequence of insertions, you are supposed to tell the root of the resulting AVL tree.
+Input Specification:<br />
+Each input file contains one test case. For each case, the first line contains a positive integer N (≤20) which is the total number of keys to be inserted. Then N distinct integer keys are given in the next line. All the numbers in a line are separated by a space.</p>
+
+<p>Output Specification:<br />
+For each test case, print the root of the resulting AVL tree in one line.</p>
+
+<p>Sample Input 1:</p>
+
+<pre><code>5
+88 70 61 96 120
+</code></pre>
+
+<p>Sample Output 1:</p>
+
+<pre><code>70
+</code></pre>
+
+<p>Sample Input 2:</p>
+
+<pre><code>7
+88 70 61 96 120 90 65
+</code></pre>
+
+<p>Sample Output 2:</p>
+
+<pre><code>88
+</code></pre>
+
+<p>题目大意，创建一颗平衡二叉树，输出它根节点的值。</p>
+
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+struct node{
+    int val;
+    node *left,*right;
+};
+node *rotateRight(node *root){  //右旋
+    node *temp=root-&gt;left;
+    root-&gt;left=temp-&gt;right;
+    temp-&gt;right=root;
+    return temp;
+}
+node *rotateLeft(node *root){   //左旋
+    node *temp=root-&gt;right;
+    root-&gt;right=temp-&gt;left;
+    temp-&gt;left=root;
+    return temp;
+}
+node *rotateLR(node *root){     //当失衡的类型为LR，则先左旋再右旋
+    root-&gt;left==rotateLeft(root-&gt;left);     //先对失衡结点的左结点进行左旋
+    return rotateRight(root);               //再对失衡结点进行右旋
+}
+node *rotateRL(node *root){     //当失衡的类型为LR，则先右旋再左旋
+    root-&gt;right=(root-&gt;right);  //先对失衡结点的右结点进行右旋
+    return rotateLeft(root);    //再对失衡结点进行左旋
+}
+int getHeight(node *root){      //获取树高
+    if(root==NULL)return 0;
+    return max(getHeight(root-&gt;left),getHeight(root-&gt;right))+1;
+}
+node *insert(node *root,int val){   //插入操作
+    if(root==NULL){
+        root=new node;
+        root-&gt;val=val;
+        root-&gt;left=root-&gt;right=NULL;
+    }
+    else if(val&lt;root-&gt;val){
+        root-&gt;left=insert(root-&gt;left,val);
+        if(getHeight(root-&gt;left)-getHeight(root-&gt;right)==2){
+            root=val&lt;root-&gt;left-&gt;val?rotateRight(root):rotateLR(root);  //如果新插入的值比该失横结点的左孩子的值小，则是LL型，需要右旋，否则是LR型，需要左旋后右旋 
+        }
+    }
+    else{
+        root-&gt;right=insert(root-&gt;right,val);
+        if(getHeight(root-&gt;left)-getHeight(root-&gt;right)==-2){
+            root=val&gt;root-&gt;val?rotateLeft(root):rotateRL(root); //如果新插入的值比该失衡结点的右孩子的值大，则是RR型，需要左旋，否则是RL型，需要右旋然后左旋 
+        }
+    }
+    return root;
+}
+int main(){
+    int N,val;
+    cin&gt;&gt;N;
+    node *root=NULL;
+    while(N--){
+        cin&gt;&gt;val;
+        root=insert(root,val);
+    }
+    cout&lt;&lt;root-&gt;val;
     return 0;
 }
 </code></pre>
@@ -438,7 +706,7 @@ int main(){
                   el: '#vcomments' ,
                   appId: '54tjDHQENjAdGjbQCRCSyWc0-gzGzoHsz',
                   appKey: 'EpyU0o7md3XmhG9zqLo06SAo',
-                  notify: 'false',
+                  notify: 'true',
                   verify: '',
                   avatar:'mp', 
                   placeholder: '你划一划屏幕，不留一个评论....',
@@ -493,7 +761,7 @@ int main(){
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -572,7 +840,7 @@ int main(){
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
