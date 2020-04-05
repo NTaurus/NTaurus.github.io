@@ -6,7 +6,7 @@
     <description>Recent content on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Mar 2020 21:18:50 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2020 21:02:50 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,24 @@
       
       <guid>https://NTaurus.github.io/2020/02/%E7%BD%AE%E9%A1%B6/</guid>
       <description>&lt;p&gt;零落成泥碾作尘，只有菜如故。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git常用操作</title>
+      <link>https://NTaurus.github.io/2020/04/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sun, 05 Apr 2020 21:02:50 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/04/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>排序算法的实现</title>
+      <link>https://NTaurus.github.io/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Sun, 05 Apr 2020 19:42:21 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+      <description></description>
     </item>
     
     <item>

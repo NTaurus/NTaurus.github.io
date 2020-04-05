@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.59.1 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="NTaurus">
+<meta name="keywords" content="排序, NTaurus的乌托邦">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法的实现">
+<meta name="twitter:title" content="排序算法的实现">
+<meta property="og:url" content="https://NTaurus.github.io/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+<meta property="twitter:url" content="https://NTaurus.github.io/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+<meta property="og:site_name" content="NTaurus的乌托邦">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-04-05T19:42:21">
+  
+  
+    <meta property="article:modified_time" content="2020-04-05T19:42:21">
+  
+  
+  
+    
+      <meta property="article:section" content="数据结构">
+    
+      <meta property="article:section" content="笔记">
+    
+  
+  
+    
+      <meta property="article:tag" content="数据结构">
+    
+      <meta property="article:tag" content="笔记">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://NTaurus.github.io/images/starry_sky.png">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/starry_sky.png">
+
+
+  <meta property="og:image" content="https://NTaurus.github.io/images/starry_sky.png">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/starry_sky.png">
+
+
+
+
+  <meta property="og:image" content="https://NTaurus.github.io/images/touxiang.png">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/touxiang.png">
+
+
+    <title>排序算法的实现</title>
+
+    <link rel="icon" href="images/login.png">
+    
+
+    
+
+    <link rel="canonical" href="https://NTaurus.github.io/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://NTaurus.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://NTaurus.github.io/">NTaurus的乌托邦</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://NTaurus.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://NTaurus.github.io/images/touxiang.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+
+</header>
+
+      
+<nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://NTaurus.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://NTaurus.github.io/images/touxiang.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">NTaurus</h4>
+        
+          <h5 class="sidebar-profile-bio">因为喜欢</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://NTaurus.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://NTaurus.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">类别</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://NTaurus.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://NTaurus.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://NTaurus.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/NTaurus" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://NTaurus.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=52 src="//music.163.com/outchain/player?type=0&id=3128674638&auto=0&height=32"></iframe>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('/images/starry_sky.png')"
+       data-behavior="5">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      排序算法的实现
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-04-05T19:42:21&#43;08:00">
+        
+  四月 5, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://NTaurus.github.io/categories/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84">数据结构</a>, 
+    
+      <a class="category-link" href="https://NTaurus.github.io/categories/%e7%ac%94%e8%ae%b0">笔记</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">四月</span>
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#排序算法效率比较">排序算法效率比较</a></li>
+<li><a href="#选择排序">选择排序</a></li>
+<li><a href="#直接插入排序">直接插入排序</a></li>
+<li><a href="#冒泡排序">冒泡排序</a></li>
+<li><a href="#希尔排序">希尔排序</a></li>
+<li><a href="#堆排序">堆排序</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h2 id="排序算法效率比较">排序算法效率比较</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">排序方法</th>
+<th>平均时间复杂度</th>
+<th>最坏情况下的时间复杂度</th>
+<th>额外空间复杂度</th>
+<th>稳定性</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">选择排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+</tr>
+
+<tr>
+<td align="center">插入排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>稳定</td>
+</tr>
+
+<tr>
+<td align="center">冒泡排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>稳定</td>
+</tr>
+
+<tr>
+<td align="center">希尔排序</td>
+<td>O(n^(<sup>3</sup>&frasl;<sub>2</sub>))</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+</tr>
+
+<tr>
+<td align="center">堆排序</td>
+<td>O(Nlog2N)</td>
+<td>O(Nlog2N)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+</tr>
+
+<tr>
+<td align="center">快速排序</td>
+<td>O(Nlog2N)</td>
+<td>O(n^2)</td>
+<td>O(log2N)</td>
+<td>不稳定</td>
+</tr>
+
+<tr>
+<td align="center">归并排序</td>
+<td>O(Nlog2N)</td>
+<td>O(Nlog2N)</td>
+<td>O(N)</td>
+<td>稳定</td>
+</tr>
+
+<tr>
+<td align="center">基数排序</td>
+<td>O(D(N+R))</td>
+<td>O(D(N+R))</td>
+<td>O(N+R)</td>
+<td>稳定</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="选择排序">选择排序</h2>
+
+<p>首先在未排序的数列中找到最小(or最大)元素，然后将其存放到数列的起始位置；接着，再从剩余未排序的元素中继续寻找最小(or最大)元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+
+<pre><code>void select_sort(vector&lt;int&gt;&amp;v){
+    for(int i=0;i&lt;v.size();i++){
+        int index=i;
+        for(int j=i+1;j&lt;v.size();j++){
+            if(v[index]&gt;v[j]){
+                index=j;
+            }
+        }
+        int temp=v[index];
+        v[index]=v[i];
+        v[i]=temp;
+    }
+}
+</code></pre>
+
+<h2 id="直接插入排序">直接插入排序</h2>
+
+<p>把n个待排序的元素看成为一个有序表和一个无序表。开始时有序表中只包含1个元素，无序表中包含有n-1个元素，排序过程中每次从无序表中取出第一个元素，将它插入到有序表中的适当位置，使之成为新的有序表，重复n-1次可完成排序过程。</p>
+
+<pre><code>void insert_sort(vector&lt;int&gt;&amp;v){
+    int i,j,k;
+    for(i=1;i&lt;v.size();i++){
+        for(j=i-1;j&gt;=0;j--){
+            if(v[j]&lt;v[i])break;
+        }
+        if(j!=i-1){
+            int temp=v[i];
+            for(k=i-1;k&gt;j;k--){
+                v[k+1]=v[k];
+            }
+            v[k+1]=temp;
+        }       
+    }
+}
+</code></pre>
+
+<h2 id="冒泡排序">冒泡排序</h2>
+
+<p>依次比较相邻的两个元素，若前面的元素比后面的元素大（如果要从大到小排序可以用‘&lt;’）则交换，知道最后的元素为最大（最小）；再继续从头遍历执行相同的操作。像泡泡一样把最大（最小）的元素浮到水面。</p>
+
+<pre><code>void bubblesort(vector&lt;int&gt;&amp;v){
+    for(int i=v.size()-1;i&gt;=0;i--){
+        for(int j=1;j&lt;=i;j++){
+            if(v[j]&lt;v[j-1]){
+                int temp=v[j];
+                v[j]=v[j-1];
+                v[j-1]=temp;
+            }
+        }
+    }
+}
+</code></pre>
+
+<h2 id="希尔排序">希尔排序</h2>
+
+<p>希尔排序的本原理是：将待排序的一组元素按一定间隔分为若干个序列，分别进行插入排序。开始时设置的“间隔”较大，在每一轮排序中将间隔逐步减小，直到“间隔”为1，也就是最后一步是进行简单插入排序。</p>
+
+<pre><code>void shell_sort(vector&lt;int&gt;&amp;v){
+    int i,j,gap;
+    for(gap=v.size()/2;gap&gt;0;gap/=2){   //间隔大小 
+        for(i=0;i&lt;gap;i++){ //gap个组 
+            for(j=i+gap;j&lt;v.size();j+=gap){
+                if(v[j]&lt;v[j-gap]){
+                    int temp=v[j];
+                    int k=j-gap;
+                    while(k&gt;=0&amp;&amp;v[k]&gt;temp){
+                        v[k+gap]=v[k];
+                        k-=gap;
+                    }
+                    v[k+gap]=temp;
+                }               
+            }
+        }
+    }
+}
+</code></pre>
+
+<h2 id="堆排序">堆排序</h2>
+
+<p>堆排序的思想借助于二叉堆中的最大堆得以实现。首先，将待排序数列抽象为二叉树，并构造出最大堆；然后，依次将最大元素（即根节点元素）与待排序数列的最后一个元素交换（即二叉树最深层最右边的叶子结点元素）；每次遍历，刷新最后一个元素的位置（自减1），直至其与首元素相交，即完成排序。</p>
+
+<pre><code>void maxheap_down(vector&lt;int&gt;&amp;v,int start,int end){
+    int c=start;
+    int l=2*c+1;
+    int temp=v[c];
+    for(;l&lt;=end;c=l,l=2*l+1){
+        if(l&lt;end&amp;&amp;v[l]&lt;v[l+1]){
+            l++;
+        }
+        if(temp&gt;=v[l])break;
+        else{
+            v[c]=v[l];
+            v[l]=temp;
+        }
+    }
+}
+
+void heap_sort(vector&lt;int&gt;&amp;v){
+    int i;
+    for(i=v.size()/2-1;i&gt;=0;i--){   //建堆
+        maxheap_down(v,i,v.size()-1);
+    }
+    for(i=v.size()-1;i&gt;0;i--){
+        int temp=v[0];
+        v[0]=v[i];
+        v[i]=temp;
+        maxheap_down(v,0,i-1);  //调整
+    }
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+
+                  </div>
+                
+              
+            
+              <span id="/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="排序算法的实现">
+                <span class="post-meta-item-text">文章阅读量 </span>
+                <span class="leancloud-visitors-count">1000000</span>
+                <p></p>
+              </span>
+              <div id="vcomments"></div>
+              <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+              <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+              <script type="text/javascript">
+                new Valine({
+                  el: '#vcomments' ,
+                  appId: '54tjDHQENjAdGjbQCRCSyWc0-gzGzoHsz',
+                  appKey: 'EpyU0o7md3XmhG9zqLo06SAo',
+                  notify: 'true',
+                  verify: '',
+                  avatar:'mp', 
+                  placeholder: '你划一划屏幕，不留一个评论....',
+                  visitor: 'true'
+                });
+              </script>
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/03/codeblock%E9%85%8D%E7%BD%AEege/" data-tooltip="CodeBlock配置EGE">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/04/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" data-tooltip="Git常用操作">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        
+  <script type="text/javascript"
+  src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e61a80529c84786">
+</script>
+
+<footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/NTaurus">NTaurus</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/03/codeblock%E9%85%8D%E7%BD%AEege/" data-tooltip="CodeBlock配置EGE">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/04/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" data-tooltip="Git常用操作">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FNTaurus.github.io%2F2020%2F04%2F%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595%25E7%259A%2584%25E5%25AE%259E%25E7%258E%25B0%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://NTaurus.github.io/images/touxiang.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">NTaurus</h4>
+    
+      <div id="about-card-bio">因为喜欢</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        学生
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        家礼炖
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://NTaurus.github.io/images/wooden2.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://NTaurus.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="https://NTaurus.github.io/js/clicklove.js"></script>
+  
+
+  
+    <script src="https://NTaurus.github.io/js/snow.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/NTaurus.github.io\/2020\/04\/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0\/';
+          
+            this.page.identifier = '\/2020\/04\/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'valine';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
