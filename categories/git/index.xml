@@ -6,10 +6,19 @@
     <description>Recent content in git on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2020 21:02:50 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2020 21:00:31 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cpp基础</title>
+      <link>https://NTaurus.github.io/2020/04/cpp%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Mon, 06 Apr 2020 21:00:31 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/04/cpp%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Git常用操作</title>

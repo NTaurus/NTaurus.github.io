@@ -7,36 +7,40 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="NTaurus">
-<meta name="keywords" content="tech, NTaurus的乌托邦">
+<meta name="keywords" content="git, NTaurus的乌托邦">
 <meta name="description" content="">
 
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A1070">
-<meta name="twitter:title" content="A1070">
-<meta property="og:url" content="https://NTaurus.github.io/2020/02/a1070/">
-<meta property="twitter:url" content="https://NTaurus.github.io/2020/02/a1070/">
+<meta property="og:title" content="Cpp基础">
+<meta name="twitter:title" content="Cpp基础">
+<meta property="og:url" content="https://NTaurus.github.io/2020/04/cpp%E5%9F%BA%E7%A1%80/">
+<meta property="twitter:url" content="https://NTaurus.github.io/2020/04/cpp%E5%9F%BA%E7%A1%80/">
 <meta property="og:site_name" content="NTaurus的乌托邦">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-02-07T16:10:28">
+    <meta property="article:published_time" content="2020-04-06T21:00:31">
   
   
-    <meta property="article:modified_time" content="2020-02-07T16:10:28">
+    <meta property="article:modified_time" content="2020-04-06T21:00:31">
   
-  
-  
-    
-      <meta property="article:section" content="甲级题">
-    
   
   
     
-      <meta property="article:tag" content="PTA">
+      <meta property="article:section" content="git">
+    
+      <meta property="article:section" content="笔记">
+    
+  
+  
+    
+      <meta property="article:tag" content="Git">
+    
+      <meta property="article:tag" content="笔记">
     
   
 
@@ -49,12 +53,12 @@
 
 
 
-  <meta property="og:image" content="https://NTaurus.github.io/images/PTA.png">
-  <meta property="twitter:image" content="https://NTaurus.github.io/images/PTA.png">
+  <meta property="og:image" content="https://NTaurus.github.io/images/stars.png">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/stars.png">
 
 
-  <meta property="og:image" content="https://NTaurus.github.io/images/future.jpg">
-  <meta property="twitter:image" content="https://NTaurus.github.io/images/future.jpg">
+  <meta property="og:image" content="https://NTaurus.github.io/images/stars.png">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/stars.png">
 
 
 
@@ -63,14 +67,14 @@
   <meta property="twitter:image" content="https://NTaurus.github.io/images/touxiang.png">
 
 
-    <title>A1070</title>
+    <title>Cpp基础</title>
 
     <link rel="icon" href="images/login.png">
     
 
     
 
-    <link rel="canonical" href="https://NTaurus.github.io/2020/02/a1070/">
+    <link rel="canonical" href="https://NTaurus.github.io/2020/04/cpp%E5%9F%BA%E7%A1%80/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -221,21 +225,21 @@
   <div class="post-header-cover
               text-center
               post-header-cover--full"
-       style="background-image:url('/images/future.jpg')"
+       style="background-image:url('/images/stars.png')"
        data-behavior="5">
     
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      A1070
+      Cpp基础
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-02-07T16:10:28&#43;08:00">
+      <time itemprop="datePublished" datetime="2020-04-06T21:00:31&#43;08:00">
         
-  二月 7, 2020
+  四月 6, 2020
 
       </time>
     
@@ -244,7 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://NTaurus.github.io/categories/%e7%94%b2%e7%ba%a7%e9%a2%98">甲级题</a>
+      <a class="category-link" href="https://NTaurus.github.io/categories/git">git</a>, 
+    
+      <a class="category-link" href="https://NTaurus.github.io/categories/%e7%ac%94%e8%ae%b0">笔记</a>
     
   
 
@@ -261,77 +267,115 @@
                hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
-            <span class="post-header-cover-caption caption">Start,for a better future.</span>
+            <span class="post-header-cover-caption caption">四月</span>
           
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <h2 id="1070-mooncake-25分">1070 Mooncake (25分)</h2>
+              <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#基本语言">基本语言</a>
+<ul>
+<li><a href="#static关键字的作用">static关键字的作用</a></li>
+<li><a href="#c-与c的区别">C++与C的区别</a></li>
+<li><a href="#指针和引用的区别">指针和引用的区别</a></li>
+<li><a href="#数组跟指针的区别">数组跟指针的区别</a></li>
+<li><a href="#野指针">野指针</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
 
-<p>Mooncake is a Chinese bakery product traditionally eaten during the Mid-Autumn Festival. Many types of fillings and crusts can be found in traditional mooncakes according to the region&rsquo;s culture. Now given the inventory amounts and the prices of all kinds of the mooncakes, together with the maximum total demand of the market, you are supposed to tell the maximum profit that can be made.</p>
+<h2 id="基本语言">基本语言</h2>
 
-<p>Note: partial inventory storage can be taken. The sample shows the following situation: given three kinds of mooncakes with inventory amounts being 180, 150, and 100 thousand tons, and the prices being 7.5, 7.2, and 4.5 billion yuans. If the market demand can be at most 200 thousand tons, the best we can do is to sell 150 thousand tons of the second kind of mooncake, and 50 thousand tons of the third kind. Hence the total profit is 7.2 + 4.<sup>5</sup>&frasl;<sub>2</sub> = 9.45 (billion yuans).</p>
+<h3 id="static关键字的作用">static关键字的作用</h3>
 
-<p>Input Specification:<br />
-Each input file contains one test case. For each case, the first line contains 2 positive integers N (≤1000), the number of different kinds of mooncakes, and D (≤500 thousand tons), the maximum total demand of the market. Then the second line gives the positive inventory amounts (in thousand tons), and the third line gives the positive prices (in billion yuans) of N kinds of mooncakes. All the numbers in a line are separated by a space.</p>
+<p>1、全局静态变量
+在全局变量前面加上关键字static，全局变量就定义成一个全局静态变量。<br />
+静态存储区，在整个程序运行期间一直存在。
+初始化：未被初始化的全局静态变量的值为0。<br />
+作用域：全局静态变量在声明他的文件之外是不可见的，从开始定义之处到文件结束。</p>
 
-<p>Output Specification:<br />
-For each test case, print the maximum profit (in billion yuans) in one line, accurate up to 2 decimal places.</p>
+<p>2、局部静态变量
+在局部变量之前加上static，局部变量就变成一个局部静态变量。<br />
+内存中的位置：静态存储区。<br />
+初始化：未被初始化的全局静态变量的值为0。<br />
+作用域：局部作用域，当定义它的函数或者语句块结束时，作用域结束。（局部静态变量离开作用域后，并没有销毁，它任然驻留在内存当中，直到该函数再次被调用，才能进行访问）</p>
 
-<p>Sample Input:</p>
+<p>3、静态函数<br />
+在函数返回类型前加static，函数就被定义为静态函数。静态函数只能在声明它的文件中可见，不能被其他文件所用（与在其他cpp中的同名函数不会冲突）。</p>
 
-<pre><code>3 200
-180 150 100
-7.5 7.2 4.5
-</code></pre>
+<p>4、类的静态成员
+在类中，静态成员可以实现多个对象之间的数据共享，并且使用静态数据成员还不会被破坏隐藏的原则，即保证安全性。静态成员在类中是所有对象中共享的成员，所有对象都可用。</p>
 
-<p>Sample Output:</p>
+<p>5、类的静态函数</p>
 
-<pre><code>9.45
+<p>静态成员函数跟静态数据成员一样，它们都属于类的静态成员，它们都不是对象成员。故对静态成员的引用不需要用对象名。</p>
 
+<h3 id="c-与c的区别">C++与C的区别</h3>
 
+<p>设计思想上：C++是面向对象的语言，而C是面向过程的结构化编程语言。</p>
 
-#include&lt;cstdio&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-using namespace std;
-struct yue{
-    double zj;//总价 
-    double shul;//数量 
-    double dj;//单价 
-}y[1005];
+<p>语法上：C++具有封装、继承和多态三张特性。
+C++相比C，增加了许多类型安全的功能，比如强制类型转换。<br />
+C++支持范式编程，比如模板类、函数模板等。</p>
 
-bool cmp(struct yue x,struct yue y){
-    return x.dj&gt;y.dj;
-}
-int main(){
-    int N,D,i,j,l;
-    double sum=0,z1;
-    scanf(&quot;%d %d\n&quot;,&amp;N,&amp;D);
-    for(i=0;i&lt;N;i++){
-        scanf(&quot;%lf&quot;,&amp;y[i].shul);
-    }
-    for(i=0;i&lt;N;i++){
-        scanf(&quot;%lf&quot;,&amp;y[i].zj);
-        y[i].dj=y[i].zj/y[i].shul; 
-    }
-    sort(y,y+N,cmp);    
-    for(i=0;i&lt;N;i++){
-        if(y[i].shul&lt;=D){
-            sum+=y[i].zj;
-            D=D-y[i].shul;
-        }
-        else {
-            sum+=y[i].dj*D;
-            break;
-        }
-    }
-    if(sum)
-    printf(&quot;%.2f&quot;,sum);
-    else printf(&quot;0.00&quot;);
-    return 0;
-} 
-</code></pre>
+<h3 id="指针和引用的区别">指针和引用的区别</h3>
+
+<p>指针：指针是存地址的变量，它的值直接指向存在电脑存储器中另一个地方的值。</p>
+
+<p>引用：引用就是某一变量的一个别名，对引用的操作与对变量直接操作完全一样。</p>
+
+<p>1、指针有自己的一块空间，而引用只是一个别名。<br />
+2、使用sizeof看一个指针的大小是8或4（取决与计算机的位数，64位为8，32位为4），而引用则是被引用对象的大小。<br />
+3、指针可以被初始化为NULL，而引用必须被初始化且必须是一个已有对象的引用。<br />
+4、指针在使用中可以指向其他对象，但是引用只是一个对象的引用，不能被改变。<br />
+5、指针可以有多级指针（**p），而引用是一级。<br />
+6、如果返回动态内存分配的对象或者内存，必须使用指针，引用可能引起内存泄露。</p>
+
+<h3 id="数组跟指针的区别">数组跟指针的区别</h3>
+
+<table>
+<thead>
+<tr>
+<th align="center">指针</th>
+<th>数组</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">保存数据的地址</td>
+<td>保存数据</td>
+</tr>
+
+<tr>
+<td align="center">间接访问数据，首先获得指针的内容，然后将其作为地址，从该地址中提取数据</td>
+<td>直接访问数据</td>
+</tr>
+
+<tr>
+<td align="center">通常用于动态的数据结构</td>
+<td>通常用于固定数目且数据类型相同的元素</td>
+</tr>
+
+<tr>
+<td align="center">通过malloc分配内存，free释放内存</td>
+<td>隐式的分配和删除</td>
+</tr>
+
+<tr>
+<td align="center">通常指向匿名数据，操作匿名函数</td>
+<td>自身即为数据名</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="野指针">野指针</h3>
+
+<p>声明的指针未初始化，会指向一块不确定的内存。</p>
               
             </div>
           </div>
@@ -343,13 +387,15 @@ int main(){
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/pta/">PTA</a>
+  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/git/">Git</a>
+
+  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
 
                   </div>
                 
               
             
-              <span id="/2020/02/a1070/" class="leancloud_visitors" data-flag-title="A1070">
+              <span id="/2020/04/cpp%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="Cpp基础">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -376,7 +422,7 @@ int main(){
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/a1069/" data-tooltip="A1069">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/04/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" data-tooltip="Git常用操作">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -384,7 +430,7 @@ int main(){
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/a1071/" data-tooltip="A1071">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/%E7%BD%AE%E9%A1%B6/" data-tooltip="置顶">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -402,7 +448,7 @@ int main(){
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/02/a1070/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/04/cpp%E5%9F%BA%E7%A1%80/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -417,7 +463,7 @@ int main(){
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -455,7 +501,7 @@ int main(){
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/a1069/" data-tooltip="A1069">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/04/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" data-tooltip="Git常用操作">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -463,7 +509,7 @@ int main(){
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/a1071/" data-tooltip="A1071">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/%E7%BD%AE%E9%A1%B6/" data-tooltip="置顶">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -481,7 +527,7 @@ int main(){
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/02/a1070/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/04/cpp%E5%9F%BA%E7%A1%80/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -496,7 +542,7 @@ int main(){
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -511,7 +557,7 @@ int main(){
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FNTaurus.github.io%2F2020%2F02%2Fa1070%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FNTaurus.github.io%2F2020%2F04%2Fcpp%25E5%259F%25BA%25E7%25A1%2580%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -761,9 +807,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/NTaurus.github.io\/2020\/02\/a1070\/';
+          this.page.url = 'https:\/\/NTaurus.github.io\/2020\/04\/cpp%E5%9F%BA%E7%A1%80\/';
           
-            this.page.identifier = '\/2020\/02\/a1070\/'
+            this.page.identifier = '\/2020\/04\/cpp%E5%9F%BA%E7%A1%80\/'
           
         };
         (function() {
