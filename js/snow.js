@@ -1,4 +1,4 @@
-/*雪花飘落*/
+/*雪花飘落#FF7F50*/
 (function($){
     $.fn.snow = function(options){
         var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'9999', 'top': '-50px'}).html('&#10052;'),
@@ -36,7 +36,7 @@
 $(function(){
     $.fn.snow({
         minSize: 2, /* 定义雪花最小尺寸 */
-        maxSize: 40,/* 定义雪花最大尺寸 */
+        maxSize: 50,/* 定义雪花最大尺寸 */
         newOn: 1000  /* 定义密集程度，数字越小越密集 */
     });
 });

@@ -1,15 +1,46 @@
-<script type="text/javascript">
-var a_idx = 0;jQuery(document).ready(function($) {
-$("body").click(function(e) {
-var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善", "手麻了", "歇会儿");
-var $i = $("<span/>").text(a[a_idx]);
-a_idx = (a_idx + 1) % a.length;
-var x = e.pageX,
-y = e.pageY;
-$i.css({
-"z-index": 9999,"top": y - 20,"left": x,"position": "absolute","font-weight": "bold","color": "#ff6651"
-});
-$("body").append($i);
-$i.animate({"top": y - 180,"opacity": 0},1500,
-function() {$i.remove();});})});
-</script>
+/**
+ * js网页雪花效果jquery插件 
+ * 懒人建站 www.51xuediannao.com   整理
+ * @see http://workshop.rs
+ */
+(function($){
+	
+	$.fn.snow = function(options){
+	
+			var $flake 			= $('<div id="snowbox" />').css({'position': 'absolute', 'top': '-50px'}).html('&#10052;'),
+				documentHeight 	= $(document).height(),
+				documentWidth	= $(document).width(),
+				defaults		= {
+									minSize		: 10,		//雪花的最小尺寸
+									maxSize		: 20,		//雪花的最大尺寸
+									newOn		: 1000,		//雪花出现的频率
+									flakeColor	: "#FFFFBB"	//懒人建站 www.51xuediannao.com   整理
+								},
+				options			= $.extend({}, defaults, options);
+			
+			var interval		= setInterval( function(){
+				var startPositionLeft 	= Math.random() * documentWidth - 100,
+				 	startOpacity		= 0.5 + Math.random(),
+					sizeFlake			= options.minSize + Math.random() * options.maxSize,
+					endPositionTop		= documentHeight - 40,
+					endPositionLeft		= startPositionLeft - 100 + Math.random() * 500,
+					durationFall		= documentHeight * 10 + Math.random() * 5000;
+				$flake.clone().appendTo('body').css({
+							left: startPositionLeft,
+							opacity: startOpacity,
+							'font-size': sizeFlake,
+							color: options.flakeColor
+						}).animate({
+							top: endPositionTop,
+							left: endPositionLeft,
+							opacity: 0.2
+						},durationFall,'linear',function(){
+							$(this).remove()
+						}
+					);
+					
+			}, options.newOn);
+	
+	};
+	
+})(jQuery);
