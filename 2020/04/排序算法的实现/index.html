@@ -284,6 +284,8 @@
 <li><a href="#冒泡排序">冒泡排序</a></li>
 <li><a href="#希尔排序">希尔排序</a></li>
 <li><a href="#堆排序">堆排序</a></li>
+<li><a href="#快速排序">快速排序</a></li>
+<li><a href="#完整程序">完整程序</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -480,6 +482,180 @@ void heap_sort(vector&lt;int&gt;&amp;v){
         v[i]=temp;
         maxheap_down(v,0,i-1);  //调整
     }
+}
+</code></pre>
+
+<h2 id="快速排序">快速排序</h2>
+
+<p>（类似于选择排序的定位思想）选一基准元素，依次将剩余元素中小于该基准元素的值放置其左侧，大于等于该基准元素的值放置其右侧；然后，取基准元素的前半部分和后半部分分别进行同样的处理；以此类推，直至各子序列剩余一个元素时，即排序完成。</p>
+
+<pre><code>void quickSort(vector&lt;int&gt;&amp;v,int begin,int end){
+    if(begin&gt;=end-1)return ;
+    int L=begin,R=end-1;
+    int index=v[L];
+
+    while(L&lt;R){
+        while(L&lt;R){
+            if(v[R]&lt;index){
+                v[L++]=v[R];
+                break;
+            }
+            --R;
+        }
+        while(L&lt;R){
+            if(v[L]&gt;index){
+                v[R--]=v[L];
+                break;
+            }
+            ++L;
+        }
+    }
+    v[L]=index;
+    quickSort(v,begin,L);
+    quickSort(v,R+1,end);
+}
+</code></pre>
+
+<h2 id="完整程序">完整程序</h2>
+
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+void bubblesort(vector&lt;int&gt;&amp;v){
+    for(int i=v.size()-1;i&gt;=0;i--){
+        for(int j=1;j&lt;=i;j++){
+            if(v[j]&lt;v[j-1]){
+                int temp=v[j];
+                v[j]=v[j-1];
+                v[j-1]=temp;
+            }
+        }
+    }
+}
+
+void select_sort(vector&lt;int&gt;&amp;v){
+    for(int i=0;i&lt;v.size();i++){
+        int index=i;
+        for(int j=i+1;j&lt;v.size();j++){
+            if(v[index]&gt;v[j]){
+                index=j;
+            }
+        }
+        int temp=v[index];
+        v[index]=v[i];
+        v[i]=temp;
+    }
+}
+
+void insert_sort(vector&lt;int&gt;&amp;v){
+    int i,j,k;
+    for(i=1;i&lt;v.size();i++){
+        for(j=i-1;j&gt;=0;j--){
+            if(v[j]&lt;v[i])break;
+        }
+        if(j!=i-1){
+            int temp=v[i];
+            for(k=i-1;k&gt;j;k--){
+                v[k+1]=v[k];
+            }
+            v[k+1]=temp;
+        }       
+    }
+
+}
+
+void shell_sort(vector&lt;int&gt;&amp;v){
+    int i,j,gap;
+    for(gap=v.size()/2;gap&gt;0;gap/=2){   //间隔大小 
+        for(i=0;i&lt;gap;i++){ //gap个组 
+            for(j=i+gap;j&lt;v.size();j+=gap){
+                if(v[j]&lt;v[j-gap]){
+                    int temp=v[j];
+                    int k=j-gap;
+                    while(k&gt;=0&amp;&amp;v[k]&gt;temp){
+                        v[k+gap]=v[k];
+                        k-=gap;
+                    }
+                    v[k+gap]=temp;
+                }               
+            }
+        }
+    }
+}
+
+void maxheap_down(vector&lt;int&gt;&amp;v,int start,int end){
+    int c=start;
+    int l=2*c+1;
+    int temp=v[c];
+    for(;l&lt;=end;c=l,l=2*l+1){
+        if(l&lt;end&amp;&amp;v[l]&lt;v[l+1]){
+            l++;
+        }
+        if(temp&gt;=v[l])break;
+        else{
+            v[c]=v[l];
+            v[l]=temp;
+        }
+    }
+}
+
+void heap_sort(vector&lt;int&gt;&amp;v){
+    int i;
+    for(i=v.size()/2-1;i&gt;=0;i--){
+        maxheap_down(v,i,v.size()-1);
+    }
+    for(i=v.size()-1;i&gt;0;i--){
+        int temp=v[0];
+        v[0]=v[i];
+        v[i]=temp;
+        maxheap_down(v,0,i-1);
+    }
+}
+
+void quickSort(vector&lt;int&gt;&amp;v,int begin,int end){
+    if(begin&gt;=end-1)return ;
+    int L=begin,R=end-1;
+    int index=v[L];
+
+    while(L&lt;R){
+        while(L&lt;R){
+            if(v[R]&lt;index){
+                v[L++]=v[R];
+                break;
+            }
+            --R;
+        }
+        while(L&lt;R){
+            if(v[L]&gt;index){
+                v[R--]=v[L];
+                break;
+            }
+            ++L;
+        }
+    }
+    v[L]=index;
+    quickSort(v,begin,L);
+    quickSort(v,R+1,end);
+}
+
+
+
+int main(){
+    int N,val;
+    vector&lt;int&gt;v;
+    cin&gt;&gt;N;
+    for(int i=0;i&lt;N;i++){
+        cin&gt;&gt;val;
+        v.push_back(val);
+    }
+//  bubblesort(v);  //冒泡排序
+//  select_sort(v);
+//  insert_sort(v);
+//  shell_sort(v);
+//  quickSort(v,0,v.size());
+    for(int i=0;i&lt;v.size();i++){
+        cout&lt;&lt;v[i]&lt;&lt;' ';
+    }
+    return 0;
 }
 </code></pre>
               
