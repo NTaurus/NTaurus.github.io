@@ -287,6 +287,7 @@
 <li><a href="#常用math函数">常用math函数</a></li>
 <li><a href="#浮点数的比较">浮点数的比较</a></li>
 <li><a href="#字符函数库-ctype-h">字符函数库 ctype.h</a></li>
+<li><a href="#二分查找">二分查找</a></li>
 <li><a href="#甲级刷题模板">甲级刷题模板</a></li>
 </ul></li>
 </ul></li>
@@ -580,6 +581,23 @@ tolower()   //将字符转换为小写字母函数
 //返回转换后的字符
 </code></pre>
 
+<h3 id="二分查找">二分查找</h3>
+
+<p>二分查找是基于有序序列的查找算法，该算法一开始另[left,right]为整个序列的下标区间，然后每次测试当前[left,right]的中间位置mid=(left+right)/2，判断a[mid]与欲查询的元素X的大小。<br />
+以下为实现的代码。</p>
+
+<pre><code>int binary_search(int a[],int l,int r,int num){
+    int mid;
+    while(l&lt;=r){
+        mid=(l+r)/2;
+        if(a[mid]==num) return mid;
+        else if (a[mid]&gt;num) r=mid-1;
+        else l=mid+1;
+    }
+    return -1;
+}
+</code></pre>
+
 <h3 id="甲级刷题模板">甲级刷题模板</h3>
 
 <p>考试的时候敲一遍，复制几份。</p>
@@ -598,6 +616,18 @@ using namespace std;
 
 int main(){
 
+
+
+
+    return 0;
+}
+</code></pre>
+
+<p>//或者</p>
+
+<pre><code>#include&lt;bits/stdc++.h&gt;//万能头文件
+using namespace std;
+int main(){
 
 
 
