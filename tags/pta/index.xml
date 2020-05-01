@@ -6,10 +6,145 @@
     <description>Recent content in PTA on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 Feb 2020 21:22:28 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2020 21:55:28 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/tags/pta/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A1155</title>
+      <link>https://NTaurus.github.io/2020/02/a1155/</link>
+      <pubDate>Wed, 19 Feb 2020 21:55:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1155/</guid>
+      <description>&lt;h2 id=&#34;1155-heap-paths-30分&#34;&gt;1155 Heap Paths (30分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1154</title>
+      <link>https://NTaurus.github.io/2020/02/a1154/</link>
+      <pubDate>Wed, 19 Feb 2020 21:54:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1154/</guid>
+      <description>&lt;h2 id=&#34;1154-vertex-coloring-25分&#34;&gt;1154 Vertex Coloring (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1153</title>
+      <link>https://NTaurus.github.io/2020/02/a1153/</link>
+      <pubDate>Wed, 19 Feb 2020 21:53:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1153/</guid>
+      <description>&lt;h2 id=&#34;1153-decode-registration-card-of-pat-25分&#34;&gt;1153 Decode Registration Card of PAT (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1152</title>
+      <link>https://NTaurus.github.io/2020/02/a1152/</link>
+      <pubDate>Wed, 19 Feb 2020 21:52:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1152/</guid>
+      <description>&lt;h2 id=&#34;1152-google-recruitment-20分&#34;&gt;1152 Google Recruitment (20分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1147</title>
+      <link>https://NTaurus.github.io/2020/02/a1147/</link>
+      <pubDate>Wed, 19 Feb 2020 21:47:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1147/</guid>
+      <description>&lt;h2 id=&#34;1147-heaps-30分&#34;&gt;1147 Heaps (30分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1146</title>
+      <link>https://NTaurus.github.io/2020/02/a1146/</link>
+      <pubDate>Wed, 19 Feb 2020 21:46:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1146/</guid>
+      <description>&lt;h2 id=&#34;1146-topological-order-25分&#34;&gt;1146 Topological Order (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1145</title>
+      <link>https://NTaurus.github.io/2020/02/a1145/</link>
+      <pubDate>Wed, 19 Feb 2020 21:45:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1145/</guid>
+      <description>&lt;h2 id=&#34;1145-hashing-average-search-time-25分&#34;&gt;1145 Hashing - Average Search Time (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1144</title>
+      <link>https://NTaurus.github.io/2020/02/a1144/</link>
+      <pubDate>Wed, 19 Feb 2020 21:44:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1144/</guid>
+      <description>&lt;h2 id=&#34;1144-the-missing-number-20分&#34;&gt;1144 The Missing Number (20分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1123</title>
+      <link>https://NTaurus.github.io/2020/02/a1123/</link>
+      <pubDate>Sun, 09 Feb 2020 21:23:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1123/</guid>
+      <description>&lt;h2 id=&#34;1123-is-it-a-complete-avl-tree-30分&#34;&gt;1123 Is It a Complete AVL Tree (30分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1122</title>
+      <link>https://NTaurus.github.io/2020/02/a1122/</link>
+      <pubDate>Sun, 09 Feb 2020 21:22:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1122/</guid>
+      <description>&lt;h2 id=&#34;1122-hamiltonian-cycle-25分&#34;&gt;1122 Hamiltonian Cycle (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1121</title>
+      <link>https://NTaurus.github.io/2020/02/a1121/</link>
+      <pubDate>Sun, 09 Feb 2020 21:21:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1121/</guid>
+      <description>&lt;h2 id=&#34;1121-damn-single-25分&#34;&gt;1121 Damn Single (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1120</title>
+      <link>https://NTaurus.github.io/2020/02/a1120/</link>
+      <pubDate>Sun, 09 Feb 2020 21:20:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1120/</guid>
+      <description>&lt;h2 id=&#34;1120-friend-numbers-20分&#34;&gt;1120 Friend Numbers (20分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1107</title>
+      <link>https://NTaurus.github.io/2020/02/a1107/</link>
+      <pubDate>Sat, 08 Feb 2020 21:27:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1107/</guid>
+      <description>&lt;h2 id=&#34;1107-social-clusters-30分&#34;&gt;1107 Social Clusters (30分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1105</title>
+      <link>https://NTaurus.github.io/2020/02/a1105/</link>
+      <pubDate>Sat, 08 Feb 2020 21:25:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1105/</guid>
+      <description>&lt;h2 id=&#34;1105-spiral-matrix-25分&#34;&gt;1105 Spiral Matrix (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1104</title>
+      <link>https://NTaurus.github.io/2020/02/a1104/</link>
+      <pubDate>Sat, 08 Feb 2020 21:24:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1104/</guid>
+      <description>&lt;h2 id=&#34;1104-sum-of-number-segments-20分&#34;&gt;1104 Sum of Number Segments (20分)&lt;/h2&gt;</description>
+    </item>
     
     <item>
       <title>A1102</title>
@@ -156,6 +291,15 @@
     </item>
     
     <item>
+      <title>A1080</title>
+      <link>https://NTaurus.github.io/2020/02/a1080/</link>
+      <pubDate>Sat, 08 Feb 2020 20:20:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1080/</guid>
+      <description>&lt;h2 id=&#34;1080-graduate-admission-30分&#34;&gt;1080 Graduate Admission (30分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
       <title>A1078</title>
       <link>https://NTaurus.github.io/2020/02/a1078/</link>
       <pubDate>Sat, 08 Feb 2020 20:18:28 +0800</pubDate>
@@ -234,6 +378,15 @@
       
       <guid>https://NTaurus.github.io/2020/02/a1067/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>A1066</title>
+      <link>https://NTaurus.github.io/2020/02/a1066/</link>
+      <pubDate>Fri, 07 Feb 2020 16:06:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1066/</guid>
+      <description>&lt;h2 id=&#34;1066-root-of-avl-tree-25分&#34;&gt;1066 Root of AVL Tree (25分)&lt;/h2&gt;</description>
     </item>
     
     <item>
@@ -399,6 +552,24 @@
     </item>
     
     <item>
+      <title>A1045</title>
+      <link>https://NTaurus.github.io/2020/02/a1045/</link>
+      <pubDate>Thu, 06 Feb 2020 12:45:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1045/</guid>
+      <description>&lt;h2 id=&#34;1045-favorite-color-stripe-30分&#34;&gt;1045 Favorite Color Stripe (30分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1044</title>
+      <link>https://NTaurus.github.io/2020/02/a1044/</link>
+      <pubDate>Thu, 06 Feb 2020 12:44:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1044/</guid>
+      <description>&lt;h2 id=&#34;1044-shopping-in-mars-25分&#34;&gt;1044 Shopping in Mars (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
       <title>A1043</title>
       <link>https://NTaurus.github.io/2020/02/a1043/</link>
       <pubDate>Thu, 06 Feb 2020 12:43:28 +0800</pubDate>
@@ -441,6 +612,15 @@
       
       <guid>https://NTaurus.github.io/2020/02/a1039/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>A1038</title>
+      <link>https://NTaurus.github.io/2020/02/a1038/</link>
+      <pubDate>Thu, 06 Feb 2020 12:38:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1038/</guid>
+      <description>&lt;h2 id=&#34;1038-recover-the-smallest-number-30分&#34;&gt;1038 Recover the Smallest Number (30分)&lt;/h2&gt;</description>
     </item>
     
     <item>
@@ -570,6 +750,24 @@
     </item>
     
     <item>
+      <title>A1013</title>
+      <link>https://NTaurus.github.io/2020/02/a1013/</link>
+      <pubDate>Thu, 06 Feb 2020 11:44:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1013/</guid>
+      <description>&lt;h2 id=&#34;1013-battle-over-cities-25分&#34;&gt;1013 Battle Over Cities (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>A1012</title>
+      <link>https://NTaurus.github.io/2020/02/a1012/</link>
+      <pubDate>Thu, 06 Feb 2020 11:43:28 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1012/</guid>
+      <description>&lt;h2 id=&#34;1012-the-best-rank-25分&#34;&gt;1012 The Best Rank (25分)&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
       <title>A1011</title>
       <link>https://NTaurus.github.io/2020/02/a1011/</link>
       <pubDate>Thu, 06 Feb 2020 11:42:28 +0800</pubDate>
@@ -630,6 +828,15 @@
       
       <guid>https://NTaurus.github.io/2020/02/a1004/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>A1003</title>
+      <link>https://NTaurus.github.io/2020/02/a1003/</link>
+      <pubDate>Thu, 06 Feb 2020 11:34:33 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/02/a1003/</guid>
+      <description>&lt;h2 id=&#34;1003-emergency-25分&#34;&gt;1003 Emergency (25分)&lt;/h2&gt;</description>
     </item>
     
     <item>
