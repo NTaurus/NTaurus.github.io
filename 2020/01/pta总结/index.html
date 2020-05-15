@@ -292,7 +292,7 @@
 <li><a href="#浮点数的比较">浮点数的比较</a></li>
 <li><a href="#字符函数库-ctype-h">字符函数库 ctype.h</a></li>
 <li><a href="#二分查找">二分查找</a></li>
-<li><a href="#甲级刷题模板">甲级刷题模板</a></li>
+<li><a href="#pta刷题模板">PTA刷题模板</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -528,7 +528,9 @@ char ch[50];
 int a;
 sscanf(str.c_str(),&quot;%d&quot;,&amp;a);    //sscanf是把字符串str以&quot;%d&quot;的格式写到a中
 sprintf(ch,&quot;%d&quot;,a);    //sprintf是把a以&quot;%d&quot;的格式写到ch字符数组中
-//string类要使用sscanf时需要写成 str.c_str() 但用在sprintf会报错，不知道什么原因，就先使用字符数组ch存吧                    
+//string类要使用sscanf时需要写成 str.c_str() 但用在sprintf会报错，不知道什么原因，就先使用字符数组ch存吧
+str=ch;     //可以用字符数组存，然后再赋值给string
+
 cout&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;ch&lt;&lt;endl; //打印结果为 123 123
 </code></pre>
 
@@ -602,7 +604,7 @@ tolower()   //将字符转换为小写字母函数
 }
 </code></pre>
 
-<h3 id="甲级刷题模板">甲级刷题模板</h3>
+<h3 id="pta刷题模板">PTA刷题模板</h3>
 
 <p>考试的时候敲一遍，复制几份。</p>
 
@@ -618,22 +620,26 @@ tolower()   //将字符转换为小写字母函数
 #include&lt;algorithm&gt;
 using namespace std;
 
-int main(){
-
-
+int main(){ 
+    #ifdef ONLINE_JUDGE
+    #else
+        freopen(&quot;1.txt&quot;,&quot;r&quot;,stdin); //文件输入
+    #endif  
 
 
     return 0;
 }
 </code></pre>
 
-<p>//或者</p>
+<p>//偷懒可以用万能头文件😄</p>
 
 <pre><code>#include&lt;bits/stdc++.h&gt;//万能头文件
 using namespace std;
 int main(){
-
-
+    #ifdef ONLINE_JUDGE
+    #else
+        freopen(&quot;1.txt&quot;,&quot;r&quot;,stdin); //文件输入 
+    #endif
 
     return 0;
 }

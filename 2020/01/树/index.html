@@ -530,10 +530,10 @@ node *insert(node *root,int val){
         root-&gt;val=val;
         root-&gt;lchild=root-&gt;rchild=NULL;
     }
-    else if(val&lt;root-&gt;val){     //当新插入的值比该结点值小则去左子树创建
+    else if(val&lt;root-&gt;val)    //当新插入的值比该结点值小则去左子树创建
         root-&gt;lchild=insert(root-&gt;lchild,val);
-    }
-    else root-&gt;rchild=insert(root-&gt;rchild,val);     //当新插入的值大或等于该结点值则去右子树创建
+    else 
+        root-&gt;rchild=insert(root-&gt;rchild,val);     //当新插入的值大或等于该结点值则去右子树创建
 }
 void Preorder(node *root){
     if(root==NULL)return;
