@@ -288,6 +288,7 @@
 </ul></li>
 <li><a href="#二叉搜索树的创建">二叉搜索树的创建</a></li>
 <li><a href="#平衡二叉树的创建">平衡二叉树的创建</a></li>
+<li><a href="#最近公共祖先lca">最近公共祖先LCA</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -379,6 +380,23 @@ For each test case, print in one line the level order traversal sequence of the 
     4 1 6 3 5 7 2</p>
 
 <p>题目大意根据后序跟中序建树，最后按层序输出。</p>
+
+<p>首先我们要知道：<br />
+1、在后序序列中，最后一个元素即为树的根节点。<br />
+2、然后在中序序列中找到根节结点元素所在的位置index，在这个index左边的序列为左子树的序列，在这个index右边的序列为右子树的序列</p>
+
+<p>然后我们在递归时，每次找到当前位置的根节点即可创建一棵树。
+</div>
+<div class="figure figure--fullWidth">
+  <img class="figure-img" src="https://gitee.com/ntaurus/blog_bed/raw/master/%e9%80%92%e5%bd%92%e5%bb%ba%e6%a0%91.png"  />
+</div>
+<div class="main-content-wrap"></p>
+
+</div>
+<div class="figure figure--fullWidth">
+  <img class="figure-img" src="https://gitee.com/ntaurus/blog_bed/raw/master/Tree.png"  />
+</div>
+<div class="main-content-wrap">
 
 <pre><code>#include&lt;iostream&gt;
 #include&lt;string&gt;
@@ -685,6 +703,20 @@ int main(){
     }
     cout&lt;&lt;root-&gt;val;
     return 0;
+}
+</code></pre>
+
+<h3 id="最近公共祖先lca">最近公共祖先LCA</h3>
+
+<p>LCA的在线求法，查询或者结点比较多的情况下时间复杂度会有点高。二叉搜索树跟平衡二叉树求LCA可以直接先序遍历，找到介于u跟v之间的数，即 <strong>(u &lt;= lca &amp;&amp; lca &lt;= v||v &lt;= lca &amp;&amp; lca &lt;= u)</strong></p>
+
+<pre><code>node *LCA(node *root,int u,int v){
+    if(root==NULL)return NULL;
+    if(root-&gt;val==u||root-&gt;val==v) return root;
+    node *L=LCA(root-&gt;left,u,v);
+    node *R=LCA(root-&gt;right,u,v);
+    if(L!=NULL&amp;&amp;R!=NULL) return root;
+    return L!=NULL?L:R;
 }
 </code></pre>
               
