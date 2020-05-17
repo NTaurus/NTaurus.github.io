@@ -283,11 +283,11 @@
 </ul></li>
 <li><a href="#二叉树的建立">二叉树的建立</a>
 <ul>
-<li><a href="#后序-中序建树">后序+中序建树</a></li>
+<li><a href="#后序-中序建树-图解">后序+中序建树+图解</a></li>
 <li><a href="#先序-中序建树">先序+中序建树</a></li>
 </ul></li>
 <li><a href="#二叉搜索树的创建">二叉搜索树的创建</a></li>
-<li><a href="#平衡二叉树的创建">平衡二叉树的创建</a></li>
+<li><a href="#平衡二叉树的创建-旋转图解">平衡二叉树的创建+旋转图解</a></li>
 <li><a href="#最近公共祖先lca">最近公共祖先LCA</a></li>
 </ul></li>
 </ul></li>
@@ -359,7 +359,7 @@
 
 <h3 id="二叉树的建立">二叉树的建立</h3>
 
-<h4 id="后序-中序建树">后序+中序建树</h4>
+<h4 id="后序-中序建树-图解">后序+中序建树+图解</h4>
 
 <p>PTA甲级：<br />
 A1020 Tree Traversals (25分)<br />
@@ -602,12 +602,41 @@ int main(){
 }
 </code></pre>
 
-<h3 id="平衡二叉树的创建">平衡二叉树的创建</h3>
+<h3 id="平衡二叉树的创建-旋转图解">平衡二叉树的创建+旋转图解</h3>
 
 <p>平衡二叉树失衡的类型有RR、LL、RL、LR四种类型。<br />
 当失衡的类型为RR时，只进行左旋，当失衡类型为LL时，只进行右旋。<br />
 当失衡的类型为RL时，先对失衡结点的右孩子进行右旋，再对该失衡结点进行左旋。<br />
-当失衡的类型为LR时，先对失衡结点的左孩子进行左旋，再对该失衡结点进行右旋。</p>
+当失衡的类型为LR时，先对失衡结点的左孩子进行左旋，再对该失衡结点进行右旋。<br />
+</div>
+<div class="figure figure--fullWidth">
+  <img class="figure-img" src="https://gitee.com/ntaurus/blog_bed/raw/master/%e5%8f%b3%e6%97%8b.png" alt="右单旋" /><span class="caption">右单旋</span>
+</div>
+<div class="main-content-wrap"></p>
+
+<hr />
+
+</div>
+<div class="figure figure--fullWidth">
+  <img class="figure-img" src="https://gitee.com/ntaurus/blog_bed/raw/master/%e5%b7%a6%e6%97%8b.png" alt="左单旋" /><span class="caption">左单旋</span>
+</div>
+<div class="main-content-wrap">
+
+<hr />
+
+</div>
+<div class="figure figure--fullWidth">
+  <img class="figure-img" src="https://gitee.com/ntaurus/blog_bed/raw/master/RL.png" alt="右旋&#43;左旋" /><span class="caption">右旋&#43;左旋</span>
+</div>
+<div class="main-content-wrap">
+
+<hr />
+
+</div>
+<div class="figure figure--fullWidth">
+  <img class="figure-img" src="https://gitee.com/ntaurus/blog_bed/raw/master/LR.png" alt="左旋&#43;右旋" /><span class="caption">左旋&#43;右旋</span>
+</div>
+<div class="main-content-wrap">
 
 <p>A1066 Root of AVL Tree (25分)<br />
 An AVL tree is a self-balancing binary search tree. In an AVL tree, the heights of the two child subtrees of any node differ by at most one; if at any time they differ by more than one, rebalancing is done to restore this property. Figures 1-4 illustrate the rotation rules.</p>
