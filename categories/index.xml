@@ -6,10 +6,28 @@
     <description>Recent content in Categories on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 May 2020 16:00:35 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 May 2020 10:42:43 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JAVA</title>
+      <link>https://NTaurus.github.io/categories/java/</link>
+      <pubDate>Fri, 29 May 2020 10:42:43 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>笔记</title>
+      <link>https://NTaurus.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 29 May 2020 10:42:43 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>PTA</title>
@@ -26,15 +44,6 @@
       <pubDate>Mon, 18 May 2020 16:00:35 +0800</pubDate>
       
       <guid>https://NTaurus.github.io/categories/%E5%9B%BE/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>笔记</title>
-      <link>https://NTaurus.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sun, 17 May 2020 10:15:04 +0800</pubDate>
-      
-      <guid>https://NTaurus.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     

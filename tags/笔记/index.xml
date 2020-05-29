@@ -6,10 +6,19 @@
     <description>Recent content in 笔记 on NTaurus的乌托邦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 May 2020 10:15:04 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 May 2020 10:42:43 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JDBC</title>
+      <link>https://NTaurus.github.io/2020/05/jdbc/</link>
+      <pubDate>Fri, 29 May 2020 10:42:43 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/2020/05/jdbc/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>递归生成全排列</title>
