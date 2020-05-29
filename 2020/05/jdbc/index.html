@@ -295,6 +295,10 @@
 <ul>
 <li><a href="#preparedstatement类提供的常用方法">PreparedStatement类提供的常用方法</a></li>
 </ul></li>
+<li><a href="#resultset接口">ResultSet接口</a>
+<ul>
+<li><a href="#resultset接口提供的常用方法">ResultSet接口提供的常用方法</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -506,6 +510,138 @@
 <div class="alert success ">
   <p>String、Double、Boolean等类型的用法相同</p>
 </div>
+
+<h1 id="resultset接口">ResultSet接口</h1>
+
+<p><code>java.sql.ResultSet</code>接口类似于一个数据表，通过该接口的实例可以获得检索结果集，以及对应数据表的相关信息，如<strong>列名、类型</strong>等，ResultSet实例通过执行查询数据库的语句生成。</p>
+
+<h2 id="resultset接口提供的常用方法">ResultSet接口提供的常用方法</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><span class="highlight-text success">first() </span></td>
+<td>移动指针到第一行。如果结果集为空则返回false，否则返回true。</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">last() </span></td>
+<td>移动指针到最后一行。如果结果集为空则返回false，否则返回true。</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">previous()</span></td>
+<td>移动指针到上一行。如果结果集为空则返回false，否则返回true。</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">next()</span></td>
+<td>移动指针到下一行。如果结果集为空则返回false，否则返回true。</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">clearParamenters()</span></td>
+<td>清除当前所有参数的值</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">beforeFirst() </span></td>
+<td>移动指针到ResultSet实例的开头，即第一行之前</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">afterLast() </span></td>
+<td>移动指针到ResultSet实例的开头，即最后一行之后</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">absolute(int i)</span></td>
+<td>移动指针到指定行。i为正数则表示从前向后编号，负数表示从后往前编号，编号均从1开始</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">relative(int i) </span></td>
+<td>移动指针到相对于当前行的指定行。i为正数则表示从前向后移动，负数表示从后往前移动。</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">getRow()</span></td>
+<td>查看当前行的索引编号。索引编号从1开始，不存在则返回0.</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">findColumn(String name)</span></td>
+<td>查看指定列名的索引编号。name为要查询列的名称</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">isBeforeFirst()、isAfterLast()、isFirst()、isLast()</span></td>
+<td>查看指针是否处于该位置，在则返回true，否则返回false</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">close() </span></td>
+<td>立即释放ResultSet实例占用的数据库和JDBC资源，当关闭所属的Statement实例时也将执行此操作</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">getRow()</span></td>
+<td>查看当前行的索引编号。索引编号从1开始，不存在则返回0.</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">findColumn(String name)</span></td>
+<td>查看指定列名的索引编号。name为要查询列的名称</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">isBeforeFirst()、isAfterLast()、isFirst()、isLast()</span></td>
+<td>查看指针是否处于该位置，在则返回true，否则返回false</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">getInt()</span></td>
+<td>以Int型获取指定列对应的SQL类型的值。如果列值为NULL，则返回0。其他获取其他数据类型的方式相同</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">updateInt</span></td>
+<td>更改SQL类型对应Int型的指定列。用于插入和更新，但不会同步到数据库，需要执行updateRow()或者insertRow()方法完成同步。其他数据类型更改的方式相同</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">moveToInsertRow()</span></td>
+<td>将指针移动到插入行，并记住当前行的位置</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">moveToCurrentRow()</span></td>
+<td>移动指针到记住的位置，即调用moveToInsertRow()方法之前所在的行</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">insertRow()</span></td>
+<td>将插入行的内容同步到数据库。如果指针不在插入行上，或者不允许为空的列的值为空，将抛出异常</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">updateRow()</span></td>
+<td>将当前行的更新内容同步到数据库。更新当前行的列值后，必须调用该方法，否则不会将更新的内容同步到数据库</td>
+</tr>
+
+<tr>
+<td align="center"><span class="highlight-text success">deleteRow()</span></td>
+<td>删除当前行。执行该方法后，并不会立即同步到数据库，而是在执行close()方法后才同步到数据库</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
