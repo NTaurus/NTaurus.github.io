@@ -279,6 +279,8 @@
             <div class="main-content-wrap">
               <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
 <ul>
+<li><a href="#基础知识">基础知识</a>
+<ul>
 <li><a href="#drivermanager接口">DriverManager接口</a>
 <ul>
 <li><a href="#drivermanager类提供的常用静态方法">DriverManager类提供的常用静态方法</a></li>
@@ -299,14 +301,23 @@
 <ul>
 <li><a href="#resultset接口提供的常用方法">ResultSet接口提供的常用方法</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#连接数据库">连接数据库</a>
+<ul>
+<li><a href="#准备工作">准备工作</a></li>
+<li><a href="#导入jar包">导入jar包</a></li>
+<li><a href="#连接数据库-1">连接数据库</a></li>
+</ul></li>
 </ul>
 </nav>
 
-<h1 id="drivermanager接口">DriverManager接口</h1>
+<h1 id="基础知识">基础知识</h1>
+
+<h2 id="drivermanager接口">DriverManager接口</h2>
 
 <p><code>java.sql.DriverManager</code>类负责管理JDBC驱动程序的基本服务，是JDBC的管理层，作用于用户和驱动程序之间负责跟踪可用的驱动程序，并在数据库和驱动程序之间建立连接。</p>
 
-<h2 id="drivermanager类提供的常用静态方法">DriverManager类提供的常用静态方法</h2>
+<h3 id="drivermanager类提供的常用静态方法">DriverManager类提供的常用静态方法</h3>
 
 <table>
 <thead>
@@ -341,11 +352,11 @@
 
 <hr />
 
-<h1 id="connection接口">Connection接口</h1>
+<h2 id="connection接口">Connection接口</h2>
 
 <p><code>java.sql.Connection</code>接口可与指定的数据库进行连接</p>
 
-<h2 id="connection类提供的常用方法">Connection类提供的常用方法</h2>
+<h3 id="connection类提供的常用方法">Connection类提供的常用方法</h3>
 
 <table>
 <thead>
@@ -423,11 +434,11 @@
 </tbody>
 </table>
 
-<h1 id="statement接口">Statement接口</h1>
+<h2 id="statement接口">Statement接口</h2>
 
 <p><code>java.sql.Statement</code>接口用来执行静态的SQL语句，并返回执行的结果。</p>
 
-<h2 id="statement类提供的常用方法">Statement类提供的常用方法</h2>
+<h3 id="statement类提供的常用方法">Statement类提供的常用方法</h3>
 
 <table>
 <thead>
@@ -465,11 +476,11 @@
 </tbody>
 </table>
 
-<h1 id="preparedstatement接口">PreparedStatement接口</h1>
+<h2 id="preparedstatement接口">PreparedStatement接口</h2>
 
 <p><code>java.sql.PreparedStatement</code>接口<strong>继承并扩展</strong>了<code>Statement</code>接口，用来执行<strong>动态</strong>的SQL语句，即包含参数的SQL语句。</p>
 
-<h2 id="preparedstatement类提供的常用方法">PreparedStatement类提供的常用方法</h2>
+<h3 id="preparedstatement类提供的常用方法">PreparedStatement类提供的常用方法</h3>
 
 <table>
 <thead>
@@ -511,11 +522,11 @@
   <p>String、Double、Boolean等类型的用法相同</p>
 </div>
 
-<h1 id="resultset接口">ResultSet接口</h1>
+<h2 id="resultset接口">ResultSet接口</h2>
 
 <p><code>java.sql.ResultSet</code>接口类似于一个数据表，通过该接口的实例可以获得检索结果集，以及对应数据表的相关信息，如<strong>列名、类型</strong>等，ResultSet实例通过执行查询数据库的语句生成。</p>
 
-<h2 id="resultset接口提供的常用方法">ResultSet接口提供的常用方法</h2>
+<h3 id="resultset接口提供的常用方法">ResultSet接口提供的常用方法</h3>
 
 <table>
 <thead>
@@ -612,7 +623,7 @@
 </tr>
 
 <tr>
-<td align="center"><span class="highlight-text success">updateInt</span></td>
+<td align="center"><span class="highlight-text success">updateInt()</span></td>
 <td>更改SQL类型对应Int型的指定列。用于插入和更新，但不会同步到数据库，需要执行updateRow()或者insertRow()方法完成同步。其他数据类型更改的方式相同</td>
 </tr>
 
@@ -642,6 +653,135 @@
 </tr>
 </tbody>
 </table>
+
+<h1 id="连接数据库">连接数据库</h1>
+
+<h2 id="准备工作">准备工作</h2>
+
+<div class="alert success ">
+  <p>需要的工具：<br />
+1、eclipse<br />
+2、Mysql<br />
+3、sql-connector-java包</p>
+</div>
+
+<div class="alert info ">
+  <p>安装Mysql:<a href="https://zhuanlan.zhihu.com/p/37152572">教程</a></p>
+</div>
+
+<div class="alert info ">
+  <p>Mysql安装好后下载<a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.20">sql-connector-java</a></p>
+</div>
+
+<p>进入链接后，点击下面的<strong>jar</strong>即可下载<br />
+<img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc1.png" alt="下载connector" /></p>
+
+<h2 id="导入jar包">导入jar包</h2>
+
+<div class="alert info ">
+  <p>创建项目</p>
+</div>
+
+<p><img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc2.png" alt="java项目" /></p>
+
+<p><img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc3.png" alt="java项目" />
+<img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc4.png" alt="java项目" /></p>
+
+<div class="alert info ">
+  <p>1、创建lib文件夹<br />
+2、将mysql-connector-java包导入lib文件夹中</p>
+</div>
+
+<p>右键SQL项目，点击创建Folder(文件夹)，并命名为lib
+<img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc5.png" alt="创建文件夹" /></p>
+
+<p>将mysql-connector-java解压到桌面，打开文件夹找到<span class="highlight-text success">mysql-connector-java-8.0.20.jar</span><br />
+<img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc6.png" alt="jar" />
+将jar包直接拖到lib文件夹中即可<br />
+<img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc7.png" alt="jar" /></p>
+
+<h2 id="连接数据库-1">连接数据库</h2>
+
+<p>首先在Mysql中创建一个数据库STU：</p>
+
+<pre><code>create database STU;
+</code></pre>
+
+<p>创建一个表：</p>
+
+<pre><code>use STU
+create table mm(
+    id INT(8) primary key,
+    name CHAR(20) not null,
+    score INT(2) not null
+);
+</code></pre>
+
+<p>表的结构为：<br />
+<img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc8.png" alt="jar" /></p>
+
+<div class="alert success ">
+  <p>完成以上，即可开始连接数据库！</p>
+</div>
+
+<pre><code>package sqlpackage;
+
+import java.sql.*;
+
+/**
+* @author NTaurus
+*
+*/
+public class Dbc {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        //驱动器名字
+        String driver = &quot;com.mysql.cj.jdbc.Driver&quot;;
+        //所连接数据库的url，(?serverTimezone=GMT)为设置时差
+        String url = &quot;jdbc:mysql://localhost:3306/STU?serverTimezone=GMT&quot;;
+
+        //用户名
+        String user = &quot;root&quot;;
+        //密码
+        String password = &quot;Limit0502&quot;;
+        //创建Connection的实例
+        Connection con;
+        try {
+            //加载驱动器
+            Class.forName(driver);
+            //使用getConnection()方法连接数据库
+            con = DriverManager.getConnection(url,user,password);
+            //创建Statement对象，用来执行静态sql语句
+            Statement st = con.createStatement();
+            ResultSet rs;
+            String q = &quot;SELECT *FROM 信息表&quot;;
+            rs = st.executeQuery(q);
+            System.out.println(&quot;连接数据库成功！&quot;);
+            System.out.println(&quot;+----+-----+-----+&quot;);
+            System.out.println(&quot;|   学号        名字       分数|&quot;);
+            System.out.println(&quot;+----+-----+-----+&quot;);
+            while(rs.next()) {  //在表中从头到尾遍历
+                System.out.println('|'+rs.getString(&quot;id&quot;)+&quot;  &quot;+rs.getString(&quot;name&quot;)+&quot;   &quot;+rs.getInt(&quot;score&quot;)+&quot;|&quot;);
+            }
+            System.out.println(&quot;+----+-----+-----+&quot;);
+            rs.close();
+            con.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}
+</code></pre>
+
+<div class="alert success ">
+  <p>连接成功！</p>
+</div>
+
+<p><img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc9.png" alt="jar" /></p>
               
             </div>
           </div>
