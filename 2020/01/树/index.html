@@ -286,6 +286,7 @@
 <li><a href="#后序-中序建树-图解">后序+中序建树+图解</a></li>
 <li><a href="#先序-中序建树">先序+中序建树</a></li>
 </ul></li>
+<li><a href="#层序-中序建树图解">层序+中序建树图解</a></li>
 <li><a href="#二叉搜索树的创建">二叉搜索树的创建</a></li>
 <li><a href="#平衡二叉树的创建-旋转图解">平衡二叉树的创建+旋转图解</a></li>
 <li><a href="#最近公共祖先lca">最近公共祖先LCA</a></li>
@@ -531,6 +532,80 @@ int main(){
     }
     BFS(root);
     return 0;
+}
+</code></pre>
+
+<h3 id="层序-中序建树图解">层序+中序建树图解</h3>
+
+<p>层序+中序建树与先序+中序建树的思路差不多，都是中序序列划分左右子树，先序或层序提供当前树的根节点。<br />
+首先要清楚：<br />
+1、层序的第一个结点即为当前树的根节点，所以每次55
+2、已知当前树的根节点在中序序列中即可划分左右子树</p>
+
+</div>
+<div class="figure figure--fullWidth">
+  <img class="figure-img" src="https://gitee.com/ntaurus/blog_bed/raw/master/In_level.png" alt="层序&#43;中序建树图解" /><span class="caption">层序&#43;中序建树图解</span>
+</div>
+<div class="main-content-wrap">
+
+<p>输入：</p>
+
+<pre><code>7
+2 7 4 1 5 3 6
+1 2 3 4 5 6 7
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code>2 7 4 1 5 3 6
+</code></pre>
+
+<hr />
+
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+struct node{
+    int val;
+    node *left,*right;
+};
+const int MAXN=1005;
+int In[MAXN],Lv[MAXN],n;
+int Find(int inL,int inR){  //找到当前中序序列中第一次在层序序列中出现的元素的下标 
+    for(int i=0;i&lt;n;i++){   //遍历层序序列 
+        for(int j=inL;j&lt;=inR;j++){  //遍历传入的中序子序列 
+            if(Lv[i]==In[j]){    
+                return i;   //返回下标 
+            }
+        }
+    }
+}
+//inL跟inR分别是中序序列中的左右边界，pos是从层序序列中找到根节点的下标 
+node *create(int inL,int inR,int pos){
+    if(inL&gt;inR)return NULL; 
+    node *root=new node;
+    root-&gt;val=Lv[pos];  //pos即为当前树的根节点元素 
+    int i=inL;
+    for(;i&lt;=inR;i++){   // 找到中序序列中根节点的下标
+        if(In[i]==Lv[pos])
+            break;
+    }
+    int num=i-inL;      //获取左右子树的分界 
+    root-&gt;left=create(inL,inL+num-1,Find(inL,inL+num-1));   //往左孩子递归建树 
+    root-&gt;right=create(inL+num+1,inR,Find(inL+num+1,inR));  //往右孩子递归建树 
+    return root;    //返回当前的结点 
+}
+void dfs(node *root){   //中序遍历 
+    if(root==NULL)return;
+    dfs(root-&gt;left);
+    cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+    dfs(root-&gt;right);
+}
+int main(){
+    cin&gt;&gt;n;
+    for(int i=0;i&lt;n;i++)cin&gt;&gt;In[i]; //中序序列 
+    for(int i=0;i&lt;n;i++)cin&gt;&gt;Lv[i]; //层序序列 
+    node *root=create(0,n-1,0); //建树 
+    dfs(root);  //打印 
 }
 </code></pre>
 
