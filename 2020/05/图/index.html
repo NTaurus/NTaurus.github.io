@@ -269,8 +269,10 @@
       <div id="main" data-behavior="5"
         class="hasCover
                hasCoverMetaIn
-               ">
+               hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">🤪</span>
           
           
           <div class="post-content markdown" itemprop="articleBody">
@@ -305,6 +307,7 @@
 <li><a href="#最短路径">最短路径</a>
 <ul>
 <li><a href="#单源最短路径-dijktra">单源最短路径(Dijktra)</a></li>
+<li><a href="#dijkstra-dfs求解算法">Dijkstra+DFS求解算法</a></li>
 <li><a href="#全源最短路径-floyd">全源最短路径（Floyd）</a></li>
 </ul></li>
 <li><a href="#最小生成树">最小生成树</a>
@@ -583,64 +586,156 @@ int main(){
 */ 
 </code></pre>
 
-<h3 id="全源最短路径-floyd">全源最短路径（Floyd）</h3>
+<h3 id="dijkstra-dfs求解算法">Dijkstra+DFS求解算法</h3>
+
+<div class="alert success ">
+  <p>算法思路分两部分：<br />
+1、对源点进行Dijkstra，在求最短路径的时候，需要用到二维数组pre[maxn]记录前驱顶点
+2、通过对终点进行DFS，可枚举所用的最短路径，可统计最短路径的条数、或者计算每条路径的优化尺度等等，选择最优的路径。</p>
+</div>
 
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
-const int maxv=500; //最大顶点数
-const int INF=0xfffffff;    //设INF为很大的数
-int N,M;    //N、M分别为顶点数跟边数 
-int dis[maxv][maxv];
-void Floyd(){
-    for(int k=0;k&lt;N;k++){
-        for(int i=0;i&lt;N;i++){
-            for(int j=0;j&lt;N;j++){
-                if(dis[i][k]!=INF&amp;&amp;dis[k][j]!=INF&amp;&amp;dis[i][k]+dis[k][j]&lt;dis[i][j]){
-                    dis[i][j]=dis[i][k]+dis[k][j];
+const int maxn=1005;    //最大顶点数 
+const int inf=0x3fffffff;    //设inf为无穷大 
+int G[maxn][maxn];  //存放图 
+int N,M,st,ed,dis[maxn+1],n;//N为顶点数，M为边数，dis是存放源点到各个顶点的距离,n为最短路径的条数
+bool visit[maxn]={false};//访问 
+vector&lt;int&gt;pre[maxn],path;//pre[]为二维数组，来存每个顶点的前驱顶点，path为dfs时走的路径 
+void Dijkstra(int s){   //s为源点 
+    fill(dis,dis+maxn+1,inf);//初始化源点到各顶点的距离都为无穷 
+    dis[s]=0;   //源点到源点的距离为0 
+    for(int i=1;i&lt;=N;i++){  //循环N次 
+        int u=-1,min=inf;    
+        for(int j=1;j&lt;=N;j++){  //找到未访问且与源点距离最短的点 
+            if(dis[j]&lt;min&amp;&amp;visit[j]==false){
+                u=j;
+                min=dis[j];
+            }
+        }
+        visit[u]=true;  //标记未已访问 
+        if(u==-1) return;   //如果找不到则u还是为-1，即该源点与其他顶点不连通 
+        for(int v=1;v&lt;=N;v++){
+            if(visit[v]==false&amp;&amp;G[u][v]!=inf){
+                if(dis[u]+G[u][v]&lt;dis[v]){   //以顶点u作为标尺优化所有能使距离变小的且未访问的顶点 
+                    dis[v]=G[u][v]+dis[u];  //更新dis[v]
+                    pre[v].clear();         //找到更短的路径，则删除顶点v的所有的前驱顶点 
+                    pre[v].push_back(u);    //将u作为新的前驱顶点 
+                }
+                else if(dis[u]+G[u][v]==dis[v]){//如果相等则说明短路路径不只一条 
+                    pre[v].push_back(u);//同样把u作为v的前驱结点 
+                }       
+            }
+
+        }
+    }
+}
+void DFS(int ed){   //ed为终点 
+    path.push_back(ed);//将顶点ed放入路径中 
+    if(ed==st){ //如果dfs到起点，这时一条以起点为st终点为ed的最短路径生成
+        n++;
+        for(int i=path.size()-1;i&gt;=0;i--){  //由于是从终点往前dfs，故所走的路径是倒过来的，逆序输出即可 
+            cout&lt;&lt;path[i]&lt;&lt;' ';
+        }
+        cout&lt;&lt;endl;
+    }
+    for(int i=0;i&lt;pre[ed].size();i++){  //DFS顶点ed所有的前驱顶点 
+        DFS(pre[ed][i]);
+    }
+    path.pop_back();    //递归到此处，所有经过顶点ed的路径已枚举完毕，即可删除。  
+}
+int main(){
+    cin&gt;&gt;N&gt;&gt;M&gt;&gt;st&gt;&gt;ed;  //N、M分别为顶点数跟边数，st为源点，ed为终点 
+    fill(G[0],G[0]+maxn*maxn,inf);    //初始化所有边的距离为很大的数来表示无穷 
+    for(int i=0;i&lt;M;i++){
+        int a,b,c;      //a,b为顶点，c为权值（距离） 
+        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
+        G[a][b]=G[b][a]=c;  //无向图
+        //有向图可写成以下
+        //G[a][b]=1; 
+    }
+    Dijkstra(st);    //源点为st
+    DFS(ed);    //终点为ed
+    return 0;
+}
+/**输入**
+6 7 1 6
+1 2 3
+1 3 4
+1 5 1
+2 3 1
+2 4 1
+3 6 2
+4 5 1
+*/
+
+/**输出**
+1 3 6
+1 2 3 6
+1 5 4 2 3 6
+*/ 
+</code></pre>
+
+<h3 id="全源最短路径-floyd">全源最短路径（Floyd）</h3>
+
+<pre><code class="language-c++">
+    #include&lt;bits/stdc++.h&gt;
+    using namespace std;
+    const int maxv=500;	//最大顶点数
+    const int INF=0xfffffff;	//设INF为很大的数
+    int N,M;	//N、M分别为顶点数跟边数 
+    int dis[maxv][maxv];
+    void Floyd(){
+        for(int k=0;k&lt;N;k++){
+            for(int i=0;i&lt;N;i++){
+                for(int j=0;j&lt;N;j++){
+                    if(dis[i][k]!=INF&amp;&amp;dis[k][j]!=INF&amp;&amp;dis[i][k]+dis[k][j]&lt;dis[i][j]){
+                        dis[i][j]=dis[i][k]+dis[k][j];
+                    }
                 }
             }
         }
     }
-}
-int main(){
-    cin&gt;&gt;N&gt;&gt;M;
-    fill(dis[0],dis[0]+maxv*maxv,INF);  //初始化图中的所有边都为INF，即所有边都不存在 
-    for(int i=0;i&lt;N;i++)
-        dis[i][i]=0;        //顶点i到i的距离为0 
-    for(int i=0;i&lt;M;i++){
-        int u,v,w;  //u、v为顶点，w为边权 
-        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;
-        //dis[u][v]=G[v][u]=w;  //无向图
-        dis[u][v]=w;    //有向图 
+    int main(){
+        cin&gt;&gt;N&gt;&gt;M;
+        fill(dis[0],dis[0]+maxv*maxv,INF);	//初始化图中的所有边都为INF，即所有边都不存在 
+        for(int i=0;i&lt;N;i++)
+            dis[i][i]=0;		//顶点i到i的距离为0 
+        for(int i=0;i&lt;M;i++){
+            int u,v,w;	//u、v为顶点，w为边权 
+            cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;
+            //dis[u][v]=G[v][u]=w;	//无向图
+            dis[u][v]=w;	//有向图 
+        }
+        Floyd();	//算法入口 
+        for(int i=0;i&lt;N;i++){	//打印 
+            for(int j=0;j&lt;N;j++)
+                cout&lt;&lt;dis[i][j]&lt;&lt;' ';
+            cout&lt;&lt;endl;
+        } 
+        return 0;
     }
-    Floyd();    //算法入口 
-    for(int i=0;i&lt;N;i++){   //打印 
-        for(int j=0;j&lt;N;j++)
-            cout&lt;&lt;dis[i][j]&lt;&lt;' ';
-        cout&lt;&lt;endl;
-    } 
-    return 0;
-}
-/**输入**
-6 8
-0 1 1
-0 3 4
-0 4 4
-1 3 2
-2 5 1
-3 2 2
-3 4 3
-4 5 3
-*/
+    /**输入**
+    6 8
+    0 1 1
+    0 3 4
+    0 4 4
+    1 3 2
+    2 5 1
+    3 2 2
+    3 4 3
+    4 5 3
+    */
 
-/**输出**
-0 1 5 3 4 6
-268435455 0 4 2 5 5
-268435455 268435455 0 268435455 268435455 1
-268435455 268435455 2 0 3 3
-268435455 268435455 268435455 268435455 0 3
-268435455 268435455 268435455 268435455 268435455 0
-*/ 
+    /**输出**
+    0 1 5 3 4 6
+    268435455 0 4 2 5 5
+    268435455 268435455 0 268435455 268435455 1
+    268435455 268435455 2 0 3 3
+    268435455 268435455 268435455 268435455 0 3
+    268435455 268435455 268435455 268435455 268435455 0
+    */ 
+    
 </code></pre>
 
 <h2 id="最小生成树">最小生成树</h2>
