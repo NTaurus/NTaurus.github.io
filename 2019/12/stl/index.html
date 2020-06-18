@@ -451,11 +451,14 @@ if(str1&lt;str2)   //或者&lt;=
 str.length()
 str.size()  //两个都是返回字符串的长度
 
+str.push_back('a'); //插入到末尾
 str.insert()    //插入
 str.insert(index,string);   //在index号插入字符串string
 string =&quot;abc&quot;,str2=&quot;123&quot;;
 str.insert(2,str2);  //此时str=&quot;ab123c&quot;;
 
+
+str.pop_back()  //删除最后一个元素
 str.erase()    //删除单个字符或一个区间的所有元素。时间复杂度：O(N)
 str.erase(it)   //删除it指向的字符
 str.erase(first,last)   //删除[first,last)区间内的元素
@@ -626,6 +629,7 @@ s.size()    //返回栈内元素的个数
   <span class="copyrights">
     &copy; 2020 <a href="https://github.com/NTaurus">NTaurus</a>. All Rights Reserved
   </span>
+  <p>要站在自己热爱的世界里闪闪发光</p>
 </footer>
 
       </div>

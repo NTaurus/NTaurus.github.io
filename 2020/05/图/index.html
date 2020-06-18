@@ -359,7 +359,7 @@ int G[maxn][maxn];  //G存储图的边
         int v=q.front(); //取队首顶点
         cout&lt;&lt;v&lt;&lt;' ';    //访问的方式
         q.pop();         //访问完该顶点，即可将其出队
-        for(int i=1;i&lt;=N;i++){
+        for(int i=1;i&lt;=N;i++){//遍历所有顶点，找到所有与v相连的顶点
             if(visit[i]==0&amp;&amp;G[v][i]==1){    //如果i未被访问且i与v有相连的边，则把i入队
                 visit[i]=1;     //访问标记要在此处写
                 q.push(i);      //入队
@@ -1007,6 +1007,7 @@ int main(){
   <span class="copyrights">
     &copy; 2020 <a href="https://github.com/NTaurus">NTaurus</a>. All Rights Reserved
   </span>
+  <p>要站在自己热爱的世界里闪闪发光</p>
 </footer>
 
       </div>
