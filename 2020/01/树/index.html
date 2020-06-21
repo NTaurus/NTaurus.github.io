@@ -520,15 +520,15 @@ int main(){
     for(int i=0;i&lt;n;i++)cin&gt;&gt;pre[i];
     node *root=create(0,n-1,0,n-1);//根据先序跟中序创建树
     queue&lt;node*&gt;q;  //利用队列实现左右子树的交换
-    q.push(root);
-    while(!q.empty()){
-        node *p=q.front();
-        node *temp=p-&gt;lchild;       
-        p-&gt;lchild=p-&gt;rchild;
-        p-&gt;rchild=temp;
-        q.pop();
-        if(p-&gt;lchild!=NULL) q.push(p-&gt;lchild);
-        if(p-&gt;rchild!=NULL) q.push(p-&gt;rchild);
+    q.push(root);   //根节点入队
+    while(!q.empty()){  //当队列不为空
+        node *p=q.front();  //取队首
+        node *temp=p-&gt;lchild;  //临时指针指向左孩子
+        p-&gt;lchild=p-&gt;rchild;   //p的右孩子变成p的左孩子
+        p-&gt;rchild=temp;        //p的左孩子变成p的右孩子
+        q.pop();                //出队
+        if(p-&gt;lchild!=NULL) q.push(p-&gt;lchild);  //左孩子不为空则入队
+        if(p-&gt;rchild!=NULL) q.push(p-&gt;rchild);右孩子不为空则入队
     }
     BFS(root);
     return 0;
@@ -936,7 +936,7 @@ int main(){
   <span class="copyrights">
     &copy; 2020 <a href="https://github.com/NTaurus">NTaurus</a>. All Rights Reserved
   </span>
-  <p>要站在自己热爱的世界里闪闪发光</p>
+  <p><font color="#FF0000">❤要站在自己热爱的世界里闪闪发光❤</font> </p>
 </footer>
 
       </div>

@@ -697,8 +697,13 @@
 
 <p>将mysql-connector-java解压到桌面，打开文件夹找到<span class="highlight-text success">mysql-connector-java-8.0.20.jar</span><br />
 <img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc6.png" alt="jar" />
-将jar包直接拖到lib文件夹中即可<br />
+将jar包直接拖到lib文件夹
 <img src="https://gitee.com/ntaurus/blog_bed/raw/master/jdbc7.png" alt="jar" /></p>
+
+<p>然后添加连接
+<img src="https://gitee.com/ntaurus/blog_bed/raw/master/sql5.png" alt="jar" /></p>
+
+<p><img src="https://gitee.com/ntaurus/blog_bed/raw/master/sql6.png" alt="jar" /></p>
 
 <h2 id="连接数据库-1">连接数据库</h2>
 
@@ -715,6 +720,13 @@ create table 信息表(
     name CHAR(20) not null,
     score INT(2) not null
 );
+</code></pre>
+
+<p>插入信息：</p>
+
+<pre><code>insert into 信息表(id,name,score) values(18240001,'张三',87);
+insert into 信息表(id,name,score) values(18240002,'李四',84);
+insert into 信息表(id,name,score) values(18240003,'王五',79);
 </code></pre>
 
 <p>表的结构为：<br />
@@ -897,7 +909,7 @@ public class Dbc {
   <span class="copyrights">
     &copy; 2020 <a href="https://github.com/NTaurus">NTaurus</a>. All Rights Reserved
   </span>
-  <p>要站在自己热爱的世界里闪闪发光</p>
+  <p><font color="#FF0000">❤要站在自己热爱的世界里闪闪发光❤</font> </p>
 </footer>
 
       </div>
