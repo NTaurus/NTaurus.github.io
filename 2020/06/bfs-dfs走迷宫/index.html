@@ -423,6 +423,83 @@ DDDDRR
 */ 
 
 </code></pre>
+
+<p>题目背景
+给定一个N*M方格的迷宫，迷宫里有T处障碍，障碍处不可通过。给定起点坐标和终点坐标，问: 每个方格最多经过1次，有多少种从起点坐标到终点坐标的方案。在迷宫中移动有上下左右四种方式，每次只能移动一个方格。数据保证起点上没有障碍。</p>
+
+<p>题目描述<br />
+无</p>
+
+<p>输入格式<br />
+第一行N、M和T，N为行，M为列，T为障碍总数。第二行起点坐标SX,SY，终点坐标FX,FY。接下来T行，每行为障碍点的坐标。</p>
+
+<p>输出格式<br />
+给定起点坐标和终点坐标，问每个方格最多经过1次，从起点坐标到终点坐标的方案总数。</p>
+
+<p>输入输出样例
+输入:
+    2 2 1
+    1 1 2 2
+    1 2
+输出 :
+    1
+说明/提示
+【数据规模】</p>
+
+<p>1≤N,M≤5</p>
+
+<p>统计能从起点到终点的路径数。</p>
+
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;string&gt;
+#include&lt;cmath&gt;
+#include&lt;queue&gt;
+#include&lt;map&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int G[10][10];	//迷宫地图 
+int N,M,T,sx,sy,dx,dy,ans=0;//N个点，M条边，T个障碍物，sx,sy为起点行、列坐标；dx,dy为终点行、列坐标 
+int visit[10][10];	//标记访问的数组 
+int Dx[4]={1,-1,0,0};//行的移动
+int Dy[4]={0,0,1,-1};//列的移动 
+
+void dfs(int x,int y){
+	if(x==dx&amp;&amp;y==dy){//如果来到了终点，就得到一组解 
+		ans++; 
+		return;	//剪枝 
+	}
+	for(int i=0;i&lt;4;i++){	//枚举上下左右四个方向的位置 
+		int xx=x+Dx[i],yy=y+Dy[i];	//获取坐标 
+		if(visit[xx][yy]==0&amp;&amp;G[xx][yy]==0){	//如果该点未访问且没有障碍物 
+			visit[xx][yy]=1;// 标记已访问 
+			dfs(xx,yy);	//进入下一个点 
+			visit[xx][yy]=0;//回溯，改回原来的状态 
+		}
+	}
+}
+int main(){
+	cin&gt;&gt;N&gt;&gt;M&gt;&gt;T&gt;&gt;sx&gt;&gt;sy&gt;&gt;dx&gt;&gt;dy;
+	fill(G[0],G[0]+(N+2)*(M+2),0);
+	for(int i=0;i&lt;T;i++){
+		int a,b;
+		cin&gt;&gt;a&gt;&gt;b;
+		G[a][b]=1;	//障碍物 
+	}
+	for(int i=0;i&lt;N+2;i++){	//加围墙 
+		G[i][0]=G[i][M+1]=1;
+	}
+	for(int i=0;i&lt;M+2;i++){	//加围墙 
+		G[0][i]=G[N+1][i]=1;
+	}
+	visit[sx][sy]=visit[sy][sx]=1;	//标记起点已访问 
+	dfs(sx,sy);	//dfs入口 
+	cout&lt;&lt;ans;	
+	return 0;
+}
+
+</code></pre>
               
             </div>
           </div>

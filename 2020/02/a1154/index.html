@@ -318,7 +318,7 @@ No
 
 <p>that no two vertices sharing the same edge have the same color.这句话理解半天。。</p>
 
-<pre><code>#include&lt;bits/stdc++.h&gt;
+<pre><code class="language-c++">#include&lt;bits/stdc++.h&gt;
 using namespace std;
 vector&lt;int&gt;G[10005];
 int main(){
@@ -339,7 +339,7 @@ int main(){
             mp[color[j]]=1;
         }
         for(int j=0;j&lt;N;j++){
-
+            
             for(int k=0;k&lt;G[j].size();k++){
                 if(color[j]==color[G[j][k]]){
                     is=0;
