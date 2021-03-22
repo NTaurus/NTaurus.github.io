@@ -289,6 +289,7 @@
 <li><a href="#层序-中序建树图解">层序+中序建树图解</a></li>
 <li><a href="#二叉搜索树的创建">二叉搜索树的创建</a></li>
 <li><a href="#平衡二叉树的创建-旋转图解">平衡二叉树的创建+旋转图解</a></li>
+<li><a href="#排序建树">排序建树</a></li>
 <li><a href="#最近公共祖先lca">最近公共祖先LCA</a></li>
 </ul></li>
 </ul></li>
@@ -808,6 +809,61 @@ int main(){
     cout&lt;&lt;root-&gt;val;
     return 0;
 }
+</code></pre>
+
+<h3 id="排序建树">排序建树</h3>
+
+<p>给定一个二叉搜索树的先序（后序或者中序）序列，要求还原这个树。</p>
+
+<p>1.根据二叉搜索树的特性可知：二叉搜索树的中序遍历是有序的（从小到大），因此对给定的序列从小到大排序即可得到这颗树的中序遍历。<br />
+2.根据先序+中序（后序+中序或者层序+中序）即可还原这二叉搜索树。</p>
+
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+struct node {
+    node *left,*right;
+    int val;
+};
+const int maxn=500;
+int Pre[maxn],In[maxn];
+
+node *create(int preL,int preR,int InL,int InR){
+    if(preL&gt;preR)return NULL;
+    node *root=new node;
+    root-&gt;val=Pre[preL];
+    int i=InL;
+    for(i=InL;i&lt;=InR;i++){
+        if(In[i]==Pre[preL])break;
+    }
+    int num=i-InL;
+    root-&gt;left=create(preL+1,preL+num,InL,InL+num-1);
+    root-&gt;right=create(preL+num+1,preR,InL+num+1,InR);
+    return root;
+}
+void level(node *root){
+    queue&lt;node *&gt;q;
+    q.push(root);
+    while(!q.empty()){
+        root=q.front();
+        q.pop();
+        cout&lt;&lt;root-&gt;val&lt;&lt;' ';
+        if(root-&gt;left!=NULL)q.push(root-&gt;left);
+        if(root-&gt;right!=NULL)q.push(root-&gt;right);
+    }
+}
+int main(){
+    int N;
+    cin&gt;&gt;N;
+    for(int i=0;i&lt;N;i++){
+        cin&gt;&gt;In[i];
+        Pre[i]=In[i];
+    }
+    sort(In,In+N);
+    node *root = NULL;
+    root=create(0,N-1,0,N-1);
+    level(root);
+    return 0;
+} 
 </code></pre>
 
 <h3 id="最近公共祖先lca">最近公共祖先LCA</h3>
