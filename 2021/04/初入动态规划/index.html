@@ -8,33 +8,61 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.59.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="NTaurus">
-<meta name="keywords" content=", NTaurus的乌托邦, 乌托邦, ntaurus, ntaurus.com">
-<meta name="description" content="">
+<meta name="keywords" content="dp, NTaurus的乌托邦, 乌托邦, ntaurus, ntaurus.com">
+<meta name="description" content="凑零钱 给你 k 种面值的硬币，面值分别为 c1, c2 &hellip; ck，每种硬币的数量无限，再给一个总金额 amount，问你最少需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1 。
+输入样例： 3 3 1 2 5 输出样例: 3  1、确定 base case，这个很简单，显然目标金额 amount 为 0 时算法返回 0，因为不需要任何硬币就已经凑出目标金额了。
+2、确定「状态」，也就是原问题和子问题中会变化的变量。由于硬币数量无限，硬币的面额也是题目给定的，只有目标金额会不断地向 base case 靠近，所以唯一的「状态」就是目标金额 amount。
+3、确定「选择」，也就是导致「状态」产生变化的行为。目标金额为什么变化呢，因为你在选择硬币，你每选择一枚硬币，就相当于减少了目标金额。所以说所有硬币的面值，就是你的「选择」。
+4、明确 dp 函数/数组的定义。我们这里讲的是自顶向下的解法，所以会有一个递归的 dp 函数，一般来说函数的参数就是状态转移中会变化的量，也就是上面说到的「状态」；函数的返回值就是题目要求我们计算的量。就本题来说，状态只有一个，即「目标金额」，题目要求我们计算凑出目标金额所需的最少硬币数量。所以我们可以这样定义 dp 函数：
+dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。
+#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int dp[400]; int N,M; vector&lt;int&gt;v; // 1.定义dp数组的含义 // 2.找边界解 // 3.找动态转移方程 // 该问题的思路 // 1.将dp数组定义为：当总金额为i，则dp[i]表示至少需要dp[i]枚金币 // 2.显然当总金额为0时，至少需要0枚金币，当总金额小于0时无解。 // 3.遍历所有面值的金币，当金币面值为n时，且总金额为m时，那么dp[m-n]&#43;1(即总金额为m-n的解加1即为 // 总金额为m所需的金币数 // 自顶而下的动态规划，自顶而下求解子问题，把已求出的结果用dp数组存起来，求解释，先判断该子问题 // 是否已有解，若有解直接使用dp数组内的值。 int dfs(int n){ if(dp[n])return dp[n]; if(n==0)return 0; if(n&lt;0)return -1; int res=0x3f3f3f3; for(int i=0;i&lt;N;i&#43;&#43;){ int subproblem=dfs(n-v[i]); if(subproblem==-1)continue; dp[n-v[i]]=subproblem; res=min(res,subproblem&#43;1); } return res!">
 
 
-<meta property="og:description" content="">
+<meta property="og:description" content="凑零钱 给你 k 种面值的硬币，面值分别为 c1, c2 &hellip; ck，每种硬币的数量无限，再给一个总金额 amount，问你最少需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1 。
+输入样例： 3 3 1 2 5 输出样例: 3  1、确定 base case，这个很简单，显然目标金额 amount 为 0 时算法返回 0，因为不需要任何硬币就已经凑出目标金额了。
+2、确定「状态」，也就是原问题和子问题中会变化的变量。由于硬币数量无限，硬币的面额也是题目给定的，只有目标金额会不断地向 base case 靠近，所以唯一的「状态」就是目标金额 amount。
+3、确定「选择」，也就是导致「状态」产生变化的行为。目标金额为什么变化呢，因为你在选择硬币，你每选择一枚硬币，就相当于减少了目标金额。所以说所有硬币的面值，就是你的「选择」。
+4、明确 dp 函数/数组的定义。我们这里讲的是自顶向下的解法，所以会有一个递归的 dp 函数，一般来说函数的参数就是状态转移中会变化的量，也就是上面说到的「状态」；函数的返回值就是题目要求我们计算的量。就本题来说，状态只有一个，即「目标金额」，题目要求我们计算凑出目标金额所需的最少硬币数量。所以我们可以这样定义 dp 函数：
+dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。
+#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int dp[400]; int N,M; vector&lt;int&gt;v; // 1.定义dp数组的含义 // 2.找边界解 // 3.找动态转移方程 // 该问题的思路 // 1.将dp数组定义为：当总金额为i，则dp[i]表示至少需要dp[i]枚金币 // 2.显然当总金额为0时，至少需要0枚金币，当总金额小于0时无解。 // 3.遍历所有面值的金币，当金币面值为n时，且总金额为m时，那么dp[m-n]&#43;1(即总金额为m-n的解加1即为 // 总金额为m所需的金币数 // 自顶而下的动态规划，自顶而下求解子问题，把已求出的结果用dp数组存起来，求解释，先判断该子问题 // 是否已有解，若有解直接使用dp数组内的值。 int dfs(int n){ if(dp[n])return dp[n]; if(n==0)return 0; if(n&lt;0)return -1; int res=0x3f3f3f3; for(int i=0;i&lt;N;i&#43;&#43;){ int subproblem=dfs(n-v[i]); if(subproblem==-1)continue; dp[n-v[i]]=subproblem; res=min(res,subproblem&#43;1); } return res!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BFS&#43;DFS走迷宫">
-<meta name="twitter:title" content="BFS&#43;DFS走迷宫">
-<meta property="og:url" content="https://NTaurus.github.io/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/">
-<meta property="twitter:url" content="https://NTaurus.github.io/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/">
+<meta property="og:title" content="初入动态规划">
+<meta name="twitter:title" content="初入动态规划">
+<meta property="og:url" content="https://NTaurus.github.io/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+<meta property="twitter:url" content="https://NTaurus.github.io/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 <meta property="og:site_name" content="NTaurus&#39;Blog">
-<meta property="og:description" content="">
-<meta name="twitter:description" content="">
+<meta property="og:description" content="凑零钱 给你 k 种面值的硬币，面值分别为 c1, c2 &hellip; ck，每种硬币的数量无限，再给一个总金额 amount，问你最少需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1 。
+输入样例： 3 3 1 2 5 输出样例: 3  1、确定 base case，这个很简单，显然目标金额 amount 为 0 时算法返回 0，因为不需要任何硬币就已经凑出目标金额了。
+2、确定「状态」，也就是原问题和子问题中会变化的变量。由于硬币数量无限，硬币的面额也是题目给定的，只有目标金额会不断地向 base case 靠近，所以唯一的「状态」就是目标金额 amount。
+3、确定「选择」，也就是导致「状态」产生变化的行为。目标金额为什么变化呢，因为你在选择硬币，你每选择一枚硬币，就相当于减少了目标金额。所以说所有硬币的面值，就是你的「选择」。
+4、明确 dp 函数/数组的定义。我们这里讲的是自顶向下的解法，所以会有一个递归的 dp 函数，一般来说函数的参数就是状态转移中会变化的量，也就是上面说到的「状态」；函数的返回值就是题目要求我们计算的量。就本题来说，状态只有一个，即「目标金额」，题目要求我们计算凑出目标金额所需的最少硬币数量。所以我们可以这样定义 dp 函数：
+dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。
+#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int dp[400]; int N,M; vector&lt;int&gt;v; // 1.定义dp数组的含义 // 2.找边界解 // 3.找动态转移方程 // 该问题的思路 // 1.将dp数组定义为：当总金额为i，则dp[i]表示至少需要dp[i]枚金币 // 2.显然当总金额为0时，至少需要0枚金币，当总金额小于0时无解。 // 3.遍历所有面值的金币，当金币面值为n时，且总金额为m时，那么dp[m-n]&#43;1(即总金额为m-n的解加1即为 // 总金额为m所需的金币数 // 自顶而下的动态规划，自顶而下求解子问题，把已求出的结果用dp数组存起来，求解释，先判断该子问题 // 是否已有解，若有解直接使用dp数组内的值。 int dfs(int n){ if(dp[n])return dp[n]; if(n==0)return 0; if(n&lt;0)return -1; int res=0x3f3f3f3; for(int i=0;i&lt;N;i&#43;&#43;){ int subproblem=dfs(n-v[i]); if(subproblem==-1)continue; dp[n-v[i]]=subproblem; res=min(res,subproblem&#43;1); } return res!">
+<meta name="twitter:description" content="凑零钱 给你 k 种面值的硬币，面值分别为 c1, c2 &hellip; ck，每种硬币的数量无限，再给一个总金额 amount，问你最少需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1 。
+输入样例： 3 3 1 2 5 输出样例: 3  1、确定 base case，这个很简单，显然目标金额 amount 为 0 时算法返回 0，因为不需要任何硬币就已经凑出目标金额了。
+2、确定「状态」，也就是原问题和子问题中会变化的变量。由于硬币数量无限，硬币的面额也是题目给定的，只有目标金额会不断地向 base case 靠近，所以唯一的「状态」就是目标金额 amount。
+3、确定「选择」，也就是导致「状态」产生变化的行为。目标金额为什么变化呢，因为你在选择硬币，你每选择一枚硬币，就相当于减少了目标金额。所以说所有硬币的面值，就是你的「选择」。
+4、明确 dp 函数/数组的定义。我们这里讲的是自顶向下的解法，所以会有一个递归的 dp 函数，一般来说函数的参数就是状态转移中会变化的量，也就是上面说到的「状态」；函数的返回值就是题目要求我们计算的量。就本题来说，状态只有一个，即「目标金额」，题目要求我们计算凑出目标金额所需的最少硬币数量。所以我们可以这样定义 dp 函数：
+dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。
+#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int dp[400]; int N,M; vector&lt;int&gt;v; // 1.定义dp数组的含义 // 2.找边界解 // 3.找动态转移方程 // 该问题的思路 // 1.将dp数组定义为：当总金额为i，则dp[i]表示至少需要dp[i]枚金币 // 2.显然当总金额为0时，至少需要0枚金币，当总金额小于0时无解。 // 3.遍历所有面值的金币，当金币面值为n时，且总金额为m时，那么dp[m-n]&#43;1(即总金额为m-n的解加1即为 // 总金额为m所需的金币数 // 自顶而下的动态规划，自顶而下求解子问题，把已求出的结果用dp数组存起来，求解释，先判断该子问题 // 是否已有解，若有解直接使用dp数组内的值。 int dfs(int n){ if(dp[n])return dp[n]; if(n==0)return 0; if(n&lt;0)return -1; int res=0x3f3f3f3; for(int i=0;i&lt;N;i&#43;&#43;){ int subproblem=dfs(n-v[i]); if(subproblem==-1)continue; dp[n-v[i]]=subproblem; res=min(res,subproblem&#43;1); } return res!">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2020-06-19T23:18:52">
+    <meta property="article:published_time" content="2021-04-08T20:01:09">
   
   
-    <meta property="article:modified_time" content="2020-06-19T23:18:52">
+    <meta property="article:modified_time" content="2021-04-08T20:01:09">
   
   
   
     
-      <meta property="article:section" content="蓝桥杯">
+      <meta property="article:section" content="dp">
     
   
+  
+    
+      <meta property="article:tag" content="dp">
+    
   
 
 
@@ -46,12 +74,12 @@
 
 
 
-  <meta property="og:image" content="https://gitee.com/ntaurus/blog_bed/raw/master/girl.jpg">
-  <meta property="twitter:image" content="https://gitee.com/ntaurus/blog_bed/raw/master/girl.jpg">
+  <meta property="og:image" content="https://NTaurus.github.io/images/snow.png">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/snow.png">
 
 
-  <meta property="og:image" content="https://gitee.com/ntaurus/blog_bed/raw/master/girl.jpg">
-  <meta property="twitter:image" content="https://gitee.com/ntaurus/blog_bed/raw/master/girl.jpg">
+  <meta property="og:image" content="https://NTaurus.github.io/images/snow.png">
+  <meta property="twitter:image" content="https://NTaurus.github.io/images/snow.png">
 
 
 
@@ -60,14 +88,14 @@
   <meta property="twitter:image" content="https://NTaurus.github.io/images/touxiang.png">
 
 
-    <title>BFS&#43;DFS走迷宫</title>
+    <title>初入动态规划</title>
 
     <link rel="icon" href="images/login.png">
     
 
     
 
-    <link rel="canonical" href="https://NTaurus.github.io/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/">
+    <link rel="canonical" href="https://NTaurus.github.io/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -222,21 +250,21 @@
   <div class="post-header-cover
               text-center
               post-header-cover--full"
-       style="background-image:url('https://gitee.com/ntaurus/blog_bed/raw/master/girl.jpg')"
+       style="background-image:url('/images/snow.png')"
        data-behavior="5">
     
       <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      BFS&#43;DFS走迷宫
+      初入动态规划
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2020-06-19T23:18:52&#43;08:00">
+      <time itemprop="datePublished" datetime="2021-04-08T20:01:09&#43;08:00">
         
-  六月 19, 2020
+  四月 8, 2021
 
       </time>
     
@@ -245,7 +273,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://NTaurus.github.io/categories/%e8%93%9d%e6%a1%a5%e6%9d%af">蓝桥杯</a>
+      <a class="category-link" href="https://NTaurus.github.io/categories/dp">dp</a>
     
   
 
@@ -259,255 +287,98 @@
       <div id="main" data-behavior="5"
         class="hasCover
                hasCoverMetaIn
-               ">
+               hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">四月</span>
           
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>【问题描述】 下图给出了一个迷宫的平面图，其中标记为 1 的为障碍，标记为 0 的为可 以通行的地方。<br />
-    010000<br />
-    000100<br />
-    001001<br />
-    110000<br />
-迷宫的入口为左上角，出口为右下角，在迷宫中，只能从一个位置走到这 个它的上、下、左、右四个方向之一。
-对于上面的迷宫，从入口开始，可以按DRRURRDDDR 的顺序通过迷宫， 一共 10 步。
-其中 D、U、L、R 分别表示向下、向上、向左、向右走。 对于下面这个更复杂的迷宫（30 行 50 列），
-请找出一种通过迷宫的方式， 其使用的步数最少，在步数最少的前提下，请找出字典序最小的一个作为答案。
-请注意在字典序中D&lt;L&lt;R&lt;U。（如果你把以下文字复制到文本文件中，请务 必检查复制的内容是否与文档中的一致。
-在试题目录下有一个文件 maze.txt， 内容与下面的文本相同)</p>
+              
 
-<pre><code>01010101001011001001010110010110100100001000101010
-00001000100000101010010000100000001001100110100101
-01111011010010001000001101001011100011000000010000
-01000000001010100011010000101000001010101011001011
-00011111000000101000010010100010100000101100000000
-11001000110101000010101100011010011010101011110111
-00011011010101001001001010000001000101001110000000
-10100000101000100110101010111110011000010000111010
-00111000001010100001100010000001000101001100001001
-11000110100001110010001001010101010101010001101000
-00010000100100000101001010101110100010101010000101
-11100100101001001000010000010101010100100100010100
-00000010000000101011001111010001100000101010100011
-10101010011100001000011000010110011110110100001000
-10101010100001101010100101000010100000111011101001
-10000000101100010000101100101101001011100000000100
-10101001000000010100100001000100000100011110101001
-00101001010101101001010100011010101101110000110101
-11001010000100001100000010100101000001000111000010
-00001000110000110101101000000100101001001000011101
-10100101000101000000001110110010110101101010100001
-00101000010000110101010000100010001001000100010101
-10100001000110010001000010101001010101011111010010
-00000100101000000110010100101001000001000000000010
-11010000001001110111001001000011101001011011101000
-00000110100010001000100000001000011101000000110011
-10101000101000100010001111100010101001010000001000
-10000010100101001010110000000100101010001011101000
-00111100001000010000000110111000000001000000001011
-10000001100111010111010001000110111010101101111000
+<h2 id="凑零钱">凑零钱</h2>
+
+<p>给你 k 种面值的硬币，面值分别为 c1, c2 &hellip; ck，每种硬币的数量无限，再给一个总金额 amount，问你最少需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1 。</p>
+
+<pre><code>输入样例：
+3 3
+1 2 5
+
+输出样例:
+3
 </code></pre>
 
-<div class="alert success ">
-  <p>走迷宫求步数最少的路径：<br />
-1、从起点开始，通过BFS来一步一步地向外试探，直到遇到出口<br />
-2、在BFS的过程中还需要记录每次所到的下一个结点的前驱结点（例如从1走到2，即设置一个指针：2-&gt;1）<br />
-3、最后从终点开始DFS，每次都找前驱结点，最终遍历到起点就产生一条从终点到起点的路径，倒序输出即可。</p>
-</div>
+<p>1、确定 base case，这个很简单，显然目标金额 amount 为 0 时算法返回 0，因为不需要任何硬币就已经凑出目标金额了。</p>
 
-<p>思路跟Dijkstra+DFS打印最短路径有异曲同工之妙。</p>
+<p>2、确定「状态」，也就是原问题和子问题中会变化的变量。由于硬币数量无限，硬币的面额也是题目给定的，只有目标金额会不断地向 base case 靠近，所以唯一的「状态」就是目标金额 amount。</p>
 
-<pre><code class="language-c++">
-#include&lt;bits/stdc++.h&gt; 
+<p>3、确定「选择」，也就是导致「状态」产生变化的行为。目标金额为什么变化呢，因为你在选择硬币，你每选择一枚硬币，就相当于减少了目标金额。所以说所有硬币的面值，就是你的「选择」。</p>
+
+<p>4、明确 dp 函数/数组的定义。我们这里讲的是自顶向下的解法，所以会有一个递归的 dp 函数，一般来说函数的参数就是状态转移中会变化的量，也就是上面说到的「状态」；函数的返回值就是题目要求我们计算的量。就本题来说，状态只有一个，即「目标金额」，题目要求我们计算凑出目标金额所需的最少硬币数量。所以我们可以这样定义 dp 函数：</p>
+
+<p>dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。</p>
+
+<pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
-struct node{	//结点 
-	int x,y;	//结点坐标 
-};
-node pre[32][52];		//存前驱结点的二维数组 
-char G[32][52];			//迷宫图 
-int visit[32][52];		//访问标记数组 
-int dx[4]={-1,0,0,1};		//设置x移动的方向
-int dy[4]={0,-1,1,0};		//设置y移动的方向 
-void bfs(int si,int sj){	//起点行、列坐标 
-	node temp;				//结点 
-	temp.x=si,temp.y=sj;	//设置起点的坐标 
-	visit[temp.x][temp.y]=1;//标记[temp.x][temp.x]点已访问 
-	queue&lt;node&gt;q;			//定义node型队列，存结点 
-	q.push(temp);			//将起点入队 
-	while(!q.empty()){		//当队列不为空 
-		temp=q.front();		//取队首 
-		q.pop();			//出队 
-		node p;				//定义新的结点 
-		for(int i=0;i&lt;4;i++){
-			p.x=temp.x+dx[i];	//设置结点p的x坐标 
-			p.y=temp.y+dy[i];	//设置结点p的y坐标 
-			if(G[p.x][p.y]!='1'&amp;&amp;visit[p.x][p.y]==0){	//试探是否可以访问 
-				pre[p.x][p.y]=temp;		// 设置结点p的前驱结点为temp 
-				visit[p.x][p.y]=1;		//标记已访问 
-				q.push(p);				//出队 
-			}
-	}
-}
-vector&lt;char&gt;path;	//存路径的数组 
-void dfs(node s){	//参数为结点 
-	if(s.x==1&amp;&amp;s.y==1){	//如果遍历到起点，则路径已生成完毕 
-		for(int i=path.size()-1;i&gt;=0;i--){	//因为是从终点往前找的，所以输出的时候要从后往前输出 
-			cout&lt;&lt;path[i];
-		}
-		return;
-	}
-	if(s.x==pre[s.x][s.y].x){	//如果x坐标相等 ，则移动的方向为L或R，否则移动方向为D或U 
-		if(s.y-pre[s.x][s.y].y==1)	path.push_back('R');	//如果结点s的y坐标比前驱结点的y坐标大1,则表示移动的方向为R，否则为L 
-		else path.push_back('L'); 
-	}
-	else{	//移动方向为U或D 
-		if(s.x-pre[s.x][s.y].x==1)	path.push_back('D');
-		else path.push_back('U');
-	}
-	dfs(pre[s.x][s.y]);//访问前驱结点 
-}
-int main(){ 
-	fill(G[0],G[0]+32*52,'1');	//把迷宫初始化全为1，给迷宫做一层外墙 
-	for(int i=1;i&lt;=30;i++){		//输入真正的迷宫区域，行从1~30 
-		for(int j=1;j&lt;=50;j++){	//列从1~50 
-			cin&gt;&gt;G[i][j];
-		}
-	}
-	bfs(1,1);//对起点bfs 
-	node s; 
-	s.x=30,s.y=50;	//终点 
-	dfs(s);//对终点dfs 
-	return 0;
-}
+int dp[400];
+int N,M;
+vector&lt;int&gt;v;
+// 1.定义dp数组的含义
+// 2.找边界解
+// 3.找动态转移方程
 
-/**输入** 
-01010101001011001001010110010110100100001000101010
-00001000100000101010010000100000001001100110100101
-01111011010010001000001101001011100011000000010000
-01000000001010100011010000101000001010101011001011
-00011111000000101000010010100010100000101100000000
-11001000110101000010101100011010011010101011110111
-00011011010101001001001010000001000101001110000000
-10100000101000100110101010111110011000010000111010
-00111000001010100001100010000001000101001100001001
-11000110100001110010001001010101010101010001101000
-00010000100100000101001010101110100010101010000101
-11100100101001001000010000010101010100100100010100
-00000010000000101011001111010001100000101010100011
-10101010011100001000011000010110011110110100001000
-10101010100001101010100101000010100000111011101001
-10000000101100010000101100101101001011100000000100
-10101001000000010100100001000100000100011110101001
-00101001010101101001010100011010101101110000110101
-11001010000100001100000010100101000001000111000010
-00001000110000110101101000000100101001001000011101
-10100101000101000000001110110010110101101010100001
-00101000010000110101010000100010001001000100010101
-10100001000110010001000010101001010101011111010010
-00000100101000000110010100101001000001000000000010
-11010000001001110111001001000011101001011011101000
-00000110100010001000100000001000011101000000110011
-10101000101000100010001111100010101001010000001000
-10000010100101001010110000000100101010001011101000
-00111100001000010000000110111000000001000000001011
-10000001100111010111010001000110111010101101111000
-*/
+// 该问题的思路
+// 1.将dp数组定义为：当总金额为i，则dp[i]表示至少需要dp[i]枚金币
+// 2.显然当总金额为0时，至少需要0枚金币，当总金额小于0时无解。
+// 3.遍历所有面值的金币，当金币面值为n时，且总金额为m时，那么dp[m-n]+1(即总金额为m-n的解加1即为
+// 总金额为m所需的金币数
 
-/**输出** 
-DDDDRRURRRRRRDRRRRDDDLDDRDDDDDDDDDDDDRDDRRRUR
-RUURRDDDDRDRRRRRRDRRURRDDDRRRRUURUUUUUUULULLU
-UUURRRRUULLLUUUULLUUULUURRURRURURRRDDRRRRRDDR
-RDDLLLDDRRDDRDDLDDDLLDDLLLDLDDDLDDRRRRRRRRRDD
-DDDDRR
-*/ 
-
-</code></pre>
-
-<p>题目背景
-给定一个N*M方格的迷宫，迷宫里有T处障碍，障碍处不可通过。给定起点坐标和终点坐标，问: 每个方格最多经过1次，有多少种从起点坐标到终点坐标的方案。在迷宫中移动有上下左右四种方式，每次只能移动一个方格。数据保证起点上没有障碍。</p>
-
-<p>题目描述<br />
-无</p>
-
-<p>输入格式<br />
-第一行N、M和T，N为行，M为列，T为障碍总数。第二行起点坐标SX,SY，终点坐标FX,FY。接下来T行，每行为障碍点的坐标。</p>
-
-<p>输出格式<br />
-给定起点坐标和终点坐标，问每个方格最多经过1次，从起点坐标到终点坐标的方案总数。</p>
-
-<p>输入输出样例
-输入:
-    2 2 1
-    1 1 2 2
-    1 2
-输出 :
-    1
-说明/提示
-【数据规模】</p>
-
-<p>1≤N,M≤5</p>
-
-<p>统计能从起点到终点的路径数。</p>
-
-<pre><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-#include&lt;string&gt;
-#include&lt;cmath&gt;
-#include&lt;queue&gt;
-#include&lt;map&gt;
-#include&lt;cstdio&gt;
-using namespace std;
-int G[10][10];	//迷宫地图 
-int N,M,T,sx,sy,dx,dy,ans=0;//N个点，M条边，T个障碍物，sx,sy为起点行、列坐标；dx,dy为终点行、列坐标 
-int visit[10][10];	//标记访问的数组 
-int Dx[4]={1,-1,0,0};//行的移动
-int Dy[4]={0,0,1,-1};//列的移动 
-
-void dfs(int x,int y){
-	if(x==dx&amp;&amp;y==dy){//如果来到了终点，就得到一组解 
-		ans++; 
-		return;	//剪枝 
-	}
-	for(int i=0;i&lt;4;i++){	//枚举上下左右四个方向的位置 
-		int xx=x+Dx[i],yy=y+Dy[i];	//获取坐标 
-		if(visit[xx][yy]==0&amp;&amp;G[xx][yy]==0){	//如果该点未访问且没有障碍物 
-			visit[xx][yy]=1;// 标记已访问 
-			dfs(xx,yy);	//进入下一个点 
-			visit[xx][yy]=0;//回溯，改回原来的状态 
-		}
-	}
+// 自顶而下的动态规划，自顶而下求解子问题，把已求出的结果用dp数组存起来，求解释，先判断该子问题
+// 是否已有解，若有解直接使用dp数组内的值。
+int dfs(int n){
+    if(dp[n])return dp[n];
+    if(n==0)return 0;
+    if(n&lt;0)return -1;
+    int res=0x3f3f3f3;
+    for(int i=0;i&lt;N;i++){
+        int subproblem=dfs(n-v[i]);
+        if(subproblem==-1)continue;
+        dp[n-v[i]]=subproblem;
+        res=min(res,subproblem+1);
+    }
+    return res!=-1?res:-1;
 }
 int main(){
-	cin&gt;&gt;N&gt;&gt;M&gt;&gt;T&gt;&gt;sx&gt;&gt;sy&gt;&gt;dx&gt;&gt;dy;
-	fill(G[0],G[0]+(N+2)*(M+2),0);
-	for(int i=0;i&lt;T;i++){
-		int a,b;
-		cin&gt;&gt;a&gt;&gt;b;
-		G[a][b]=1;	//障碍物 
-	}
-	for(int i=0;i&lt;N+2;i++){	//加围墙 
-		G[i][0]=G[i][M+1]=1;
-	}
-	for(int i=0;i&lt;M+2;i++){	//加围墙 
-		G[0][i]=G[N+1][i]=1;
-	}
-	visit[sx][sy]=visit[sy][sx]=1;	//标记起点已访问 
-	dfs(sx,sy);	//dfs入口 
-	cout&lt;&lt;ans;	
-	return 0;
+    cin&gt;&gt;N&gt;&gt;M;
+    for(int i=0;i&lt;N;i++){
+        int a;
+        cin&gt;&gt;a;
+        v.push_back(a);
+    }
+    cout&lt;&lt;dfs(M);
+    return 0;
 }
-
 </code></pre>
+
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
               
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://NTaurus.github.io/tags/dp/">dp</a>
+
+                  </div>
+                
+              
             
-              <span id="/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/" class="leancloud_visitors" data-flag-title="BFS&#43;DFS走迷宫">
+              <span id="/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="leancloud_visitors" data-flag-title="初入动态规划">
                 <span class="post-meta-item-text">文章阅读量 </span>
                 <span class="leancloud-visitors-count">1000000</span>
                 <p></p>
@@ -535,7 +406,7 @@ int main(){
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/05/jdbc/" data-tooltip="JDBC">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/" data-tooltip="BFS&#43;DFS走迷宫">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -543,7 +414,7 @@ int main(){
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" data-tooltip="初入动态规划">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/%E6%9C%89%E5%8F%A5%E8%AF%9D%E6%83%B3%E8%B7%9F%E4%BD%A0%E8%AF%B4/" data-tooltip="有句话想跟你说">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -561,7 +432,7 @@ int main(){
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -615,7 +486,7 @@ int main(){
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/05/jdbc/" data-tooltip="JDBC">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/" data-tooltip="BFS&#43;DFS走迷宫">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -623,7 +494,7 @@ int main(){
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" data-tooltip="初入动态规划">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://NTaurus.github.io/2020/02/%E6%9C%89%E5%8F%A5%E8%AF%9D%E6%83%B3%E8%B7%9F%E4%BD%A0%E8%AF%B4/" data-tooltip="有句话想跟你说">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -641,7 +512,7 @@ int main(){
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2020/06/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://NTaurus.github.io/2021/04/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -671,7 +542,7 @@ int main(){
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FNTaurus.github.io%2F2020%2F06%2Fbfs-dfs%25E8%25B5%25B0%25E8%25BF%25B7%25E5%25AE%25AB%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FNTaurus.github.io%2F2021%2F04%2F%25E5%2588%259D%25E5%2585%25A5%25E5%258A%25A8%25E6%2580%2581%25E8%25A7%2584%25E5%2588%2592%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -925,9 +796,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/NTaurus.github.io\/2020\/06\/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB\/';
+          this.page.url = 'https:\/\/NTaurus.github.io\/2021\/04\/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92\/';
           
-            this.page.identifier = '\/2020\/06\/bfs-dfs%E8%B5%B0%E8%BF%B7%E5%AE%AB\/'
+            this.page.identifier = '\/2021\/04\/%E5%88%9D%E5%85%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92\/'
           
         };
         (function() {

@@ -6,10 +6,19 @@
     <description>Recent content in Tags on NTaurus&#39;Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 May 2020 10:42:43 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Apr 2021 20:01:09 +0800</lastBuildDate>
     
 	<atom:link href="https://NTaurus.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>dp</title>
+      <link>https://NTaurus.github.io/tags/dp/</link>
+      <pubDate>Thu, 08 Apr 2021 20:01:09 +0800</pubDate>
+      
+      <guid>https://NTaurus.github.io/tags/dp/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>JAVA</title>
